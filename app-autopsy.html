@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Autopsy — Dissect Any App. Understand It Instantly.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F8F6F2;
+  --white:#FFFFFF;
+  --border:#E8E8E8;
+  --text:#111827;
+  --muted:#6B7280;
+  --faint:#F3F4F6;
+  --brand:#DC2626;
+  --brand-light:#FEF2F2;
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:20px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* NAV */
+.topbar{
+  background:#111827;height:58px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;}
+.nav-icon{font-size:22px;}
+.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-0.3px;}
+.nav-dot{color:#DC2626;}
+.nav-pill{background:#DC2626;color:white;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;font-family:'Nunito',sans-serif;}
+
+/* HERO */
+.hero{text-align:center;padding:48px 20px 36px;}
+.hero-icon{font-size:58px;margin-bottom:16px;display:block;}
+.hero-title{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:14px;line-height:1.1;}
+.hero-dot{color:#DC2626;}
+.hero-sub{font-size:17px;color:var(--muted);max-width:500px;margin:0 auto 18px;line-height:1.75;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:800;padding:7px 18px;border-radius:30px;}
+
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 80px;}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--radius-lg);padding:28px;border:1.5px solid var(--border);margin-bottom:20px;}
+
+/* STEP */
+.step-label{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.step-sub{font-size:13px;color:#AAA;margin-bottom:20px;}
+
+/* TABS */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.tab-btn{
+  padding:8px 18px;border-radius:30px;border:1.5px solid var(--border);
+  background:transparent;color:var(--muted);font-weight:800;font-size:13px;
+  cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.15s;
+}
+.tab-btn:hover{border-color:#CCC;}
+.tab-btn.active{background:var(--text);border-color:var(--text);color:white;}
+
+/* IOT NOTE */
+.iot-note{
+  background:#EFF6FF;border-radius:12px;padding:14px 18px;
+  font-size:13px;color:#1D4ED8;font-weight:600;line-height:1.7;
+  margin-bottom:18px;display:none;border-left:4px solid #3B82F6;
+}
+.iot-note strong{font-weight:900;}
+
+/* SITES */
+.sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-bottom:20px;}
+.site-btn{
+  padding:14px 6px;border-radius:14px;border:1.5px solid var(--border);
+  background:#FAFAFA;cursor:pointer;text-align:center;
+  font-family:'Nunito',sans-serif;transition:all 0.15s;
+}
+.site-btn:hover{border-color:#CCC;background:#F5F5F5;}
+.site-btn.sel{background:#111827;border-color:#111827;}
+.site-emoji{font-size:26px;margin-bottom:6px;}
+.site-name{font-size:11px;font-weight:800;color:#333;line-height:1.3;}
+.site-btn.sel .site-name{color:white;}
+.site-desc{font-size:10px;color:#AAA;margin-top:2px;}
+.site-btn.sel .site-desc{color:#999;}
+
+/* INPUT ROW */
+.input-row{display:flex;gap:10px;}
+.custom-input{
+  flex:1;padding:13px 18px;border-radius:12px;
+  border:1.5px solid var(--border);font-size:14px;
+  font-family:'Nunito',sans-serif;font-weight:600;
+  background:#FAFAFA;outline:none;color:var(--text);transition:border-color 0.15s;
+}
+.custom-input:focus{border-color:#999;}
+.go-btn{
+  padding:13px 24px;background:#111827;color:white;
+  border:none;border-radius:12px;cursor:pointer;
+  font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;
+  white-space:nowrap;transition:opacity 0.15s;
+}
+.go-btn:hover{opacity:0.85;}
+
+/* LOADING */
+.loading-box{
+  background:var(--white);border-radius:var(--radius-lg);padding:64px 20px;
+  text-align:center;border:1.5px solid var(--border);margin-bottom:20px;display:none;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.loading-icon{font-size:50px;margin-bottom:16px;display:inline-block;animation:pulse 1.5s ease-in-out infinite;}
+.loading-title{font-size:20px;font-weight:900;color:var(--text);}
+.loading-sub{color:#AAA;margin-top:8px;font-size:14px;}
+.loading-dots{display:flex;justify-content:center;gap:6px;margin-top:20px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#DDD;}
+.dot.active{background:#DC2626;}
+
+/* ERROR */
+.error-box{background:#FEF2F2;border-radius:12px;padding:14px 20px;color:#DC2626;font-weight:700;font-size:14px;margin-bottom:18px;display:none;}
+
+/* ROLES SECTION */
+.roles-section{display:none;}
+.roles-header{margin-bottom:24px;}
+.roles-title{font-size:18px;font-weight:900;color:var(--text);}
+.roles-sub{font-size:13px;color:#AAA;margin-top:3px;}
+
+/* GROUP */
+.group-section{margin-bottom:32px;}
+.group-label-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.group-bar{height:3px;width:24px;border-radius:2px;}
+.group-label-text{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.6px;}
+.roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
+
+/* ROLE CARD */
+.role-card{
+  background:var(--white);border-radius:16px;padding:18px;
+  cursor:pointer;border:2px solid #F0F0F0;transition:all 0.2s ease;
+}
+.role-card:hover{border-color:#DDD;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.role-inner{display:flex;align-items:flex-start;gap:12px;}
+.role-icon-box{
+  width:46px;height:46px;flex-shrink:0;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.role-info{flex:1;min-width:0;}
+.role-name{font-weight:900;font-size:14px;color:var(--text);margin-bottom:3px;}
+.role-tag{
+  display:inline-block;font-size:10px;font-weight:800;
+  padding:2px 9px;border-radius:20px;text-transform:uppercase;
+  letter-spacing:0.3px;margin-bottom:9px;
+}
+.role-explain{font-size:13px;color:#555;line-height:1.65;}
+.role-explain.waiting{color:#CCC;font-style:italic;}
+.role-tap{text-align:right;font-size:11px;font-weight:800;color:#CCC;margin-top:10px;}
+
+/* DETAIL PANEL */
+.detail-panel{background:var(--white);border-radius:var(--radius-lg);padding:30px;margin-bottom:28px;display:none;}
+.detail-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+.detail-left{display:flex;align-items:center;gap:18px;}
+.detail-icon-box{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;}
+.detail-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);}
+.detail-at{font-size:14px;font-weight:700;margin-top:4px;}
+.detail-tag-small{font-size:12px;color:#AAA;margin-top:2px;}
+.close-btn{background:var(--faint);border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:800;color:#666;font-family:'Nunito',sans-serif;flex-shrink:0;}
+.close-btn:hover{background:#E5E7EB;}
+.detail-body{font-size:16px;line-height:2;color:#444;}
+.detail-loading{text-align:center;padding:30px;color:#AAA;font-size:14px;font-weight:700;}
+
+/* FOOTER */
+.site-footer{text-align:center;font-size:12px;color:#CCC;font-weight:700;padding:10px 20px 40px;display:none;}
+.site-footer .brand-inline{color:#DC2626;font-weight:900;}
+
+/* DIVIDER */
+.divider{height:1.5px;background:linear-gradient(90deg,transparent,#E5E7EB,transparent);margin:4px 0 28px;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="nav-brand">
+    <span class="nav-icon">🔬</span>
+    <span class="nav-name">App<span class="nav-dot">.</span>Autopsy</span>
+  </div>
+  <span class="nav-pill">18 Roles · Any App · Plain English</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-icon">🔬</span>
+  <h1 class="hero-title">App<span class="hero-dot">.</span>Autopsy</h1>
+  <p class="hero-sub">We dissect any app or device.<br>You finally understand who does what — in plain, simple English.</p>
+  <span class="hero-badge">📖 Zero jargon &nbsp;·&nbsp; Zero abbreviations &nbsp;·&nbsp; 18 tech jobs &nbsp;·&nbsp; Any app or device</span>
+</div>
+
+<div class="wrap">
+
+  <!-- STEP 1 -->
+  <div class="card">
+    <div class="step-label">Step 1 — Pick an app or device 👇</div>
+    <div class="step-sub">Choose from the popular list, or type any name below</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-apps" onclick="switchTab('apps')">📱 Apps &amp; Websites</button>
+      <button class="tab-btn" id="tab-physical" onclick="switchTab('physical')">🔌 Physical Devices (IoT)</button>
+    </div>
+
+    <div id="iot-note" class="iot-note">
+      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold and touch — like a smartwatch, smart speaker, or electric car. These devices have software built <em>inside</em> the hardware itself. "IoT" stands for "Internet of Things" — everyday objects (like a thermostat or fridge) that connect to the internet and can sense, respond, or communicate on their own.
+    </div>
+
+    <div class="sites-grid" id="sites-grid"></div>
+
+    <div class="input-row">
+      <input class="custom-input" id="custom-input"
+        placeholder="Or type any app/website name — Instagram, LinkedIn, Meesho, anything…"
+        onkeydown="if(event.key==='Enter')goCustom()">
+      <button class="go-btn" onclick="goCustom()">Dissect It →</button>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-box" id="loading-box">
+    <div class="loading-icon">🔬</div>
+    <div class="loading-title" id="loading-title">Dissecting the app...</div>
+    <div class="loading-sub">Generating simple explanations for all 18 tech jobs. Takes about 5 seconds.</div>
+    <div class="loading-dots">
+      <div class="dot active" id="d1"></div>
+      <div class="dot" id="d2"></div>
+      <div class="dot" id="d3"></div>
+      <div class="dot" id="d4"></div>
+    </div>
+  </div>
+
+  <!-- ERROR -->
+  <div class="error-box" id="error-box"></div>
+
+  <!-- ROLES SECTION -->
+  <div class="roles-section" id="roles-section">
+    <div class="roles-header">
+      <div class="roles-title">Step 2 — Click any job card to learn more 👇</div>
+      <div class="roles-sub" id="roles-sub"></div>
+    </div>
+    <div id="roles-container"></div>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel" id="detail-panel"></div>
+
+  <div class="site-footer" id="site-footer">
+    🔬 <span class="brand-inline">App.Autopsy</span> — Built for curious non-tech people &nbsp;·&nbsp; Based on Interview Kickstart's 18 tech profiles &nbsp;·&nbsp; Explanations powered by AI
+  </div>
+
+</div>
+
+<script>
+const APPS = [
+  {name:"Amazon India",  emoji:"🛒", desc:"Online Shopping",   type:"app"},
+  {name:"Swiggy",        emoji:"🍔", desc:"Food Delivery",     type:"app"},
+  {name:"Zomato",        emoji:"🍕", desc:"Food & Dining",     type:"app"},
+  {name:"Netflix India", emoji:"🎬", desc:"Movies & Shows",    type:"app"},
+  {name:"Flipkart",      emoji:"📦", desc:"Shopping",          type:"app"},
+  {name:"CRED",          emoji:"💳", desc:"Credit Card Bills", type:"app"},
+  {name:"Zerodha",       emoji:"📊", desc:"Stock Trading",     type:"app"},
+  {name:"PhonePe",       emoji:"💸", desc:"UPI Payments",      type:"app"},
+  {name:"Ola",           emoji:"🚗", desc:"Cab Booking",       type:"app"},
+  {name:"MakeMyTrip",    emoji:"✈️", desc:"Travel Booking",    type:"app"},
+  {name:"BigBasket",     emoji:"🥦", desc:"Grocery Delivery",  type:"app"},
+  {name:"Testbook",      emoji:"📚", desc:"Exam Preparation",  type:"app"}
+];
+
+const PHYSICAL = [
+  {name:"Amazon Echo (Alexa)", emoji:"🔊", desc:"Smart Speaker",      type:"iot"},
+  {name:"Fitbit Smartwatch",   emoji:"⌚", desc:"Fitness Wearable",   type:"iot"},
+  {name:"Samsung Smart TV",    emoji:"📺", desc:"Smart Television",   type:"iot"},
+  {name:"Tesla Electric Car",  emoji:"🚘", desc:"Smart Car",          type:"iot"},
+  {name:"Apple Watch",         emoji:"⌚", desc:"Smartwatch",          type:"iot"},
+  {name:"Nest Thermostat",     emoji:"🌡️", desc:"Smart Home Device", type:"iot"}
+];
+
+const GROUPS = {
+  builders: {label:"Builders & Engineers", accent:"#3B82F6", bg:"#EFF6FF", text:"#1D4ED8"},
+  data:     {label:"Data & Intelligence",  accent:"#10B981", bg:"#ECFDF5", text:"#065F46"},
+  managers: {label:"Leaders & Managers",   accent:"#8B5CF6", bg:"#F5F3FF", text:"#5B21B6"},
+  ops:      {label:"Operations & Security",accent:"#F59E0B", bg:"#FFFBEB", text:"#92400E"}
+};
+
+const ROLES = [
+  {id:1,  key:"frontend",  name:"Frontend Engineer",           emoji:"🎨", group:"builders", tagline:"Makes the app look beautiful"},
+  {id:2,  key:"backend",   name:"Backend Engineer",            emoji:"⚙️", group:"builders", tagline:"Runs the engine behind the scenes"},
+  {id:3,  key:"fullstack", name:"Full Stack Engineer",         emoji:"🔄", group:"builders", tagline:"Does both front-end and back-end work"},
+  {id:4,  key:"android",   name:"Android Engineer",           emoji:"🤖", group:"builders", tagline:"Builds the Android phone app"},
+  {id:5,  key:"ios",       name:"iOS Engineer",                emoji:"🍎", group:"builders", tagline:"Builds the iPhone and iPad app"},
+  {id:6,  key:"test",      name:"Test / QA Engineer",          emoji:"🧪", group:"builders", tagline:"Checks everything before you see it"},
+  {id:7,  key:"embedded",  name:"Embedded Systems Engineer",   emoji:"🔌", group:"builders", tagline:"Programs physical hardware devices"},
+  {id:8,  key:"ml",        name:"Machine Learning Engineer",   emoji:"🧠", group:"data",     tagline:"Teaches the app to think and predict"},
+  {id:9,  key:"data_eng",  name:"Data Engineer",              emoji:"🚰", group:"data",     tagline:"Manages the flow of all information"},
+  {id:10, key:"data_sci",  name:"Data Scientist",             emoji:"🔬", group:"data",     tagline:"Finds hidden patterns in data"},
+  {id:11, key:"analyst",   name:"Data / Business Analyst",    emoji:"📈", group:"data",     tagline:"Turns numbers into business decisions"},
+  {id:12, key:"em",        name:"Engineering Manager",        emoji:"👷", group:"managers", tagline:"Leads and manages the tech team"},
+  {id:13, key:"tpm",       name:"Technical Program Manager",  emoji:"📋", group:"managers", tagline:"Keeps big tech projects on track"},
+  {id:14, key:"pm",        name:"Product Manager",            emoji:"💡", group:"managers", tagline:"Decides what features get built"},
+  {id:15, key:"cloud",     name:"Cloud Architect",            emoji:"☁️", group:"ops",      tagline:"Manages internet servers in the cloud"},
+  {id:16, key:"sre",       name:"Site Reliability Engineer",  emoji:"🔧", group:"ops",      tagline:"Keeps the app running 24 hours a day"},
+  {id:17, key:"security",  name:"Cybersecurity Engineer",     emoji:"🔒", group:"ops",      tagline:"Protects your data from hackers"},
+  {id:18, key:"devops",    name:"DevOps Engineer",            emoji:"🚀", group:"ops",      tagline:"Pushes new features live to all users"}
+];
+
+let activeTab = "apps";
+let selectedSite = null;
+let explanations = {};
+let selectedRoleKey = null;
+let roleDetails = {};
+let dotInterval = null;
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById("tab-apps").className = "tab-btn" + (tab === "apps" ? " active" : "");
+  document.getElementById("tab-physical").className = "tab-btn" + (tab === "physical" ? " active" : "");
+  document.getElementById("iot-note").style.display = tab === "physical" ? "block" : "none";
+  renderSites();
+}
+
+function renderSites() {
+  const list = activeTab === "apps" ? APPS : PHYSICAL;
+  document.getElementById("sites-grid").innerHTML = list.map(s => {
+    const isSel = selectedSite && selectedSite.name === s.name;
+    const dn = s.name.length > 16 ? s.name.slice(0, 15) + "…" : s.name;
+    return `<button class="site-btn${isSel ? " sel" : ""}" onclick="selectSite('${s.name.replace(/'/g, "\\'")}','${s.type}')">
+      <div class="site-emoji">${s.emoji}</div>
+      <div class="site-name">${dn}</div>
+      <div class="site-desc">${s.desc}</div>
+    </button>`;
+  }).join("");
+}
+
+function goCustom() {
+  const v = document.getElementById("custom-input").value.trim();
+  if (v) { document.getElementById("custom-input").value = ""; selectSite(v, "app"); }
+}
+
+function startDots() {
+  let i = 0;
+  const dots = ["d1","d2","d3","d4"];
+  dots.forEach(d => document.getElementById(d).className = "dot");
+  dotInterval = setInterval(() => {
+    dots.forEach(d => document.getElementById(d).className = "dot");
+    document.getElementById(dots[i % 4]).className = "dot active";
+    i++;
+  }, 400);
+}
+
+function stopDots() {
+  if (dotInterval) { clearInterval(dotInterval); dotInterval = null; }
+}
+
+async function selectSite(name, type) {
+  selectedSite = { name, type };
+  selectedRoleKey = null;
+  explanations = {};
+  renderSites();
+  document.getElementById("roles-section").style.display = "none";
+  document.getElementById("detail-panel").style.display = "none";
+  document.getElementById("site-footer").style.display = "none";
+  document.getElementById("error-box").style.display = "none";
+  document.getElementById("loading-title").textContent = "Dissecting " + name + "...";
+  document.getElementById("loading-box").style.display = "block";
+  startDots();
+
+  const isPhysical = type === "iot";
+  const context = isPhysical
+    ? "This is a PHYSICAL DEVICE — a real product you can hold and touch, not just an app. It has software built inside the hardware."
+    : "This is a digital app or website used on a phone or computer.";
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1600,
+        system: "You explain tech jobs to someone who has NEVER worked in technology. Use ONLY simple everyday language. Zero abbreviations. Zero jargon. Use real examples from the specific product. Return ONLY raw JSON — no markdown, no backticks, no extra text.",
+        messages: [{
+          role: "user",
+          content: `For "${name}" (${context}), explain what each of these 18 tech roles does in ONE simple sentence. Start each with "This person..." and use a real feature of ${name} as an example.\n\nReturn ONLY raw JSON (no markdown, no backticks, nothing else):\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`
+        }]
+      })
+    });
+    const data = await resp.json();
+    let txt = data.content[0].text.trim().replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
+    explanations = JSON.parse(txt);
+    stopDots();
+    document.getElementById("loading-box").style.display = "none";
+    renderRoles();
+  } catch (e) {
+    stopDots();
+    document.getElementById("loading-box").style.display = "none";
+    document.getElementById("error-box").textContent = "⚠️ Something went wrong. Please try again — sometimes it takes a moment.";
+    document.getElementById("error-box").style.display = "block";
+  }
+}
+
+function renderRoles() {
+  document.getElementById("roles-sub").textContent = "All 18 tech jobs at " + selectedSite.name + " — tap any card for the full story";
+  const container = document.getElementById("roles-container");
+  container.innerHTML = ["builders", "data", "managers", "ops"].map(gKey => {
+    const g = GROUPS[gKey];
+    const cards = ROLES.filter(r => r.group === gKey).map(role => {
+      const isSel = selectedRoleKey === role.key;
+      const explain = explanations[role.key] || "—";
+      return `<div class="role-card${isSel ? " selected" : ""}" id="card-${role.key}"
+        style="${isSel ? "border-color:" + g.accent + ";background:" + g.bg + ";" : ""}"
+        onclick="clickRole('${role.key}')">
+        <div class="role-inner">
+          <div class="role-icon-box" style="background:${g.bg};border:1.5px solid ${g.accent}25;">${role.emoji}</div>
+          <div class="role-info">
+            <div class="role-name">${role.name}</div>
+            <div class="role-tag" style="color:${g.text};background:${g.bg};border:1px solid ${g.accent}20;">${role.tagline}</div>
+            <div class="role-explain">${explain}</div>
+          </div>
+        </div>
+        <div class="role-tap" style="color:${isSel ? g.accent : "#CCC"}">${isSel ? "✓ Selected — full story below" : "Tap to learn more →"}</div>
+      </div>`;
+    }).join("");
+    return `<div class="group-section">
+      <div class="group-label-row">
+        <div class="group-bar" style="background:${g.accent};"></div>
+        <span class="group-label-text" style="color:${g.text};">${g.label}</span>
+      </div>
+      <div class="roles-grid">${cards}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("roles-section").style.display = "block";
+  document.getElementById("site-footer").style.display = "block";
+}
+
+async function clickRole(key) {
+  const role = ROLES.find(r => r.key === key);
+  if (!role || !selectedSite) return;
+  selectedRoleKey = key;
+  renderRoles();
+  const g = GROUPS[role.group];
+  const cacheKey = key + "_" + selectedSite.name;
+  const panel = document.getElementById("detail-panel");
+  panel.style.display = "block";
+  panel.style.border = "2px solid " + g.accent;
+  setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50);
+
+  panel.innerHTML = `<div class="detail-header">
+    <div class="detail-left">
+      <div class="detail-icon-box" style="background:${g.bg};border:2px solid ${g.accent}25;">${role.emoji}</div>
+      <div>
+        <div class="detail-name">${role.name}</div>
+        <div class="detail-at" style="color:${g.text};">at ${selectedSite.name}</div>
+        <div class="detail-tag-small">${role.tagline}</div>
+      </div>
+    </div>
+    <button class="close-btn" onclick="closeDetail()">✕ Close</button>
+  </div>
+  <div id="detail-body"><div class="detail-loading">🔬 Dissecting this role...</div></div>`;
+
+  if (roleDetails[cacheKey]) {
+    document.getElementById("detail-body").innerHTML = `<p class="detail-body">${roleDetails[cacheKey]}</p>`;
+    return;
+  }
+
+  const isPhysical = selectedSite.type === "iot";
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 600,
+        system: "You explain tech jobs to someone with absolutely zero technology background. Simple conversational language only. No jargon. No abbreviations. If you must use a technical term, immediately explain it in parentheses with a simple real-life example. Be warm and friendly like a knowledgeable friend.",
+        messages: [{
+          role: "user",
+          content: `Explain what a "${role.name}" does at ${selectedSite.name} in 4-5 friendly sentences.\n\nInclude:\n1. What they do every day in very simple words\n2. One specific feature of ${selectedSite.name} they are responsible for\n3. What would go wrong for users if this person didn't exist\n4. One fun comparison — like "Think of them as the [simple thing] of the app"\n${isPhysical ? "\nNote: " + selectedSite.name + " is a PHYSICAL DEVICE. Please explain how this role involves real hardware too." : ""}\n\nWrite as one warm, friendly paragraph. No bullet points. No lists.`
+        }]
+      })
+    });
+    const data = await resp.json();
+    const txt = data.content[0].text;
+    roleDetails[cacheKey] = txt;
+    if (document.getElementById("detail-body"))
+      document.getElementById("detail-body").innerHTML = `<p class="detail-body" style="font-size:16px;line-height:2;color:#444;">${txt}</p>`;
+  } catch (e) {
+    if (document.getElementById("detail-body"))
+      document.getElementById("detail-body").innerHTML = `<div class="detail-loading" style="color:#DC2626;">⚠️ Couldn't load. Please tap the card again.</div>`;
+  }
+}
+
+function closeDetail() {
+  selectedRoleKey = null;
+  document.getElementById("detail-panel").style.display = "none";
+  renderRoles();
+}
+
+// Init
+renderSites();
+</script>
+</body>
+</html>
