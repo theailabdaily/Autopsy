@@ -2,19 +2,16 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) {
-    return res.status(500).json({
-      error: 'ANTHROPIC_API_KEY is not set. Go to Vercel Dashboard → Your Project → Settings → Environment Variables and add ANTHROPIC_API_KEY.'
-    });
-  }
+  if (!key) return res.status(500).json({
+    error: 'ANTHROPIC_API_KEY not set. Go to Vercel Dashboard → autopsy project → Settings → Environment Variables and add it.'
+  });
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,9 +20,9 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify(req.body)
     });
-    const data = await response.json();
-    return res.status(response.status).json(data);
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
+    const data = await r.json();
+    return res.status(r.status).json(data);
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
 };

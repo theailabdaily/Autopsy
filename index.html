@@ -8,32 +8,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#F8F6F2;--white:#FFFFFF;--border:#E8E8E8;--text:#111827;
-  --muted:#6B7280;--faint:#F3F4F6;--brand:#DC2626;--brand-light:#FEF2F2;
-}
+:root{--bg:#F8F6F2;--white:#fff;--border:#E8E8E8;--text:#111827;--muted:#6B7280;--faint:#F3F4F6;--brand:#DC2626;}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
 /* NAV */
-.topbar{background:#111827;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:200;}
+.topbar{background:#111827;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
 .nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-icon{font-size:22px;}
-.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-0.3px;}
+.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-.3px;}
 .nav-dot{color:#DC2626;}
-.nav-pill{background:#DC2626;color:white;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;font-family:'Nunito',sans-serif;}
+.nav-pill{background:#DC2626;color:white;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;}
 
 /* HERO */
 .hero{text-align:center;padding:44px 20px 32px;}
-.hero-icon{font-size:54px;margin-bottom:14px;display:block;}
-.hero-title{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:12px;line-height:1.1;}
+.hero-icon{font-size:52px;margin-bottom:14px;display:block;}
+.hero-title{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:12px;}
 .hero-dot{color:#DC2626;}
 .hero-sub{font-size:17px;color:var(--muted);max-width:500px;margin:0 auto 16px;line-height:1.75;}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:800;padding:7px 18px;border-radius:30px;}
+.hero-badge{display:inline-flex;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:800;padding:7px 18px;border-radius:30px;}
 
-.wrap{max-width:980px;margin:0 auto;padding:0 20px 80px;}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 80px;}
 
 /* CARD */
 .card{background:var(--white);border-radius:20px;padding:28px;border:1.5px solid var(--border);margin-bottom:20px;}
+
+/* BOOKMARKLET HERO CARD */
+.bk-card{background:#111827;border-radius:20px;padding:28px;margin-bottom:20px;border:1.5px solid #374151;}
+.bk-mode-pill{display:inline-flex;align-items:center;gap:6px;background:#DC262622;color:#fca5a5;font-size:11px;font-weight:900;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
+.bk-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:white;margin-bottom:10px;letter-spacing:-.5px;}
+.bk-title span{color:#DC2626;}
+.bk-sub{font-size:15px;color:#9CA3AF;line-height:1.75;margin-bottom:22px;max-width:560px;}
+.bk-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px;}
+.bk-step{background:#1F2937;border-radius:14px;padding:16px;}
+.bk-step-num{font-size:11px;font-weight:900;color:#DC2626;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.bk-step-text{font-size:13px;color:#D1D5DB;line-height:1.65;}
+.bk-step-text strong{color:white;}
+.bk-drag-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.bk-drag-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#DC2626;color:white;font-weight:900;font-size:15px;
+  padding:14px 24px;border-radius:14px;text-decoration:none;
+  cursor:grab;border:2px dashed rgba(255,255,255,.3);
+  transition:all .15s;user-select:none;
+}
+.bk-drag-btn:hover{background:#b91c1c;}
+.bk-drag-hint{color:#6B7280;font-size:13px;line-height:1.7;}
+.bk-drag-hint strong{color:#9CA3AF;}
+.bk-url-row{margin-top:16px;}
+.bk-url-label{font-size:12px;color:#6B7280;margin-bottom:6px;font-weight:700;}
+.bk-url-box{display:flex;gap:8px;}
+.bk-url-input{flex:1;background:#0D1117;border:1.5px solid #374151;border-radius:10px;padding:10px 14px;font-size:12px;color:#9CA3AF;font-family:monospace;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.bk-copy-btn{background:#374151;color:white;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:12px;font-weight:800;white-space:nowrap;font-family:'Nunito',sans-serif;transition:all .15s;}
+.bk-copy-btn:hover{background:#4B5563;}
+
+/* DIVIDER */
+.or-divider{display:flex;align-items:center;gap:14px;margin:28px 0;color:#BBB;font-size:13px;font-weight:700;}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1.5px;background:#E8E8E8;}
 
 /* STEP */
 .step-label{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
@@ -41,88 +70,76 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 
 /* TABS */
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.tab-btn{padding:8px 18px;border-radius:30px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.15s;}
+.tab-btn{padding:8px 18px;border-radius:30px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s;}
 .tab-btn:hover{border-color:#CCC;}
 .tab-btn.active{background:var(--text);border-color:var(--text);color:white;}
 
 /* IOT NOTE */
 .iot-note{background:#EFF6FF;border-radius:12px;padding:14px 18px;font-size:13px;color:#1D4ED8;font-weight:600;line-height:1.7;margin-bottom:18px;display:none;border-left:4px solid #3B82F6;}
-.iot-note strong{font-weight:900;}
 
 /* SITES */
 .sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-bottom:20px;}
-.site-btn{padding:14px 6px;border-radius:14px;border:1.5px solid var(--border);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif;transition:all 0.15s;}
-.site-btn:hover{border-color:#CCC;background:#F5F5F5;}
+.site-btn{padding:14px 6px;border-radius:14px;border:1.5px solid var(--border);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif;transition:all .15s;}
+.site-btn:hover{border-color:#CCC;}
 .site-btn.sel{background:#111827;border-color:#111827;}
 .site-emoji{font-size:24px;margin-bottom:5px;}
 .site-name{font-size:11px;font-weight:800;color:#333;line-height:1.3;}
 .site-btn.sel .site-name,.site-btn.sel .site-desc{color:white;}
 .site-desc{font-size:10px;color:#AAA;margin-top:2px;}
-.site-btn.sel .site-desc{color:#ccc;}
+.site-btn.sel .site-desc{color:#CCC;}
 
-/* SEARCH WITH AUTOCOMPLETE */
+/* SEARCH */
 .search-wrapper{position:relative;}
 .input-row{display:flex;gap:10px;}
-.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;background:#FAFAFA;outline:none;color:var(--text);transition:border-color 0.15s;width:100%;}
+.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;background:#FAFAFA;outline:none;color:var(--text);transition:border-color .15s;}
 .custom-input:focus{border-color:#999;background:white;}
-.go-btn{padding:13px 24px;background:#111827;color:white;border:none;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;white-space:nowrap;transition:opacity 0.15s;flex-shrink:0;}
-.go-btn:hover{opacity:0.85;}
+.go-btn{padding:13px 24px;background:#111827;color:white;border:none;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;white-space:nowrap;}
+.go-btn:hover{opacity:.85;}
 
-/* AUTOCOMPLETE DROPDOWN */
-.suggestions-dropdown{
-  position:absolute;top:calc(100% + 8px);left:0;right:60px;
-  background:white;border-radius:14px;border:1.5px solid #E5E5E5;
-  box-shadow:0 12px 32px rgba(0,0,0,0.12);z-index:300;
-  overflow:hidden;display:none;
-}
-.sug-item{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;transition:background 0.1s;border-bottom:1px solid #F5F5F5;}
+/* AUTOCOMPLETE */
+.suggestions-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:60px;background:white;border-radius:14px;border:1.5px solid #E5E5E5;box-shadow:0 12px 32px rgba(0,0,0,.12);z-index:300;overflow:hidden;display:none;}
+.sug-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F5F5F5;}
 .sug-item:last-child{border-bottom:none;}
 .sug-item:hover,.sug-item.active{background:#F7F5F1;}
-.sug-emoji{font-size:20px;width:28px;text-align:center;flex-shrink:0;}
+.sug-emoji{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
 .sug-name{font-weight:800;font-size:14px;color:#111;flex:1;}
-.sug-desc{font-size:12px;color:#AAA;font-weight:600;}
-.sug-pill{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:900;flex-shrink:0;}
+.sug-desc{font-size:12px;color:#AAA;}
+.sug-pill{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:900;}
 .sug-pill.iot{background:#ECFDF5;color:#065F46;}
 
 /* LOADING */
-.loading-box{background:var(--white);border-radius:20px;padding:64px 20px;text-align:center;border:1.5px solid var(--border);margin-bottom:20px;display:none;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(0.95);}}
-.loading-icon{font-size:50px;margin-bottom:16px;display:inline-block;animation:pulse 1.4s ease-in-out infinite;}
-.loading-title{font-size:20px;font-weight:900;color:var(--text);}
-.loading-sub{color:#AAA;margin-top:8px;font-size:14px;}
+.loading-box{background:var(--white);border-radius:20px;padding:60px 20px;text-align:center;border:1.5px solid var(--border);margin-bottom:20px;display:none;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+.loading-icon{font-size:48px;margin-bottom:14px;display:inline-block;animation:pulse 1.4s ease-in-out infinite;}
 .loading-progress{width:200px;height:4px;background:#F0F0F0;border-radius:4px;margin:20px auto 0;overflow:hidden;}
-.loading-bar{height:100%;background:var(--brand);border-radius:4px;animation:progress 3s ease-in-out infinite;}
-@keyframes progress{0%{width:0%;}60%{width:80%;}100%{width:95%;}}
+.loading-bar{height:100%;background:#DC2626;border-radius:4px;animation:progress 3s ease-in-out infinite;}
+@keyframes progress{0%{width:0}60%{width:80%}100%{width:95%}}
 
 /* ERROR */
 .error-box{background:#FEF2F2;border-radius:14px;padding:16px 20px;color:#DC2626;font-weight:700;font-size:14px;margin-bottom:18px;display:none;line-height:1.6;}
 
-/* ROLES SECTION */
+/* ROLES */
 .roles-section{display:none;}
 .roles-header{margin-bottom:24px;}
 .roles-title{font-size:18px;font-weight:900;color:var(--text);}
 .roles-sub{font-size:13px;color:#AAA;margin-top:3px;}
-
-/* GROUP */
 .group-section{margin-bottom:32px;}
 .group-label-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
 .group-bar{height:3px;width:24px;border-radius:2px;}
-.group-label-text{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.6px;}
+.group-label-text{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;}
 .roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
-
-/* ROLE CARD */
-.role-card{background:var(--white);border-radius:16px;padding:18px;cursor:pointer;border:2px solid #F0F0F0;transition:all 0.2s ease;}
-.role-card:hover{border-color:#DDD;box-shadow:0 4px 12px rgba(0,0,0,0.06);transform:translateY(-1px);}
+.role-card{background:var(--white);border-radius:16px;padding:18px;cursor:pointer;border:2px solid #F0F0F0;transition:all .2s ease;}
+.role-card:hover{border-color:#DDD;box-shadow:0 4px 12px rgba(0,0,0,.06);transform:translateY(-1px);}
 .role-card.selected{transform:none;}
 .role-inner{display:flex;align-items:flex-start;gap:12px;}
 .role-icon-box{width:46px;height:46px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .role-info{flex:1;min-width:0;}
 .role-name{font-weight:900;font-size:14px;color:var(--text);margin-bottom:3px;}
-.role-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:9px;}
+.role-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:9px;}
 .role-explain{font-size:13px;color:#555;line-height:1.65;}
 .role-tap{text-align:right;font-size:11px;font-weight:800;color:#CCC;margin-top:10px;}
 
-/* DETAIL PANEL */
+/* DETAIL */
 .detail-panel{background:var(--white);border-radius:20px;padding:30px;margin-bottom:28px;display:none;}
 .detail-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
 .detail-left{display:flex;align-items:center;gap:18px;}
@@ -137,20 +154,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 
 /* FOOTER */
 .site-footer{text-align:center;font-size:12px;color:#CCC;font-weight:700;padding:10px 20px 40px;display:none;}
-.site-footer .brand-inline{color:#DC2626;font-weight:900;}
-
-/* SETUP BANNER */
-.setup-banner{background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:14px;padding:18px 22px;margin-bottom:20px;display:none;}
-.setup-banner h3{font-size:15px;font-weight:900;color:#9A3412;margin-bottom:8px;}
-.setup-banner p{font-size:13px;color:#7C2D12;line-height:1.7;}
-.setup-banner code{background:#FEE2E2;padding:2px 6px;border-radius:5px;font-family:monospace;font-size:12px;}
+.brand-inline{color:#DC2626;font-weight:900;}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="nav-brand">
-    <span class="nav-icon">🔬</span>
+    <span style="font-size:20px;">🔬</span>
     <span class="nav-name">App<span class="nav-dot">.</span>Autopsy</span>
   </div>
   <span class="nav-pill">18 Roles · Any App · Plain English</span>
@@ -159,25 +170,63 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 <div class="hero">
   <span class="hero-icon">🔬</span>
   <h1 class="hero-title">App<span class="hero-dot">.</span>Autopsy</h1>
-  <p class="hero-sub">We dissect any app or device.<br>You finally understand who does what — in plain, simple English.</p>
-  <span class="hero-badge">📖 Zero jargon &nbsp;·&nbsp; Zero abbreviations &nbsp;·&nbsp; 18 tech jobs &nbsp;·&nbsp; Any app</span>
+  <p class="hero-sub">We dissect any app or device.<br>Understand who does what — in plain, simple English.</p>
+  <span class="hero-badge">📖 Zero jargon · Zero abbreviations · 18 tech jobs · Any app</span>
 </div>
 
 <div class="wrap">
 
-  <!-- SETUP BANNER (shown if API key missing) -->
-  <div class="setup-banner" id="setup-banner">
-    <h3>⚙️ One-time setup required</h3>
-    <p>To make this work, add your Anthropic API key to Vercel:<br>
-    <strong>Vercel Dashboard → autopsy project → Settings → Environment Variables</strong><br>
-    Add key: <code>ANTHROPIC_API_KEY</code> &nbsp; Value: your API key from console.anthropic.com<br>
-    Then redeploy. This runs server-side — your key is never exposed.</p>
+  <!-- ── BOOKMARKLET HERO ── -->
+  <div class="bk-card">
+    <div class="bk-mode-pill">🔥 NEW — Live Website Overlay</div>
+    <h2 class="bk-title">Hover any element on <span>ANY live website</span></h2>
+    <p class="bk-sub">Go to amazon.in, Swiggy, Netflix — anywhere. Hover over any button, image, menu, or section. App.Autopsy overlays a panel telling you exactly which tech roles built that element and what they did.</p>
+
+    <div class="bk-steps">
+      <div class="bk-step">
+        <div class="bk-step-num">Step 1</div>
+        <div class="bk-step-text">Add the <strong>App.Autopsy</strong> bookmark to your browser's bookmark bar (drag or copy URL below)</div>
+      </div>
+      <div class="bk-step">
+        <div class="bk-step-num">Step 2</div>
+        <div class="bk-step-text">Go to <strong>any website</strong> — Amazon, Swiggy, Netflix, your bank, anything</div>
+      </div>
+      <div class="bk-step">
+        <div class="bk-step-num">Step 3</div>
+        <div class="bk-step-text">Click the bookmark. <strong>Hover any element.</strong> See who built it. Ask questions.</div>
+      </div>
+    </div>
+
+    <div class="bk-drag-row">
+      <a class="bk-drag-btn"
+        href="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();"
+        draggable="true"
+        title="Drag this to your bookmark bar!">
+        🔬 App.Autopsy
+      </a>
+      <div class="bk-drag-hint">
+        <strong>Drag this button</strong> to your bookmark bar<br>
+        <span style="font-size:11px;color:#4B5563;">Or copy the URL below and create a bookmark manually</span>
+      </div>
+    </div>
+
+    <div class="bk-url-row">
+      <div class="bk-url-label">BOOKMARKLET URL (copy → create bookmark → paste as URL)</div>
+      <div class="bk-url-box">
+        <input class="bk-url-input" id="bk-url" readonly
+          value="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();">
+        <button class="bk-copy-btn" onclick="copyBk()">Copy</button>
+      </div>
+    </div>
   </div>
 
-  <!-- STEP 1 -->
+  <!-- ── OR DIVIDER ── -->
+  <div class="or-divider">Or — explore any app without leaving this page</div>
+
+  <!-- ── STEP 1 ── -->
   <div class="card">
     <div class="step-label">Step 1 — Pick an app or device 👇</div>
-    <div class="step-sub">Click a tile, or type any name in the search bar below</div>
+    <div class="step-sub">Click a tile or type any name below</div>
 
     <div class="tabs">
       <button class="tab-btn active" id="tab-apps" onclick="switchTab('apps')">📱 Apps &amp; Websites</button>
@@ -185,38 +234,33 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
     </div>
 
     <div id="iot-note" class="iot-note">
-      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold and touch — like a smartwatch, smart speaker, or electric car. These devices have software built <em>inside</em> the hardware itself. "IoT" stands for "Internet of Things" — everyday objects that connect to the internet and can sense, respond, or communicate on their own.
+      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold and touch — like a smartwatch, smart speaker, or electric car. These devices have software built <em>inside</em> the hardware. "IoT" = "Internet of Things" — everyday objects connected to the internet.
     </div>
 
     <div class="sites-grid" id="sites-grid"></div>
 
-    <!-- SEARCH WITH AUTOCOMPLETE -->
     <div class="search-wrapper">
       <div class="input-row">
         <input class="custom-input" id="custom-input"
           placeholder="🔍 Search or type any app name — Instagram, LinkedIn, Meesho, anything…"
           oninput="handleInput(this.value)"
           onkeydown="handleKeydown(event)"
-          autocomplete="off"
-          spellcheck="false">
+          autocomplete="off" spellcheck="false">
         <button class="go-btn" onclick="goCustom()">Dissect It →</button>
       </div>
       <div id="suggestions" class="suggestions-dropdown"></div>
     </div>
   </div>
 
-  <!-- LOADING -->
   <div class="loading-box" id="loading-box">
     <div class="loading-icon">🔬</div>
-    <div class="loading-title" id="loading-title">Dissecting the app...</div>
-    <div class="loading-sub">Generating plain-English explanations for all 18 tech jobs</div>
+    <div style="font-weight:900;font-size:20px;color:var(--text);" id="loading-title">Dissecting...</div>
+    <div style="color:#AAA;margin-top:8px;font-size:14px;">Generating plain-English explanations for all 18 tech jobs</div>
     <div class="loading-progress"><div class="loading-bar"></div></div>
   </div>
 
-  <!-- ERROR -->
   <div class="error-box" id="error-box"></div>
 
-  <!-- ROLES SECTION -->
   <div class="roles-section" id="roles-section">
     <div class="roles-header">
       <div class="roles-title">Step 2 — Click any job card to learn more 👇</div>
@@ -225,94 +269,91 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
     <div id="roles-container"></div>
   </div>
 
-  <!-- DETAIL PANEL -->
   <div class="detail-panel" id="detail-panel"></div>
 
   <div class="site-footer" id="site-footer">
-    🔬 <span class="brand-inline">App.Autopsy</span> — Built for curious non-tech people &nbsp;·&nbsp; Based on Interview Kickstart's 18 tech profiles &nbsp;·&nbsp; Explanations powered by AI
+    🔬 <span class="brand-inline">App.Autopsy</span> — Built for curious non-tech people · 18 tech profiles · AI-powered
   </div>
 
 </div>
 
 <script>
 const APPS = [
-  {name:"Amazon India",  emoji:"🛒", desc:"Online Shopping",   type:"app"},
-  {name:"Swiggy",        emoji:"🍔", desc:"Food Delivery",     type:"app"},
-  {name:"Zomato",        emoji:"🍕", desc:"Food & Dining",     type:"app"},
-  {name:"Netflix India", emoji:"🎬", desc:"Movies & Shows",    type:"app"},
-  {name:"Flipkart",      emoji:"📦", desc:"Shopping",          type:"app"},
-  {name:"CRED",          emoji:"💳", desc:"Credit Card Bills", type:"app"},
-  {name:"Zerodha",       emoji:"📊", desc:"Stock Trading",     type:"app"},
-  {name:"PhonePe",       emoji:"💸", desc:"UPI Payments",      type:"app"},
-  {name:"Ola",           emoji:"🚗", desc:"Cab Booking",       type:"app"},
-  {name:"MakeMyTrip",    emoji:"✈️", desc:"Travel Booking",    type:"app"},
-  {name:"BigBasket",     emoji:"🥦", desc:"Grocery Delivery",  type:"app"},
-  {name:"Testbook",      emoji:"📚", desc:"Exam Preparation",  type:"app"}
+  {name:"Amazon India",emoji:"🛒",desc:"Online Shopping",type:"app"},
+  {name:"Swiggy",emoji:"🍔",desc:"Food Delivery",type:"app"},
+  {name:"Zomato",emoji:"🍕",desc:"Food & Dining",type:"app"},
+  {name:"Netflix India",emoji:"🎬",desc:"Movies & Shows",type:"app"},
+  {name:"Flipkart",emoji:"📦",desc:"Shopping",type:"app"},
+  {name:"CRED",emoji:"💳",desc:"Credit Card Bills",type:"app"},
+  {name:"Zerodha",emoji:"📊",desc:"Stock Trading",type:"app"},
+  {name:"PhonePe",emoji:"💸",desc:"UPI Payments",type:"app"},
+  {name:"Ola",emoji:"🚗",desc:"Cab Booking",type:"app"},
+  {name:"MakeMyTrip",emoji:"✈️",desc:"Travel Booking",type:"app"},
+  {name:"BigBasket",emoji:"🥦",desc:"Grocery Delivery",type:"app"},
+  {name:"Testbook",emoji:"📚",desc:"Exam Preparation",type:"app"}
 ];
-
 const PHYSICAL = [
-  {name:"Amazon Echo (Alexa)", emoji:"🔊", desc:"Smart Speaker",      type:"iot"},
-  {name:"Fitbit Smartwatch",   emoji:"⌚", desc:"Fitness Wearable",   type:"iot"},
-  {name:"Samsung Smart TV",    emoji:"📺", desc:"Smart Television",   type:"iot"},
-  {name:"Tesla Electric Car",  emoji:"🚘", desc:"Smart Car",          type:"iot"},
-  {name:"Apple Watch",         emoji:"⌚", desc:"Smartwatch",          type:"iot"},
-  {name:"Nest Thermostat",     emoji:"🌡️", desc:"Smart Home Device", type:"iot"}
+  {name:"Amazon Echo (Alexa)",emoji:"🔊",desc:"Smart Speaker",type:"iot"},
+  {name:"Fitbit Smartwatch",emoji:"⌚",desc:"Fitness Wearable",type:"iot"},
+  {name:"Samsung Smart TV",emoji:"📺",desc:"Smart Television",type:"iot"},
+  {name:"Tesla Electric Car",emoji:"🚘",desc:"Smart Car",type:"iot"},
+  {name:"Apple Watch",emoji:"⌚",desc:"Smartwatch",type:"iot"},
+  {name:"Nest Thermostat",emoji:"🌡️",desc:"Smart Home Device",type:"iot"}
 ];
-
-const ALL_SITES = [...APPS, ...PHYSICAL];
-
-const GROUPS = {
-  builders: {label:"Builders & Engineers", accent:"#3B82F6", bg:"#EFF6FF", text:"#1D4ED8"},
-  data:     {label:"Data & Intelligence",  accent:"#10B981", bg:"#ECFDF5", text:"#065F46"},
-  managers: {label:"Leaders & Managers",   accent:"#8B5CF6", bg:"#F5F3FF", text:"#5B21B6"},
-  ops:      {label:"Operations & Security",accent:"#F59E0B", bg:"#FFFBEB", text:"#92400E"}
+const ALL_SITES=[...APPS,...PHYSICAL];
+const GROUPS={
+  builders:{label:"Builders & Engineers",accent:"#3B82F6",bg:"#EFF6FF",text:"#1D4ED8"},
+  data:{label:"Data & Intelligence",accent:"#10B981",bg:"#ECFDF5",text:"#065F46"},
+  managers:{label:"Leaders & Managers",accent:"#8B5CF6",bg:"#F5F3FF",text:"#5B21B6"},
+  ops:{label:"Operations & Security",accent:"#F59E0B",bg:"#FFFBEB",text:"#92400E"}
 };
-
-const ROLES = [
-  {id:1,  key:"frontend",  name:"Frontend Engineer",           emoji:"🎨", group:"builders", tagline:"Makes the app look beautiful"},
-  {id:2,  key:"backend",   name:"Backend Engineer",            emoji:"⚙️", group:"builders", tagline:"Runs the engine behind the scenes"},
-  {id:3,  key:"fullstack", name:"Full Stack Engineer",         emoji:"🔄", group:"builders", tagline:"Does both front-end and back-end work"},
-  {id:4,  key:"android",   name:"Android Engineer",            emoji:"🤖", group:"builders", tagline:"Builds the Android phone app"},
-  {id:5,  key:"ios",       name:"iOS Engineer",                emoji:"🍎", group:"builders", tagline:"Builds the iPhone and iPad app"},
-  {id:6,  key:"test",      name:"Test / QA Engineer",          emoji:"🧪", group:"builders", tagline:"Checks everything before you see it"},
-  {id:7,  key:"embedded",  name:"Embedded Systems Engineer",   emoji:"🔌", group:"builders", tagline:"Programs physical hardware devices"},
-  {id:8,  key:"ml",        name:"Machine Learning Engineer",   emoji:"🧠", group:"data",     tagline:"Teaches the app to think and predict"},
-  {id:9,  key:"data_eng",  name:"Data Engineer",               emoji:"🚰", group:"data",     tagline:"Manages the flow of all information"},
-  {id:10, key:"data_sci",  name:"Data Scientist",              emoji:"🔬", group:"data",     tagline:"Finds hidden patterns in data"},
-  {id:11, key:"analyst",   name:"Data / Business Analyst",     emoji:"📈", group:"data",     tagline:"Turns numbers into business decisions"},
-  {id:12, key:"em",        name:"Engineering Manager",         emoji:"👷", group:"managers", tagline:"Leads and manages the tech team"},
-  {id:13, key:"tpm",       name:"Technical Program Manager",   emoji:"📋", group:"managers", tagline:"Keeps big tech projects on track"},
-  {id:14, key:"pm",        name:"Product Manager",             emoji:"💡", group:"managers", tagline:"Decides what features get built"},
-  {id:15, key:"cloud",     name:"Cloud Architect",             emoji:"☁️", group:"ops",      tagline:"Manages internet servers in the cloud"},
-  {id:16, key:"sre",       name:"Site Reliability Engineer",   emoji:"🔧", group:"ops",      tagline:"Keeps the app running 24 hours a day"},
-  {id:17, key:"security",  name:"Cybersecurity Engineer",      emoji:"🔒", group:"ops",      tagline:"Protects your data from hackers"},
-  {id:18, key:"devops",    name:"DevOps Engineer",             emoji:"🚀", group:"ops",      tagline:"Pushes new features live to all users"}
+const ROLES=[
+  {id:1,key:"frontend",name:"Frontend Engineer",emoji:"🎨",group:"builders",tagline:"Makes the app look beautiful"},
+  {id:2,key:"backend",name:"Backend Engineer",emoji:"⚙️",group:"builders",tagline:"Runs the engine behind the scenes"},
+  {id:3,key:"fullstack",name:"Full Stack Engineer",emoji:"🔄",group:"builders",tagline:"Does both front-end and back-end work"},
+  {id:4,key:"android",name:"Android Engineer",emoji:"🤖",group:"builders",tagline:"Builds the Android phone app"},
+  {id:5,key:"ios",name:"iOS Engineer",emoji:"🍎",group:"builders",tagline:"Builds the iPhone and iPad app"},
+  {id:6,key:"test",name:"Test / QA Engineer",emoji:"🧪",group:"builders",tagline:"Checks everything before you see it"},
+  {id:7,key:"embedded",name:"Embedded Systems Engineer",emoji:"🔌",group:"builders",tagline:"Programs physical hardware devices"},
+  {id:8,key:"ml",name:"Machine Learning Engineer",emoji:"🧠",group:"data",tagline:"Teaches the app to think and predict"},
+  {id:9,key:"data_eng",name:"Data Engineer",emoji:"🚰",group:"data",tagline:"Manages the flow of all information"},
+  {id:10,key:"data_sci",name:"Data Scientist",emoji:"🔬",group:"data",tagline:"Finds hidden patterns in data"},
+  {id:11,key:"analyst",name:"Data / Business Analyst",emoji:"📈",group:"data",tagline:"Turns numbers into business decisions"},
+  {id:12,key:"em",name:"Engineering Manager",emoji:"👷",group:"managers",tagline:"Leads and manages the tech team"},
+  {id:13,key:"tpm",name:"Technical Program Manager",emoji:"📋",group:"managers",tagline:"Keeps big tech projects on track"},
+  {id:14,key:"pm",name:"Product Manager",emoji:"💡",group:"managers",tagline:"Decides what features get built"},
+  {id:15,key:"cloud",name:"Cloud Architect",emoji:"☁️",group:"ops",tagline:"Manages internet servers in the cloud"},
+  {id:16,key:"sre",name:"Site Reliability Engineer",emoji:"🔧",group:"ops",tagline:"Keeps the app running 24 hours a day"},
+  {id:17,key:"security",name:"Cybersecurity Engineer",emoji:"🔒",group:"ops",tagline:"Protects your data from hackers"},
+  {id:18,key:"devops",name:"DevOps Engineer",emoji:"🚀",group:"ops",tagline:"Pushes new features live to all users"}
 ];
 
-let activeTab = "apps";
-let selectedSite = null;
-let explanations = {};
-let selectedRoleKey = null;
-let roleDetails = {};
-let suggestIndex = -1;
-let currentSuggestions = [];
+let activeTab="apps",selectedSite=null,explanations={},selectedRoleKey=null,roleDetails={},suggestIndex=-1,currentSuggestions=[];
 
-/* ---- TABS ---- */
-function switchTab(tab) {
-  activeTab = tab;
-  document.getElementById("tab-apps").className = "tab-btn" + (tab === "apps" ? " active" : "");
-  document.getElementById("tab-physical").className = "tab-btn" + (tab === "physical" ? " active" : "");
-  document.getElementById("iot-note").style.display = tab === "physical" ? "block" : "none";
+function copyBk(){
+  const el=document.getElementById("bk-url");
+  el.select();
+  document.execCommand("copy");
+  const btn=document.querySelector(".bk-copy-btn");
+  btn.textContent="Copied ✓";
+  btn.style.background="#10B981";
+  setTimeout(()=>{btn.textContent="Copy";btn.style.background="";},2000);
+}
+
+function switchTab(tab){
+  activeTab=tab;
+  document.getElementById("tab-apps").className="tab-btn"+(tab==="apps"?" active":"");
+  document.getElementById("tab-physical").className="tab-btn"+(tab==="physical"?" active":"");
+  document.getElementById("iot-note").style.display=tab==="physical"?"block":"none";
   renderSites();
 }
 
-/* ---- RENDER SITE GRID ---- */
-function renderSites() {
-  const list = activeTab === "apps" ? APPS : PHYSICAL;
-  document.getElementById("sites-grid").innerHTML = list.map(s => {
-    const isSel = selectedSite && selectedSite.name === s.name;
-    const dn = s.name.length > 16 ? s.name.slice(0, 15) + "…" : s.name;
-    return `<button class="site-btn${isSel ? " sel" : ""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')">
+function renderSites(){
+  const list=activeTab==="apps"?APPS:PHYSICAL;
+  document.getElementById("sites-grid").innerHTML=list.map(s=>{
+    const isSel=selectedSite&&selectedSite.name===s.name;
+    const dn=s.name.length>16?s.name.slice(0,15)+"…":s.name;
+    return`<button class="site-btn${isSel?" sel":""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')">
       <div class="site-emoji">${s.emoji}</div>
       <div class="site-name">${dn}</div>
       <div class="site-desc">${s.desc}</div>
@@ -320,161 +361,84 @@ function renderSites() {
   }).join("");
 }
 
-/* ---- GRID CLICK → populate input + select ---- */
-function gridClick(name, type) {
-  document.getElementById("custom-input").value = name;
-  hideSuggestions();
-  selectSite(name, type);
-}
+function gridClick(name,type){document.getElementById("custom-input").value=name;hideSug();selectSite(name,type);}
 
-/* ---- AUTOCOMPLETE LOGIC ---- */
-function handleInput(val) {
-  suggestIndex = -1;
-  const q = val.trim().toLowerCase();
-  if (!q) { hideSuggestions(); return; }
-
-  currentSuggestions = ALL_SITES.filter(s =>
-    s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q)
-  ).slice(0, 7);
-
-  if (currentSuggestions.length === 0) { hideSuggestions(); return; }
-
-  const drop = document.getElementById("suggestions");
-  drop.innerHTML = currentSuggestions.map((s, i) => {
-    const highlighted = s.name.replace(new RegExp(`(${q})`, 'gi'), '<strong>$1</strong>');
-    return `<div class="sug-item" id="sug-${i}" onclick="selectSuggestion(${i})">
+function handleInput(val){
+  suggestIndex=-1;
+  const q=val.trim().toLowerCase();
+  if(!q){hideSug();return;}
+  currentSuggestions=ALL_SITES.filter(s=>s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)).slice(0,7);
+  if(!currentSuggestions.length){hideSug();return;}
+  const drop=document.getElementById("suggestions");
+  drop.innerHTML=currentSuggestions.map((s,i)=>{
+    const hl=s.name.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<strong>$1</strong>');
+    return`<div class="sug-item" id="sug-${i}" onclick="selectSug(${i})">
       <span class="sug-emoji">${s.emoji}</span>
-      <span class="sug-name">${highlighted}</span>
+      <span class="sug-name">${hl}</span>
       <span class="sug-desc">${s.desc}</span>
-      ${s.type === 'iot' ? '<span class="sug-pill iot">Physical</span>' : '<span class="sug-pill">App</span>'}
+      <span class="sug-pill${s.type==='iot'?' iot':''}">${s.type==='iot'?'Physical':'App'}</span>
     </div>`;
   }).join("");
-  drop.style.display = "block";
+  drop.style.display="block";
 }
 
-function handleKeydown(e) {
-  const drop = document.getElementById("suggestions");
-  const isOpen = drop.style.display === "block";
-  if (e.key === "ArrowDown") {
-    e.preventDefault();
-    if (!isOpen) return;
-    suggestIndex = Math.min(suggestIndex + 1, currentSuggestions.length - 1);
-    highlightSuggestion();
-  } else if (e.key === "ArrowUp") {
-    e.preventDefault();
-    suggestIndex = Math.max(suggestIndex - 1, -1);
-    highlightSuggestion();
-  } else if (e.key === "Enter") {
-    if (isOpen && suggestIndex >= 0) {
-      e.preventDefault();
-      selectSuggestion(suggestIndex);
-    } else {
-      goCustom();
-    }
-  } else if (e.key === "Escape") {
-    hideSuggestions();
-  }
+function handleKeydown(e){
+  const drop=document.getElementById("suggestions");
+  const open=drop.style.display==="block";
+  if(e.key==="ArrowDown"){e.preventDefault();if(!open)return;suggestIndex=Math.min(suggestIndex+1,currentSuggestions.length-1);hlSug();}
+  else if(e.key==="ArrowUp"){e.preventDefault();suggestIndex=Math.max(suggestIndex-1,-1);hlSug();}
+  else if(e.key==="Enter"){if(open&&suggestIndex>=0){e.preventDefault();selectSug(suggestIndex);}else goCustom();}
+  else if(e.key==="Escape")hideSug();
 }
-
-function highlightSuggestion() {
-  document.querySelectorAll(".sug-item").forEach((el, i) => {
-    el.className = "sug-item" + (i === suggestIndex ? " active" : "");
-  });
-  if (suggestIndex >= 0 && currentSuggestions[suggestIndex]) {
-    document.getElementById("custom-input").value = currentSuggestions[suggestIndex].name;
-  }
+function hlSug(){
+  document.querySelectorAll(".sug-item").forEach((el,i)=>el.className="sug-item"+(i===suggestIndex?" active":""));
+  if(suggestIndex>=0&&currentSuggestions[suggestIndex])document.getElementById("custom-input").value=currentSuggestions[suggestIndex].name;
 }
+function selectSug(i){const s=currentSuggestions[i];if(!s)return;document.getElementById("custom-input").value=s.name;hideSug();selectSite(s.name,s.type);}
+function hideSug(){document.getElementById("suggestions").style.display="none";suggestIndex=-1;}
+function goCustom(){const v=document.getElementById("custom-input").value.trim();if(v){hideSug();selectSite(v,"app");}}
+document.addEventListener("click",e=>{if(!e.target.closest(".search-wrapper"))hideSug();});
 
-function selectSuggestion(i) {
-  const s = currentSuggestions[i];
-  if (!s) return;
-  document.getElementById("custom-input").value = s.name;
-  hideSuggestions();
-  selectSite(s.name, s.type);
-}
-
-function hideSuggestions() {
-  document.getElementById("suggestions").style.display = "none";
-  suggestIndex = -1;
-}
-
-function goCustom() {
-  const v = document.getElementById("custom-input").value.trim();
-  if (v) { hideSuggestions(); selectSite(v, "app"); }
-}
-
-/* ---- CLOSE DROPDOWN ON OUTSIDE CLICK ---- */
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".search-wrapper")) hideSuggestions();
-});
-
-/* ---- MAIN SELECT SITE + API CALL ---- */
-async function selectSite(name, type) {
-  selectedSite = { name, type };
-  selectedRoleKey = null;
-  explanations = {};
+async function selectSite(name,type){
+  selectedSite={name,type};selectedRoleKey=null;explanations={};
   renderSites();
-
-  document.getElementById("roles-section").style.display = "none";
-  document.getElementById("detail-panel").style.display = "none";
-  document.getElementById("site-footer").style.display = "none";
-  document.getElementById("error-box").style.display = "none";
-  document.getElementById("setup-banner").style.display = "none";
-  document.getElementById("loading-title").textContent = "Dissecting " + name + "...";
-  document.getElementById("loading-box").style.display = "block";
-
-  const isPhysical = type === "iot";
-  const context = isPhysical
-    ? "This is a PHYSICAL DEVICE — a real product you can hold and touch, not just an app. It has software built inside the hardware."
-    : "This is a digital app or website used on a phone or computer.";
-
-  const payload = {
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 1600,
-    system: "You explain tech jobs to someone who has NEVER worked in technology. Use ONLY simple everyday language. Zero abbreviations. Zero jargon. Use real examples from the specific product. Return ONLY raw JSON — no markdown, no backticks, no extra text whatsoever.",
-    messages: [{
-      role: "user",
-      content: `For "${name}" (${context}), explain what each of these 18 tech roles does in ONE simple sentence. Start each with "This person..." and use a real feature of ${name} as an example.\n\nReturn ONLY raw JSON (no markdown, no backticks, nothing else):\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`
-    }]
-  };
-
-  try {
-    const resp = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+  document.getElementById("roles-section").style.display="none";
+  document.getElementById("detail-panel").style.display="none";
+  document.getElementById("site-footer").style.display="none";
+  document.getElementById("error-box").style.display="none";
+  document.getElementById("loading-title").textContent="Dissecting "+name+"…";
+  document.getElementById("loading-box").style.display="block";
+  const isPhysical=type==="iot";
+  const context=isPhysical?"PHYSICAL DEVICE — real product you touch, with software inside hardware.":"digital app or website.";
+  try{
+    const resp=await fetch("/api/chat",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",max_tokens:1600,
+        system:"Explain tech jobs to someone who has NEVER worked in tech. Simple everyday language only. Zero abbreviations. Zero jargon. Use real examples. Return ONLY raw JSON — no markdown, no backticks.",
+        messages:[{role:"user",content:`For "${name}" (${context}), explain what each of these 18 tech roles does in ONE simple sentence. Start each with "This person..." Use a real feature of ${name}.\n\nReturn ONLY raw JSON:\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`}]
+      })
     });
-    const data = await resp.json();
-
-    if (!resp.ok || data.error) {
-      const msg = data.error || "API error";
-      if (msg.includes("ANTHROPIC_API_KEY")) {
-        document.getElementById("setup-banner").style.display = "block";
-      }
-      throw new Error(msg);
-    }
-
-    let txt = data.content[0].text.trim().replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
-    explanations = JSON.parse(txt);
-    document.getElementById("loading-box").style.display = "none";
+    const data=await resp.json();
+    if(!resp.ok||data.error)throw new Error(data.error||"API error");
+    let txt=data.content[0].text.trim().replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
+    explanations=JSON.parse(txt);
+    document.getElementById("loading-box").style.display="none";
     renderRoles();
-  } catch (e) {
-    document.getElementById("loading-box").style.display = "none";
-    document.getElementById("error-box").textContent = "⚠️ " + (e.message.length < 200 ? e.message : "Something went wrong. Please try again.");
-    document.getElementById("error-box").style.display = "block";
+  }catch(e){
+    document.getElementById("loading-box").style.display="none";
+    document.getElementById("error-box").textContent="⚠️ "+(e.message.length<200?e.message:"Something went wrong. Make sure ANTHROPIC_API_KEY is set in Vercel.");
+    document.getElementById("error-box").style.display="block";
   }
 }
 
-/* ---- RENDER ROLE CARDS ---- */
-function renderRoles() {
-  document.getElementById("roles-sub").textContent = "All 18 tech jobs at " + selectedSite.name + " — tap any card for the full story";
-  const container = document.getElementById("roles-container");
-  container.innerHTML = ["builders","data","managers","ops"].map(gKey => {
-    const g = GROUPS[gKey];
-    const cards = ROLES.filter(r => r.group === gKey).map(role => {
-      const isSel = selectedRoleKey === role.key;
-      const explain = explanations[role.key] || "—";
-      return `<div class="role-card${isSel?" selected":""}" id="card-${role.key}"
+function renderRoles(){
+  document.getElementById("roles-sub").textContent="All 18 tech jobs at "+selectedSite.name+" — tap any card for the full story";
+  document.getElementById("roles-container").innerHTML=["builders","data","managers","ops"].map(gKey=>{
+    const g=GROUPS[gKey];
+    const cards=ROLES.filter(r=>r.group===gKey).map(role=>{
+      const isSel=selectedRoleKey===role.key;
+      return`<div class="role-card${isSel?" selected":""}" id="card-${role.key}"
         style="${isSel?"border-color:"+g.accent+";background:"+g.bg+";":""}"
         onclick="clickRole('${role.key}')">
         <div class="role-inner">
@@ -482,13 +446,13 @@ function renderRoles() {
           <div class="role-info">
             <div class="role-name">${role.name}</div>
             <div class="role-tag" style="color:${g.text};background:${g.bg};border:1px solid ${g.accent}20;">${role.tagline}</div>
-            <div class="role-explain">${explain}</div>
+            <div class="role-explain">${explanations[role.key]||"—"}</div>
           </div>
         </div>
         <div class="role-tap" style="color:${isSel?g.accent:"#CCC"}">${isSel?"✓ Selected — full story below":"Tap to learn more →"}</div>
       </div>`;
     }).join("");
-    return `<div class="group-section">
+    return`<div class="group-section">
       <div class="group-label-row">
         <div class="group-bar" style="background:${g.accent};"></div>
         <span class="group-label-text" style="color:${g.text};">${g.label}</span>
@@ -496,24 +460,20 @@ function renderRoles() {
       <div class="roles-grid">${cards}</div>
     </div>`;
   }).join("");
-  document.getElementById("roles-section").style.display = "block";
-  document.getElementById("site-footer").style.display = "block";
+  document.getElementById("roles-section").style.display="block";
+  document.getElementById("site-footer").style.display="block";
 }
 
-/* ---- CLICK ROLE → DETAIL PANEL ---- */
-async function clickRole(key) {
-  const role = ROLES.find(r => r.key === key);
-  if (!role || !selectedSite) return;
-  selectedRoleKey = key;
-  renderRoles();
-  const g = GROUPS[role.group];
-  const cacheKey = key + "_" + selectedSite.name;
-  const panel = document.getElementById("detail-panel");
-  panel.style.display = "block";
-  panel.style.border = "2px solid " + g.accent;
-  setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50);
-
-  panel.innerHTML = `<div class="detail-header">
+async function clickRole(key){
+  const role=ROLES.find(r=>r.key===key);
+  if(!role||!selectedSite)return;
+  selectedRoleKey=key;renderRoles();
+  const g=GROUPS[role.group];
+  const cacheKey=key+"_"+selectedSite.name;
+  const panel=document.getElementById("detail-panel");
+  panel.style.display="block";panel.style.border="2px solid "+g.accent;
+  setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"nearest"}),50);
+  panel.innerHTML=`<div class="detail-header">
     <div class="detail-left">
       <div class="detail-icon-box" style="background:${g.bg};border:2px solid ${g.accent}25;">${role.emoji}</div>
       <div>
@@ -525,47 +485,30 @@ async function clickRole(key) {
     <button class="close-btn" onclick="closeDetail()">✕ Close</button>
   </div>
   <div id="detail-body"><div class="detail-loading">🔬 Dissecting this role...</div></div>`;
-
-  if (roleDetails[cacheKey]) {
-    document.getElementById("detail-body").innerHTML = `<p class="detail-body-text">${roleDetails[cacheKey]}</p>`;
-    return;
-  }
-
-  const isPhysical = selectedSite.type === "iot";
-  const payload = {
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 600,
-    system: "You explain tech jobs to someone with absolutely zero technology background. Simple conversational language only. No jargon. No abbreviations. If you must use a technical term, immediately explain it in parentheses with a simple real-life example. Be warm and friendly like a knowledgeable friend texting.",
-    messages: [{
-      role: "user",
-      content: `Explain what a "${role.name}" does at ${selectedSite.name} in 4-5 friendly sentences.\n\nInclude:\n1. What they do every single day in very simple words\n2. One specific feature of ${selectedSite.name} they are responsible for building or maintaining\n3. What would go wrong for users if this person didn't exist\n4. One fun comparison — like "Think of them as the [simple relatable thing] of the app"\n${isPhysical ? "\nNote: "+selectedSite.name+" is a PHYSICAL DEVICE. Please mention how this role involves real hardware too." : ""}\n\nWrite as one warm, friendly paragraph. No bullet points. No lists.`
-    }]
-  };
-
-  try {
-    const resp = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+  if(roleDetails[cacheKey]){document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${roleDetails[cacheKey]}</p>`;return;}
+  const isPhysical=selectedSite.type==="iot";
+  try{
+    const resp=await fetch("/api/chat",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",max_tokens:600,
+        system:"Explain tech jobs to someone with zero tech background. Simple conversational language. No jargon. No abbreviations. Be warm and friendly.",
+        messages:[{role:"user",content:`Explain what a "${role.name}" does at ${selectedSite.name} in 4-5 friendly sentences. Include: what they do daily in simple words; one specific ${selectedSite.name} feature they built; what breaks without them; one fun comparison like "Think of them as the [X] of the app". ${isPhysical?"It's a PHYSICAL DEVICE — mention hardware too.":""} Friendly paragraph only, no lists.`}]
+      })
     });
-    const data = await resp.json();
-    const txt = data.content[0].text;
-    roleDetails[cacheKey] = txt;
-    if (document.getElementById("detail-body"))
-      document.getElementById("detail-body").innerHTML = `<p class="detail-body-text">${txt}</p>`;
-  } catch (e) {
-    if (document.getElementById("detail-body"))
-      document.getElementById("detail-body").innerHTML = `<div class="detail-loading" style="color:#DC2626;">⚠️ Couldn't load. Please tap the card again.</div>`;
+    const data=await resp.json();
+    const txt=data.content[0].text;
+    roleDetails[cacheKey]=txt;
+    if(document.getElementById("detail-body"))
+      document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${txt}</p>`;
+  }catch(e){
+    if(document.getElementById("detail-body"))
+      document.getElementById("detail-body").innerHTML=`<div style="color:#DC2626;font-size:13px;padding:12px;background:#FEF2F2;border-radius:8px;">⚠️ Couldn't load. Tap card again.</div>`;
   }
 }
 
-function closeDetail() {
-  selectedRoleKey = null;
-  document.getElementById("detail-panel").style.display = "none";
-  renderRoles();
-}
+function closeDetail(){selectedRoleKey=null;document.getElementById("detail-panel").style.display="none";renderRoles();}
 
-/* INIT */
 renderSites();
 </script>
 </body>
