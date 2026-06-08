@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App.Autopsy Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  font-family: 'Nunito', -apple-system, sans-serif;
+  font-size: 14px; color: #111827;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 4px solid #DC2626;
+  border-radius: 16px 0 0 16px;
+  transition: transform 0.28s ease;
+}
+
+/* ── HEADER ── */
+#hdr {
+  background: #111827;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 12px 0 0 0;
+}
+#brand {
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.2px;
+}
+#brand em { color: #DC2626; font-style: normal; }
+#sitebadge {
+  background: rgba(220,38,38,0.22);
+  color: #fca5a5;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hbtn {
+  background: rgba(255,255,255,0.12);
+  border: none; color: #fff;
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+  transition: background 0.12s;
+}
+.hbtn:hover { background: rgba(255,255,255,0.24); }
+#hdr-btns { display: flex; gap: 6px; }
+
+/* ── BODY ── */
+#body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  scroll-behavior: smooth;
+}
+
+/* ── IDLE STATE ── */
+#idle { text-align: center; padding: 28px 8px; }
+.idle-icon { font-size: 52px; margin-bottom: 14px; }
+.idle-title { font-weight: 900; font-size: 16px; color: #111; margin-bottom: 8px; }
+.idle-sub { font-size: 13px; color: #777; line-height: 1.75; max-width: 260px; margin: 0 auto; }
+.tip-box {
+  background: #F7F5F1;
+  border-radius: 12px;
+  padding: 13px 15px;
+  margin-top: 16px;
+  text-align: left;
+  font-size: 12px;
+  color: #666;
+  line-height: 2;
+}
+
+/* ── ELEMENT TAG ── */
+#el-tag {
+  display: none;
+  background: #F7F5F1;
+  border-left: 3px solid #DC2626;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+#el-name { font-weight: 800; font-size: 13px; color: #111; }
+#el-ctx { font-size: 11px; color: #888; margin-top: 3px; }
+
+/* ── LOADING ── */
+#loading { display: none; text-align: center; padding: 32px 16px; }
+.spin {
+  font-size: 40px;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.load-txt { font-size: 13px; color: #888; font-weight: 700; }
+.load-sub { font-size: 11px; color: #BBB; margin-top: 4px; }
+
+/* ── RESULTS ── */
+#result { display: none; }
+.result-who {
+  font-size: 10px; font-weight: 900;
+  color: #AAA; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 12px;
+}
+.rb {
+  padding: 13px 0;
+  border-bottom: 1px solid #F0F0F0;
+}
+.rb:last-child { border-bottom: none; padding-bottom: 4px; }
+.rn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #111;
+  margin-bottom: 5px;
+}
+.rn .emoji { font-size: 20px; flex-shrink: 0; }
+.gp {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.rd { font-size: 13px; color: #555; line-height: 1.7; }
+
+/* ── ERROR ── */
+.err {
+  background: #FEF2F2;
+  border-radius: 10px;
+  padding: 14px;
+  color: #DC2626;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.65;
+  border-left: 3px solid #DC2626;
+}
+
+/* ── CHAT ── */
+#chat {
+  border-top: 1.5px solid #F0F0F0;
+  padding: 12px;
+  background: #FAFAFA;
+  flex-shrink: 0;
+  display: none;
+}
+#hist {
+  max-height: 140px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+.qmsg {
+  background: #111827; color: #fff; font-size: 12px;
+  padding: 7px 10px; border-radius: 8px 8px 2px 8px;
+  margin-bottom: 6px; text-align: right; line-height: 1.5;
+}
+.amsg {
+  background: #F0F0F0; color: #333; font-size: 12px;
+  padding: 7px 10px; border-radius: 2px 8px 8px 8px;
+  margin-bottom: 6px; line-height: 1.65;
+}
+.chat-row { display: flex; gap: 8px; }
+#inp {
+  flex: 1; padding: 9px 12px; border-radius: 8px;
+  border: 1.5px solid #E5E5E5; font-size: 13px;
+  font-family: 'Nunito', sans-serif;
+  background: #fff; outline: none; color: #111;
+  transition: border-color 0.15s;
+}
+#inp:focus { border-color: #DC2626; }
+#sendbtn {
+  background: #111827; color: #fff; border: none;
+  border-radius: 8px; padding: 9px 14px; cursor: pointer;
+  font-size: 12px; font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+#sendbtn:hover { background: #1f2937; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="hdr" onclick="toggleMin()">
+  <div id="brand">🔬 App<em>.</em>Autopsy <span id="sitebadge">loading…</span></div>
+  <div id="hdr-btns" onclick="event.stopPropagation()">
+    <button class="hbtn" id="minbtn" title="Minimize" onclick="toggleMin()">−</button>
+    <button class="hbtn" title="Close" onclick="closePanel()">✕</button>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div id="body">
+  <!-- Idle -->
+  <div id="idle">
+    <div class="idle-icon">🖱️</div>
+    <div class="idle-title">Hover any element</div>
+    <div class="idle-sub">Move your cursor over any button, image, menu, product card, or section — and I'll show which tech roles built it.</div>
+    <div class="tip-box">
+      🕐 Hold 0.6s to trigger analysis<br>
+      💬 Ask follow-up questions below<br>
+      🖱️ Click to lock the panel open
+    </div>
+  </div>
+
+  <!-- Element being hovered -->
+  <div id="el-tag">
+    <div id="el-name"></div>
+    <div id="el-ctx"></div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spin">🔬</div>
+    <div class="load-txt">Dissecting this element…</div>
+    <div class="load-sub">Taking 3–5 seconds</div>
+  </div>
+
+  <!-- Results -->
+  <div id="result"></div>
+</div>
+
+<!-- CHAT -->
+<div id="chat">
+  <div id="hist"></div>
+  <div class="chat-row">
+    <input id="inp" placeholder="Ask anything about this element…" autocomplete="off">
+    <button id="sendbtn">Ask →</button>
+  </div>
+</div>
+
+<script>
+const API = '/api/chat';
+
+const GP = {
+  Builders: '#3B82F6',
+  Data:     '#10B981',
+  Leaders:  '#8B5CF6',
+  Ops:      '#F59E0B'
+};
+
+let isMin      = false;
+let conv       = [];
+let currentCtx = null;
+let site       = null;
+let pageTitle  = null;
+
+/* ── TELL PARENT WE'RE READY ── */
+window.parent.postMessage({ type: 'ready' }, '*');
+
+/* ── RECEIVE MESSAGES FROM PARENT ── */
+window.addEventListener('message', (e) => {
+  const m = e.data;
+  if (!m || !m.type) return;
+  if (m.type === 'init')    init(m.site, m.title);
+  if (m.type === 'preview') showPreview(m.d, m.site);
+  if (m.type === 'analyze') analyze(m.d, m.site, m.title);
+});
+
+function init(s, t) {
+  site = s; pageTitle = t;
+  document.getElementById('sitebadge').textContent = s;
+}
+
+/* ── MINIMIZE ── */
+function toggleMin() {
+  isMin = !isMin;
+  document.body.style.transform = isMin ? 'translateX(296px)' : 'translateX(0)';
+  document.getElementById('minbtn').textContent = isMin ? '+' : '−';
+}
+
+/* ── CLOSE ── */
+function closePanel() {
+  window.parent.postMessage({ type: 'close' }, '*');
+}
+
+/* ── SHOW PREVIEW (instant, no API) ── */
+function showPreview(d, s) {
+  if (s) { site = s; document.getElementById('sitebadge').textContent = s; }
+  document.getElementById('idle').style.display = 'none';
+  document.getElementById('el-tag').style.display = 'block';
+  const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
+  const display = d.text
+    ? `"${clip(d.text, 55)}"`
+    : `<${d.tag}>`;
+  document.getElementById('el-name').textContent = `${d.humanType}: ${display}`;
+  document.getElementById('el-ctx').textContent = d.section
+    ? `📍 Inside: ${d.section}`
+    : `← ${d.tag} on ${site || '…'}`;
+}
+
+/* ── ANALYZE (API call) ── */
+async function analyze(d, s, t) {
+  site = s || site;
+  pageTitle = t || pageTitle;
+  currentCtx = `${d.humanType}: "${d.text}"${d.section ? ' in ' + d.section : ''}`;
+  conv = [];
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('chat').style.display = 'none';
+
+  const desc = [
+    `Element: ${d.humanType} (HTML tag: <${d.tag}>)`,
+    d.text    ? `Visible text / label: "${d.text}"` : '',
+    d.section ? `Inside section: "${d.section}"` : '',
+    pageTitle ? `Page: ${pageTitle}` : ''
+  ].filter(Boolean).join('\n');
+
+  const prompt = `A non-tech person is on ${site} and hovered over this element:
+${desc}
+
+In very simple, everyday language, explain which 4–5 tech roles from this list built this SPECIFIC element and what each one did for it. Be concrete and specific to "${d.text || d.humanType}" on ${site}.
+
+Return ONLY a JSON array (no markdown, no backticks, nothing else):
+[
+  {
+    "emoji": "🎨",
+    "role": "Frontend Engineer",
+    "group": "Builders",
+    "contribution": "1–2 sentences in simple everyday language, specific to this element on ${site}"
+  }
+]
+
+Pick from: Frontend Engineer (🎨,Builders), Backend Engineer (⚙️,Builders), Full Stack Engineer (🔄,Builders), iOS Engineer (🍎,Builders), Android Engineer (🤖,Builders), Test/QA Engineer (🧪,Builders), Machine Learning Engineer (🧠,Data), Data Engineer (🚰,Data), Data Scientist (🔬,Data), Data/Business Analyst (📈,Data), Engineering Manager (👷,Leaders), Technical Program Manager (📋,Leaders), Product Manager (💡,Leaders), Cloud Architect (☁️,Ops), Site Reliability Engineer (🔧,Ops), Cybersecurity Engineer (🔒,Ops), DevOps Engineer (🚀,Ops)`;
+
+  try {
+    const resp = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 900,
+        system: 'Explain tech roles to non-tech people. Simple everyday language only. Return ONLY valid JSON arrays — no markdown, no backticks, no commentary.',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+
+    let raw = data.content[0].text.trim()
+      .replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const roles = JSON.parse(raw);
+
+    conv = [
+      { role: 'user', content: prompt },
+      { role: 'assistant', content: JSON.stringify(roles) }
+    ];
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').innerHTML = renderRoles(roles, d);
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('hist').innerHTML = '';
+    document.getElementById('chat').style.display = 'block';
+
+  } catch (err) {
+    document.getElementById('loading').style.display = 'none';
+    const msg = (err.message || '').length < 200
+      ? err.message
+      : 'Analysis failed. Make sure ANTHROPIC_API_KEY is set in Vercel → Settings → Environment Variables, then redeploy.';
+    document.getElementById('result').innerHTML = `<div class="err">⚠️ ${esc(msg)}</div>`;
+    document.getElementById('result').style.display = 'block';
+  }
+}
+
+/* ── RENDER ROLES ── */
+function renderRoles(roles, d) {
+  const label = (d.text || d.humanType).slice(0, 40);
+  let html = `<div class="result-who">Who built: "${esc(label)}"</div>`;
+  html += roles.map(r => {
+    const c = GP[r.group] || '#6B7280';
+    return `<div class="rb">
+      <div class="rn">
+        <span class="emoji">${r.emoji}</span>
+        <strong>${esc(r.role)}</strong>
+        ${r.group ? `<span class="gp" style="background:${c}18;color:${c};">${esc(r.group)}</span>` : ''}
+      </div>
+      <div class="rd">${esc(r.contribution)}</div>
+    </div>`;
+  }).join('');
+  return html;
+}
+
+/* ── CHAT ── */
+document.getElementById('sendbtn').onclick = ask;
+document.getElementById('inp').onkeydown = (e) => { if (e.key === 'Enter') ask(); };
+
+async function ask() {
+  const inp = document.getElementById('inp');
+  const q = inp.value.trim();
+  if (!q) return;
+  inp.value = '';
+
+  const hist = document.getElementById('hist');
+  hist.innerHTML += `<div class="qmsg">${esc(q)}</div>`;
+  const thinking = document.createElement('div');
+  thinking.className = 'amsg';
+  thinking.textContent = '💭 …';
+  hist.appendChild(thinking);
+  hist.scrollTop = hist.scrollHeight;
+
+  conv.push({ role: 'user', content: q });
+
+  try {
+    const resp = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 380,
+        system: `You are App.Autopsy. Give short, friendly, jargon-free answers. User is on ${site}.${currentCtx ? ' They are looking at: ' + currentCtx + '.' : ''}`,
+        messages: conv
+      })
+    });
+    const data = await resp.json();
+    const reply = data.content[0].text;
+    conv.push({ role: 'assistant', content: reply });
+    thinking.textContent = reply;
+  } catch (_) {
+    thinking.textContent = '⚠️ Request failed.';
+  }
+  hist.scrollTop = hist.scrollHeight;
+}
+
+/* ── UTIL ── */
+function esc(s) {
+  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+</script>
+</body>
+</html>

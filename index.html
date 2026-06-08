@@ -8,151 +8,121 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--bg:#F8F6F2;--white:#fff;--border:#E8E8E8;--text:#111827;--muted:#6B7280;--faint:#F3F4F6;--brand:#DC2626;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+:root{--bg:#F8F6F2;--w:#fff;--b:#E8E8E8;--t:#111827;--m:#6B7280;--brand:#DC2626;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;}
 
-/* NAV */
 .topbar{background:#111827;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
-.nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-.3px;}
+.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px;}
 .nav-dot{color:#DC2626;}
-.nav-pill{background:#DC2626;color:white;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;}
+.nav-pill{background:#DC2626;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;}
 
-/* HERO */
 .hero{text-align:center;padding:44px 20px 32px;}
-.hero-icon{font-size:52px;margin-bottom:14px;display:block;}
-.hero-title{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:12px;}
+.hero-title{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--t);letter-spacing:-1px;margin-bottom:12px;}
 .hero-dot{color:#DC2626;}
-.hero-sub{font-size:17px;color:var(--muted);max-width:500px;margin:0 auto 16px;line-height:1.75;}
+.hero-sub{font-size:17px;color:var(--m);max-width:500px;margin:0 auto 16px;line-height:1.75;}
 .hero-badge{display:inline-flex;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:800;padding:7px 18px;border-radius:30px;}
 
 .wrap{max-width:960px;margin:0 auto;padding:0 20px 80px;}
+.card{background:var(--w);border-radius:20px;padding:28px;border:1.5px solid var(--b);margin-bottom:20px;}
 
-/* CARD */
-.card{background:var(--white);border-radius:20px;padding:28px;border:1.5px solid var(--border);margin-bottom:20px;}
-
-/* BOOKMARKLET HERO CARD */
-.bk-card{background:#111827;border-radius:20px;padding:28px;margin-bottom:20px;border:1.5px solid #374151;}
-.bk-mode-pill{display:inline-flex;align-items:center;gap:6px;background:#DC262622;color:#fca5a5;font-size:11px;font-weight:900;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
-.bk-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:white;margin-bottom:10px;letter-spacing:-.5px;}
+/* ── BOOKMARKLET CARD ── */
+.bk-card{background:#111827;border-radius:20px;padding:30px;margin-bottom:20px;border:1.5px solid #374151;}
+.bk-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.22);color:#fca5a5;font-size:11px;font-weight:900;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
+.bk-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;line-height:1.2;}
 .bk-title span{color:#DC2626;}
-.bk-sub{font-size:15px;color:#9CA3AF;line-height:1.75;margin-bottom:22px;max-width:560px;}
-.bk-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px;}
-.bk-step{background:#1F2937;border-radius:14px;padding:16px;}
-.bk-step-num{font-size:11px;font-weight:900;color:#DC2626;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.bk-step-text{font-size:13px;color:#D1D5DB;line-height:1.65;}
-.bk-step-text strong{color:white;}
-.bk-drag-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.bk-drag-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#DC2626;color:white;font-weight:900;font-size:15px;
-  padding:14px 24px;border-radius:14px;text-decoration:none;
-  cursor:grab;border:2px dashed rgba(255,255,255,.3);
-  transition:all .15s;user-select:none;
-}
-.bk-drag-btn:hover{background:#b91c1c;}
-.bk-drag-hint{color:#6B7280;font-size:13px;line-height:1.7;}
-.bk-drag-hint strong{color:#9CA3AF;}
-.bk-url-row{margin-top:16px;}
-.bk-url-label{font-size:12px;color:#6B7280;margin-bottom:6px;font-weight:700;}
-.bk-url-box{display:flex;gap:8px;}
-.bk-url-input{flex:1;background:#0D1117;border:1.5px solid #374151;border-radius:10px;padding:10px 14px;font-size:12px;color:#9CA3AF;font-family:monospace;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.bk-copy-btn{background:#374151;color:white;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:12px;font-weight:800;white-space:nowrap;font-family:'Nunito',sans-serif;transition:all .15s;}
-.bk-copy-btn:hover{background:#4B5563;}
+.bk-sub{font-size:14px;color:#9CA3AF;line-height:1.8;margin-bottom:24px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:26px;}
+.step{background:#1F2937;border-radius:14px;padding:16px;}
+.step-n{font-size:11px;font-weight:900;color:#DC2626;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.step-t{font-size:13px;color:#D1D5DB;line-height:1.7;}
+.step-t strong{color:#fff;}
+.drag-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+.drag-btn{display:inline-flex;align-items:center;gap:8px;background:#DC2626;color:#fff;font-weight:900;font-size:15px;padding:14px 24px;border-radius:14px;text-decoration:none;cursor:grab;border:2px dashed rgba(255,255,255,.3);}
+.drag-btn:hover{background:#b91c1c;}
+.drag-hint{color:#6B7280;font-size:13px;line-height:1.7;}
+.drag-hint strong{color:#9CA3AF;}
+.url-label{font-size:11px;color:#4B5563;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.url-box{display:flex;gap:8px;}
+.url-inp{flex:1;background:#0D1117;border:1.5px solid #374151;border-radius:10px;padding:10px 14px;font-size:12px;color:#9CA3AF;font-family:monospace;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.copy-btn{background:#374151;color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;transition:background .15s;white-space:nowrap;}
+.copy-btn:hover{background:#4B5563;}
 
-/* DIVIDER */
-.or-divider{display:flex;align-items:center;gap:14px;margin:28px 0;color:#BBB;font-size:13px;font-weight:700;}
-.or-divider::before,.or-divider::after{content:'';flex:1;height:1.5px;background:#E8E8E8;}
+.or-div{display:flex;align-items:center;gap:14px;margin:24px 0;color:#BBB;font-size:13px;font-weight:700;}
+.or-div::before,.or-div::after{content:'';flex:1;height:1.5px;background:#E8E8E8;}
 
-/* STEP */
-.step-label{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.step-label{font-size:18px;font-weight:900;color:var(--t);margin-bottom:4px;}
 .step-sub{font-size:13px;color:#AAA;margin-bottom:20px;}
-
-/* TABS */
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.tab-btn{padding:8px 18px;border-radius:30px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s;}
-.tab-btn:hover{border-color:#CCC;}
-.tab-btn.active{background:var(--text);border-color:var(--text);color:white;}
-
-/* IOT NOTE */
+.tab-btn{padding:8px 18px;border-radius:30px;border:1.5px solid var(--b);background:transparent;color:var(--m);font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s;}
+.tab-btn.active{background:var(--t);border-color:var(--t);color:#fff;}
 .iot-note{background:#EFF6FF;border-radius:12px;padding:14px 18px;font-size:13px;color:#1D4ED8;font-weight:600;line-height:1.7;margin-bottom:18px;display:none;border-left:4px solid #3B82F6;}
 
-/* SITES */
 .sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-bottom:20px;}
-.site-btn{padding:14px 6px;border-radius:14px;border:1.5px solid var(--border);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif;transition:all .15s;}
+.site-btn{padding:14px 6px;border-radius:14px;border:1.5px solid var(--b);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif;transition:all .15s;}
 .site-btn:hover{border-color:#CCC;}
 .site-btn.sel{background:#111827;border-color:#111827;}
 .site-emoji{font-size:24px;margin-bottom:5px;}
 .site-name{font-size:11px;font-weight:800;color:#333;line-height:1.3;}
-.site-btn.sel .site-name,.site-btn.sel .site-desc{color:white;}
+.site-btn.sel .site-name,.site-btn.sel .site-desc{color:#fff;}
 .site-desc{font-size:10px;color:#AAA;margin-top:2px;}
 .site-btn.sel .site-desc{color:#CCC;}
 
-/* SEARCH */
 .search-wrapper{position:relative;}
 .input-row{display:flex;gap:10px;}
-.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;background:#FAFAFA;outline:none;color:var(--text);transition:border-color .15s;}
-.custom-input:focus{border-color:#999;background:white;}
-.go-btn{padding:13px 24px;background:#111827;color:white;border:none;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;white-space:nowrap;}
+.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--b);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;background:#FAFAFA;outline:none;color:var(--t);transition:border-color .15s;}
+.custom-input:focus{border-color:#999;background:#fff;}
+.go-btn{padding:13px 24px;background:#111827;color:#fff;border:none;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;white-space:nowrap;}
 .go-btn:hover{opacity:.85;}
 
-/* AUTOCOMPLETE */
-.suggestions-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:60px;background:white;border-radius:14px;border:1.5px solid #E5E5E5;box-shadow:0 12px 32px rgba(0,0,0,.12);z-index:300;overflow:hidden;display:none;}
+.sug-drop{position:absolute;top:calc(100% + 8px);left:0;right:60px;background:#fff;border-radius:14px;border:1.5px solid #E5E5E5;box-shadow:0 12px 32px rgba(0,0,0,.12);z-index:300;overflow:hidden;display:none;}
 .sug-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F5F5F5;}
 .sug-item:last-child{border-bottom:none;}
 .sug-item:hover,.sug-item.active{background:#F7F5F1;}
-.sug-emoji{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
-.sug-name{font-weight:800;font-size:14px;color:#111;flex:1;}
-.sug-desc{font-size:12px;color:#AAA;}
-.sug-pill{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:900;}
-.sug-pill.iot{background:#ECFDF5;color:#065F46;}
+.sug-em{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
+.sug-nm{font-weight:800;font-size:14px;color:#111;flex:1;}
+.sug-ds{font-size:12px;color:#AAA;}
+.sug-pl{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:900;}
+.sug-pl.iot{background:#ECFDF5;color:#065F46;}
 
-/* LOADING */
-.loading-box{background:var(--white);border-radius:20px;padding:60px 20px;text-align:center;border:1.5px solid var(--border);margin-bottom:20px;display:none;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
-.loading-icon{font-size:48px;margin-bottom:14px;display:inline-block;animation:pulse 1.4s ease-in-out infinite;}
-.loading-progress{width:200px;height:4px;background:#F0F0F0;border-radius:4px;margin:20px auto 0;overflow:hidden;}
-.loading-bar{height:100%;background:#DC2626;border-radius:4px;animation:progress 3s ease-in-out infinite;}
-@keyframes progress{0%{width:0}60%{width:80%}100%{width:95%}}
+.load-box{background:var(--w);border-radius:20px;padding:60px 20px;text-align:center;border:1.5px solid var(--b);margin-bottom:20px;display:none;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.load-icon{font-size:48px;margin-bottom:14px;display:inline-block;animation:pulse 1.4s ease-in-out infinite;}
+.load-prog{width:200px;height:4px;background:#F0F0F0;border-radius:4px;margin:20px auto 0;overflow:hidden;}
+.load-bar{height:100%;background:#DC2626;border-radius:4px;animation:prog 3s ease-in-out infinite;}
+@keyframes prog{0%{width:0}60%{width:80%}100%{width:95%}}
 
-/* ERROR */
-.error-box{background:#FEF2F2;border-radius:14px;padding:16px 20px;color:#DC2626;font-weight:700;font-size:14px;margin-bottom:18px;display:none;line-height:1.6;}
+.err-box{background:#FEF2F2;border-radius:14px;padding:16px 20px;color:#DC2626;font-weight:700;font-size:14px;margin-bottom:18px;display:none;line-height:1.6;}
 
-/* ROLES */
 .roles-section{display:none;}
 .roles-header{margin-bottom:24px;}
-.roles-title{font-size:18px;font-weight:900;color:var(--text);}
+.roles-title{font-size:18px;font-weight:900;color:var(--t);}
 .roles-sub{font-size:13px;color:#AAA;margin-top:3px;}
-.group-section{margin-bottom:32px;}
-.group-label-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.group-bar{height:3px;width:24px;border-radius:2px;}
-.group-label-text{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;}
+.grp-section{margin-bottom:32px;}
+.grp-label-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.grp-bar{height:3px;width:24px;border-radius:2px;}
+.grp-lbl{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;}
 .roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
-.role-card{background:var(--white);border-radius:16px;padding:18px;cursor:pointer;border:2px solid #F0F0F0;transition:all .2s ease;}
+.role-card{background:var(--w);border-radius:16px;padding:18px;cursor:pointer;border:2px solid #F0F0F0;transition:all .2s ease;}
 .role-card:hover{border-color:#DDD;box-shadow:0 4px 12px rgba(0,0,0,.06);transform:translateY(-1px);}
 .role-card.selected{transform:none;}
 .role-inner{display:flex;align-items:flex-start;gap:12px;}
 .role-icon-box{width:46px;height:46px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .role-info{flex:1;min-width:0;}
-.role-name{font-weight:900;font-size:14px;color:var(--text);margin-bottom:3px;}
+.role-name{font-weight:900;font-size:14px;color:var(--t);margin-bottom:3px;}
 .role-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:9px;}
 .role-explain{font-size:13px;color:#555;line-height:1.65;}
 .role-tap{text-align:right;font-size:11px;font-weight:800;color:#CCC;margin-top:10px;}
-
-/* DETAIL */
-.detail-panel{background:var(--white);border-radius:20px;padding:30px;margin-bottom:28px;display:none;}
+.detail-panel{background:var(--w);border-radius:20px;padding:30px;margin-bottom:28px;display:none;}
 .detail-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
 .detail-left{display:flex;align-items:center;gap:18px;}
 .detail-icon-box{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;}
-.detail-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);}
+.detail-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--t);}
 .detail-at{font-size:14px;font-weight:700;margin-top:4px;}
 .detail-tag-small{font-size:12px;color:#AAA;margin-top:2px;}
-.close-btn{background:var(--faint);border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:800;color:#666;font-family:'Nunito',sans-serif;flex-shrink:0;}
+.close-btn{background:#F3F4F6;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:800;color:#666;font-family:'Nunito',sans-serif;flex-shrink:0;}
 .close-btn:hover{background:#E5E7EB;}
 .detail-loading{text-align:center;padding:30px;color:#AAA;font-size:14px;font-weight:700;}
 .detail-body-text{font-size:16px;line-height:2;color:#444;}
-
-/* FOOTER */
 .site-footer{text-align:center;font-size:12px;color:#CCC;font-weight:700;padding:10px 20px 40px;display:none;}
 .brand-inline{color:#DC2626;font-weight:900;}
 </style>
@@ -160,106 +130,97 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 <body>
 
 <div class="topbar">
-  <div class="nav-brand">
-    <span style="font-size:20px;">🔬</span>
-    <span class="nav-name">App<span class="nav-dot">.</span>Autopsy</span>
-  </div>
+  <span class="nav-name">🔬 App<span class="nav-dot">.</span>Autopsy</span>
   <span class="nav-pill">18 Roles · Any App · Plain English</span>
 </div>
 
 <div class="hero">
-  <span class="hero-icon">🔬</span>
+  <div style="font-size:52px;margin-bottom:14px;">🔬</div>
   <h1 class="hero-title">App<span class="hero-dot">.</span>Autopsy</h1>
-  <p class="hero-sub">We dissect any app or device.<br>Understand who does what — in plain, simple English.</p>
-  <span class="hero-badge">📖 Zero jargon · Zero abbreviations · 18 tech jobs · Any app</span>
+  <p class="hero-sub">Dissect any app or device.<br>Understand who does what — in plain, simple English.</p>
+  <span class="hero-badge">📖 Zero jargon · Zero abbreviations · 18 tech jobs</span>
 </div>
 
 <div class="wrap">
 
-  <!-- ── BOOKMARKLET HERO ── -->
+  <!-- BOOKMARKLET HERO -->
   <div class="bk-card">
-    <div class="bk-mode-pill">🔥 NEW — Live Website Overlay</div>
-    <h2 class="bk-title">Hover any element on <span>ANY live website</span></h2>
-    <p class="bk-sub">Go to amazon.in, Swiggy, Netflix — anywhere. Hover over any button, image, menu, or section. App.Autopsy overlays a panel telling you exactly which tech roles built that element and what they did.</p>
+    <div class="bk-tag">🔥 Live Website Overlay — hover anything on any site</div>
+    <h2 class="bk-title">Go to <span>any website</span>.<br>Hover any element. Know who built it.</h2>
+    <p class="bk-sub">Open Amazon, Swiggy, Netflix — anywhere. Install the bookmarklet once. Then hover over any button, image, menu, or section and an App.Autopsy panel appears showing which 18 tech roles built that exact thing and what they each did. Ask follow-up questions in the chat.</p>
 
-    <div class="bk-steps">
-      <div class="bk-step">
-        <div class="bk-step-num">Step 1</div>
-        <div class="bk-step-text">Add the <strong>App.Autopsy</strong> bookmark to your browser's bookmark bar (drag or copy URL below)</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">Step 1</div>
+        <div class="step-t">Drag the <strong>red button</strong> below to your bookmark bar (or copy + add manually)</div>
       </div>
-      <div class="bk-step">
-        <div class="bk-step-num">Step 2</div>
-        <div class="bk-step-text">Go to <strong>any website</strong> — Amazon, Swiggy, Netflix, your bank, anything</div>
+      <div class="step">
+        <div class="step-n">Step 2</div>
+        <div class="step-t">Go to <strong>any website</strong> — Amazon, Swiggy, Netflix, your bank, anything</div>
       </div>
-      <div class="bk-step">
-        <div class="bk-step-num">Step 3</div>
-        <div class="bk-step-text">Click the bookmark. <strong>Hover any element.</strong> See who built it. Ask questions.</div>
+      <div class="step">
+        <div class="step-n">Step 3</div>
+        <div class="step-t"><strong>Click the bookmark.</strong> Hover any element. See the panel appear instantly.</div>
       </div>
     </div>
 
-    <div class="bk-drag-row">
-      <a class="bk-drag-btn"
+    <div class="drag-row">
+      <a class="drag-btn"
         href="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();"
         draggable="true"
         title="Drag this to your bookmark bar!">
         🔬 App.Autopsy
       </a>
-      <div class="bk-drag-hint">
-        <strong>Drag this button</strong> to your bookmark bar<br>
-        <span style="font-size:11px;color:#4B5563;">Or copy the URL below and create a bookmark manually</span>
+      <div class="drag-hint">
+        <strong>← Drag this to bookmark bar</strong><br>
+        <span style="font-size:11px;color:#4B5563;">Or copy the URL below → Bookmarks → Add bookmark → paste as URL</span>
       </div>
     </div>
 
-    <div class="bk-url-row">
-      <div class="bk-url-label">BOOKMARKLET URL (copy → create bookmark → paste as URL)</div>
-      <div class="bk-url-box">
-        <input class="bk-url-input" id="bk-url" readonly
-          value="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();">
-        <button class="bk-copy-btn" onclick="copyBk()">Copy</button>
-      </div>
+    <div class="url-label">Bookmarklet URL — copy and paste when creating bookmark manually</div>
+    <div class="url-box">
+      <input class="url-inp" id="bk-url" readonly
+        value="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();">
+      <button class="copy-btn" id="copybtn" onclick="copyBk()">Copy</button>
     </div>
   </div>
 
-  <!-- ── OR DIVIDER ── -->
-  <div class="or-divider">Or — explore any app without leaving this page</div>
+  <!-- OR DIVIDER -->
+  <div class="or-div">Or — explore any app here without leaving this page</div>
 
-  <!-- ── STEP 1 ── -->
+  <!-- STEP 1 -->
   <div class="card">
     <div class="step-label">Step 1 — Pick an app or device 👇</div>
     <div class="step-sub">Click a tile or type any name below</div>
-
     <div class="tabs">
       <button class="tab-btn active" id="tab-apps" onclick="switchTab('apps')">📱 Apps &amp; Websites</button>
       <button class="tab-btn" id="tab-physical" onclick="switchTab('physical')">🔌 Physical Devices (IoT)</button>
     </div>
-
     <div id="iot-note" class="iot-note">
-      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold and touch — like a smartwatch, smart speaker, or electric car. These devices have software built <em>inside</em> the hardware. "IoT" = "Internet of Things" — everyday objects connected to the internet.
+      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold — like a smartwatch, smart speaker, or electric car. It has software <em>inside</em> the hardware. "IoT" = "Internet of Things" — everyday objects connected to the internet.
     </div>
-
     <div class="sites-grid" id="sites-grid"></div>
-
     <div class="search-wrapper">
       <div class="input-row">
         <input class="custom-input" id="custom-input"
-          placeholder="🔍 Search or type any app name — Instagram, LinkedIn, Meesho, anything…"
+          placeholder="🔍 Search or type any app name — Instagram, LinkedIn, Meesho…"
           oninput="handleInput(this.value)"
           onkeydown="handleKeydown(event)"
           autocomplete="off" spellcheck="false">
         <button class="go-btn" onclick="goCustom()">Dissect It →</button>
       </div>
-      <div id="suggestions" class="suggestions-dropdown"></div>
+      <div id="suggestions" class="sug-drop"></div>
     </div>
   </div>
 
-  <div class="loading-box" id="loading-box">
-    <div class="loading-icon">🔬</div>
-    <div style="font-weight:900;font-size:20px;color:var(--text);" id="loading-title">Dissecting...</div>
+  <div class="load-box" id="load-box">
+    <div class="load-icon">🔬</div>
+    <div style="font-weight:900;font-size:20px;color:var(--t);" id="load-title">Dissecting…</div>
     <div style="color:#AAA;margin-top:8px;font-size:14px;">Generating plain-English explanations for all 18 tech jobs</div>
-    <div class="loading-progress"><div class="loading-bar"></div></div>
+    <div class="load-prog"><div class="load-bar"></div></div>
   </div>
 
-  <div class="error-box" id="error-box"></div>
+  <div class="err-box" id="err-box"></div>
 
   <div class="roles-section" id="roles-section">
     <div class="roles-header">
@@ -272,13 +233,13 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
   <div class="detail-panel" id="detail-panel"></div>
 
   <div class="site-footer" id="site-footer">
-    🔬 <span class="brand-inline">App.Autopsy</span> — Built for curious non-tech people · 18 tech profiles · AI-powered
+    🔬 <span class="brand-inline">App.Autopsy</span> — Built for curious non-tech people · AI-powered
   </div>
 
 </div>
 
 <script>
-const APPS = [
+const APPS=[
   {name:"Amazon India",emoji:"🛒",desc:"Online Shopping",type:"app"},
   {name:"Swiggy",emoji:"🍔",desc:"Food Delivery",type:"app"},
   {name:"Zomato",emoji:"🍕",desc:"Food & Dining",type:"app"},
@@ -292,7 +253,7 @@ const APPS = [
   {name:"BigBasket",emoji:"🥦",desc:"Grocery Delivery",type:"app"},
   {name:"Testbook",emoji:"📚",desc:"Exam Preparation",type:"app"}
 ];
-const PHYSICAL = [
+const PHYSICAL=[
   {name:"Amazon Echo (Alexa)",emoji:"🔊",desc:"Smart Speaker",type:"iot"},
   {name:"Fitbit Smartwatch",emoji:"⌚",desc:"Fitness Wearable",type:"iot"},
   {name:"Samsung Smart TV",emoji:"📺",desc:"Smart Television",type:"iot"},
@@ -300,7 +261,7 @@ const PHYSICAL = [
   {name:"Apple Watch",emoji:"⌚",desc:"Smartwatch",type:"iot"},
   {name:"Nest Thermostat",emoji:"🌡️",desc:"Smart Home Device",type:"iot"}
 ];
-const ALL_SITES=[...APPS,...PHYSICAL];
+const ALL=[...APPS,...PHYSICAL];
 const GROUPS={
   builders:{label:"Builders & Engineers",accent:"#3B82F6",bg:"#EFF6FF",text:"#1D4ED8"},
   data:{label:"Data & Intelligence",accent:"#10B981",bg:"#ECFDF5",text:"#065F46"},
@@ -328,177 +289,112 @@ const ROLES=[
   {id:18,key:"devops",name:"DevOps Engineer",emoji:"🚀",group:"ops",tagline:"Pushes new features live to all users"}
 ];
 
-let activeTab="apps",selectedSite=null,explanations={},selectedRoleKey=null,roleDetails={},suggestIndex=-1,currentSuggestions=[];
+let activeTab="apps",sel=null,expl={},selRoleKey=null,roleDetails={},sugIdx=-1,curSugs=[];
 
 function copyBk(){
-  const el=document.getElementById("bk-url");
-  el.select();
+  document.getElementById("bk-url").select();
   document.execCommand("copy");
-  const btn=document.querySelector(".bk-copy-btn");
-  btn.textContent="Copied ✓";
-  btn.style.background="#10B981";
-  setTimeout(()=>{btn.textContent="Copy";btn.style.background="";},2000);
+  const b=document.getElementById("copybtn");
+  b.textContent="Copied ✓";b.style.background="#10B981";
+  setTimeout(()=>{b.textContent="Copy";b.style.background="";},2200);
 }
-
-function switchTab(tab){
-  activeTab=tab;
-  document.getElementById("tab-apps").className="tab-btn"+(tab==="apps"?" active":"");
-  document.getElementById("tab-physical").className="tab-btn"+(tab==="physical"?" active":"");
-  document.getElementById("iot-note").style.display=tab==="physical"?"block":"none";
+function switchTab(t){
+  activeTab=t;
+  document.getElementById("tab-apps").className="tab-btn"+(t==="apps"?" active":"");
+  document.getElementById("tab-physical").className="tab-btn"+(t==="physical"?" active":"");
+  document.getElementById("iot-note").style.display=t==="physical"?"block":"none";
   renderSites();
 }
-
 function renderSites(){
   const list=activeTab==="apps"?APPS:PHYSICAL;
   document.getElementById("sites-grid").innerHTML=list.map(s=>{
-    const isSel=selectedSite&&selectedSite.name===s.name;
+    const isSel=sel&&sel.name===s.name;
     const dn=s.name.length>16?s.name.slice(0,15)+"…":s.name;
-    return`<button class="site-btn${isSel?" sel":""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')">
-      <div class="site-emoji">${s.emoji}</div>
-      <div class="site-name">${dn}</div>
-      <div class="site-desc">${s.desc}</div>
-    </button>`;
+    return`<button class="site-btn${isSel?" sel":""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')"><div class="site-emoji">${s.emoji}</div><div class="site-name">${dn}</div><div class="site-desc">${s.desc}</div></button>`;
   }).join("");
 }
-
 function gridClick(name,type){document.getElementById("custom-input").value=name;hideSug();selectSite(name,type);}
-
 function handleInput(val){
-  suggestIndex=-1;
-  const q=val.trim().toLowerCase();
+  sugIdx=-1;const q=val.trim().toLowerCase();
   if(!q){hideSug();return;}
-  currentSuggestions=ALL_SITES.filter(s=>s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)).slice(0,7);
-  if(!currentSuggestions.length){hideSug();return;}
+  curSugs=ALL.filter(s=>s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)).slice(0,7);
+  if(!curSugs.length){hideSug();return;}
   const drop=document.getElementById("suggestions");
-  drop.innerHTML=currentSuggestions.map((s,i)=>{
+  drop.innerHTML=curSugs.map((s,i)=>{
     const hl=s.name.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<strong>$1</strong>');
-    return`<div class="sug-item" id="sug-${i}" onclick="selectSug(${i})">
-      <span class="sug-emoji">${s.emoji}</span>
-      <span class="sug-name">${hl}</span>
-      <span class="sug-desc">${s.desc}</span>
-      <span class="sug-pill${s.type==='iot'?' iot':''}">${s.type==='iot'?'Physical':'App'}</span>
-    </div>`;
+    return`<div class="sug-item" id="sug-${i}" onclick="selSug(${i})"><span class="sug-em">${s.emoji}</span><span class="sug-nm">${hl}</span><span class="sug-ds">${s.desc}</span><span class="sug-pl${s.type==='iot'?' iot':''}">${s.type==='iot'?'Physical':'App'}</span></div>`;
   }).join("");
   drop.style.display="block";
 }
-
 function handleKeydown(e){
-  const drop=document.getElementById("suggestions");
-  const open=drop.style.display==="block";
-  if(e.key==="ArrowDown"){e.preventDefault();if(!open)return;suggestIndex=Math.min(suggestIndex+1,currentSuggestions.length-1);hlSug();}
-  else if(e.key==="ArrowUp"){e.preventDefault();suggestIndex=Math.max(suggestIndex-1,-1);hlSug();}
-  else if(e.key==="Enter"){if(open&&suggestIndex>=0){e.preventDefault();selectSug(suggestIndex);}else goCustom();}
+  const open=document.getElementById("suggestions").style.display==="block";
+  if(e.key==="ArrowDown"){e.preventDefault();if(!open)return;sugIdx=Math.min(sugIdx+1,curSugs.length-1);hlSug();}
+  else if(e.key==="ArrowUp"){e.preventDefault();sugIdx=Math.max(sugIdx-1,-1);hlSug();}
+  else if(e.key==="Enter"){if(open&&sugIdx>=0){e.preventDefault();selSug(sugIdx);}else goCustom();}
   else if(e.key==="Escape")hideSug();
 }
-function hlSug(){
-  document.querySelectorAll(".sug-item").forEach((el,i)=>el.className="sug-item"+(i===suggestIndex?" active":""));
-  if(suggestIndex>=0&&currentSuggestions[suggestIndex])document.getElementById("custom-input").value=currentSuggestions[suggestIndex].name;
-}
-function selectSug(i){const s=currentSuggestions[i];if(!s)return;document.getElementById("custom-input").value=s.name;hideSug();selectSite(s.name,s.type);}
-function hideSug(){document.getElementById("suggestions").style.display="none";suggestIndex=-1;}
+function hlSug(){document.querySelectorAll(".sug-item").forEach((el,i)=>el.className="sug-item"+(i===sugIdx?" active":""));if(sugIdx>=0&&curSugs[sugIdx])document.getElementById("custom-input").value=curSugs[sugIdx].name;}
+function selSug(i){const s=curSugs[i];if(!s)return;document.getElementById("custom-input").value=s.name;hideSug();selectSite(s.name,s.type);}
+function hideSug(){document.getElementById("suggestions").style.display="none";sugIdx=-1;}
 function goCustom(){const v=document.getElementById("custom-input").value.trim();if(v){hideSug();selectSite(v,"app");}}
 document.addEventListener("click",e=>{if(!e.target.closest(".search-wrapper"))hideSug();});
 
 async function selectSite(name,type){
-  selectedSite={name,type};selectedRoleKey=null;explanations={};
-  renderSites();
+  sel={name,type};selRoleKey=null;expl={};renderSites();
   document.getElementById("roles-section").style.display="none";
   document.getElementById("detail-panel").style.display="none";
   document.getElementById("site-footer").style.display="none";
-  document.getElementById("error-box").style.display="none";
-  document.getElementById("loading-title").textContent="Dissecting "+name+"…";
-  document.getElementById("loading-box").style.display="block";
-  const isPhysical=type==="iot";
-  const context=isPhysical?"PHYSICAL DEVICE — real product you touch, with software inside hardware.":"digital app or website.";
+  document.getElementById("err-box").style.display="none";
+  document.getElementById("load-title").textContent="Dissecting "+name+"…";
+  document.getElementById("load-box").style.display="block";
+  const ctx=type==="iot"?"PHYSICAL DEVICE — software inside hardware":"digital app or website";
   try{
-    const resp=await fetch("/api/chat",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",max_tokens:1600,
-        system:"Explain tech jobs to someone who has NEVER worked in tech. Simple everyday language only. Zero abbreviations. Zero jargon. Use real examples. Return ONLY raw JSON — no markdown, no backticks.",
-        messages:[{role:"user",content:`For "${name}" (${context}), explain what each of these 18 tech roles does in ONE simple sentence. Start each with "This person..." Use a real feature of ${name}.\n\nReturn ONLY raw JSON:\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`}]
-      })
-    });
+    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1600,
+        system:"Explain tech jobs in very simple everyday language. Zero jargon. Return ONLY raw JSON.",
+        messages:[{role:"user",content:`For "${name}" (${ctx}), ONE simple sentence per role. Start each with "This person...". Use real features of ${name}.\n\nReturn ONLY raw JSON:\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`}]})});
     const data=await resp.json();
     if(!resp.ok||data.error)throw new Error(data.error||"API error");
     let txt=data.content[0].text.trim().replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
-    explanations=JSON.parse(txt);
-    document.getElementById("loading-box").style.display="none";
+    expl=JSON.parse(txt);
+    document.getElementById("load-box").style.display="none";
     renderRoles();
   }catch(e){
-    document.getElementById("loading-box").style.display="none";
-    document.getElementById("error-box").textContent="⚠️ "+(e.message.length<200?e.message:"Something went wrong. Make sure ANTHROPIC_API_KEY is set in Vercel.");
-    document.getElementById("error-box").style.display="block";
+    document.getElementById("load-box").style.display="none";
+    document.getElementById("err-box").textContent="⚠️ "+(e.message.length<200?e.message:"Something went wrong. Check ANTHROPIC_API_KEY in Vercel settings.");
+    document.getElementById("err-box").style.display="block";
   }
 }
-
 function renderRoles(){
-  document.getElementById("roles-sub").textContent="All 18 tech jobs at "+selectedSite.name+" — tap any card for the full story";
+  document.getElementById("roles-sub").textContent="All 18 tech jobs at "+sel.name+" — tap any card for the full story";
   document.getElementById("roles-container").innerHTML=["builders","data","managers","ops"].map(gKey=>{
     const g=GROUPS[gKey];
     const cards=ROLES.filter(r=>r.group===gKey).map(role=>{
-      const isSel=selectedRoleKey===role.key;
-      return`<div class="role-card${isSel?" selected":""}" id="card-${role.key}"
-        style="${isSel?"border-color:"+g.accent+";background:"+g.bg+";":""}"
-        onclick="clickRole('${role.key}')">
-        <div class="role-inner">
-          <div class="role-icon-box" style="background:${g.bg};border:1.5px solid ${g.accent}25;">${role.emoji}</div>
-          <div class="role-info">
-            <div class="role-name">${role.name}</div>
-            <div class="role-tag" style="color:${g.text};background:${g.bg};border:1px solid ${g.accent}20;">${role.tagline}</div>
-            <div class="role-explain">${explanations[role.key]||"—"}</div>
-          </div>
-        </div>
-        <div class="role-tap" style="color:${isSel?g.accent:"#CCC"}">${isSel?"✓ Selected — full story below":"Tap to learn more →"}</div>
-      </div>`;
+      const isSel=selRoleKey===role.key;
+      return`<div class="role-card${isSel?" selected":""}" id="card-${role.key}" style="${isSel?"border-color:"+g.accent+";background:"+g.bg+";":""}" onclick="clickRole('${role.key}')"><div class="role-inner"><div class="role-icon-box" style="background:${g.bg};border:1.5px solid ${g.accent}25;">${role.emoji}</div><div class="role-info"><div class="role-name">${role.name}</div><div class="role-tag" style="color:${g.text};background:${g.bg};border:1px solid ${g.accent}20;">${role.tagline}</div><div class="role-explain">${expl[role.key]||"—"}</div></div></div><div class="role-tap" style="color:${isSel?g.accent:"#CCC"}">${isSel?"✓ Selected — full story below":"Tap to learn more →"}</div></div>`;
     }).join("");
-    return`<div class="group-section">
-      <div class="group-label-row">
-        <div class="group-bar" style="background:${g.accent};"></div>
-        <span class="group-label-text" style="color:${g.text};">${g.label}</span>
-      </div>
-      <div class="roles-grid">${cards}</div>
-    </div>`;
+    return`<div class="grp-section"><div class="grp-label-row"><div class="grp-bar" style="background:${g.accent};"></div><span class="grp-lbl" style="color:${g.text};">${g.label}</span></div><div class="roles-grid">${cards}</div></div>`;
   }).join("");
   document.getElementById("roles-section").style.display="block";
   document.getElementById("site-footer").style.display="block";
 }
-
 async function clickRole(key){
-  const role=ROLES.find(r=>r.key===key);
-  if(!role||!selectedSite)return;
-  selectedRoleKey=key;renderRoles();
-  const g=GROUPS[role.group];
-  const cacheKey=key+"_"+selectedSite.name;
+  const role=ROLES.find(r=>r.key===key);if(!role||!sel)return;
+  selRoleKey=key;renderRoles();
+  const g=GROUPS[role.group],ck=key+"_"+sel.name;
   const panel=document.getElementById("detail-panel");
   panel.style.display="block";panel.style.border="2px solid "+g.accent;
   setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"nearest"}),50);
-  panel.innerHTML=`<div class="detail-header">
-    <div class="detail-left">
-      <div class="detail-icon-box" style="background:${g.bg};border:2px solid ${g.accent}25;">${role.emoji}</div>
-      <div>
-        <div class="detail-name">${role.name}</div>
-        <div class="detail-at" style="color:${g.text};">at ${selectedSite.name}</div>
-        <div class="detail-tag-small">${role.tagline}</div>
-      </div>
-    </div>
-    <button class="close-btn" onclick="closeDetail()">✕ Close</button>
-  </div>
-  <div id="detail-body"><div class="detail-loading">🔬 Dissecting this role...</div></div>`;
-  if(roleDetails[cacheKey]){document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${roleDetails[cacheKey]}</p>`;return;}
-  const isPhysical=selectedSite.type==="iot";
+  panel.innerHTML=`<div class="detail-header"><div class="detail-left"><div class="detail-icon-box" style="background:${g.bg};border:2px solid ${g.accent}25;">${role.emoji}</div><div><div class="detail-name">${role.name}</div><div class="detail-at" style="color:${g.text};">at ${sel.name}</div><div class="detail-tag-small">${role.tagline}</div></div></div><button class="close-btn" onclick="closeDetail()">✕ Close</button></div><div id="detail-body"><div class="detail-loading">🔬 Dissecting this role...</div></div>`;
+  if(roleDetails[ck]){document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${roleDetails[ck]}</p>`;return;}
   try{
-    const resp=await fetch("/api/chat",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",max_tokens:600,
-        system:"Explain tech jobs to someone with zero tech background. Simple conversational language. No jargon. No abbreviations. Be warm and friendly.",
-        messages:[{role:"user",content:`Explain what a "${role.name}" does at ${selectedSite.name} in 4-5 friendly sentences. Include: what they do daily in simple words; one specific ${selectedSite.name} feature they built; what breaks without them; one fun comparison like "Think of them as the [X] of the app". ${isPhysical?"It's a PHYSICAL DEVICE — mention hardware too.":""} Friendly paragraph only, no lists.`}]
-      })
-    });
+    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,
+        system:"Explain tech jobs in simple conversational language. No jargon. Be warm.",
+        messages:[{role:"user",content:`Explain what a "${role.name}" does at ${sel.name} in 4-5 friendly sentences. Daily tasks, one specific feature, what breaks without them, a fun comparison. ${sel.type==="iot"?"It's a physical device — mention hardware too.":""} One paragraph, no lists.`}]})});
     const data=await resp.json();
     const txt=data.content[0].text;
-    roleDetails[cacheKey]=txt;
+    roleDetails[ck]=txt;
     if(document.getElementById("detail-body"))
       document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${txt}</p>`;
   }catch(e){
@@ -506,9 +402,7 @@ async function clickRole(key){
       document.getElementById("detail-body").innerHTML=`<div style="color:#DC2626;font-size:13px;padding:12px;background:#FEF2F2;border-radius:8px;">⚠️ Couldn't load. Tap card again.</div>`;
   }
 }
-
-function closeDetail(){selectedRoleKey=null;document.getElementById("detail-panel").style.display="none";renderRoles();}
-
+function closeDetail(){selRoleKey=null;document.getElementById("detail-panel").style.display="none";renderRoles();}
 renderSites();
 </script>
 </body>
