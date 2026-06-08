@@ -6,21 +6,15 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) return res.status(500).json({
-    error: 'ANTHROPIC_API_KEY not set. Add it in Vercel → Settings → Environment Variables, then redeploy.'
+    error: 'ANTHROPIC_API_KEY not set. Vercel → Settings → Environment Variables → add it, then redeploy.'
   });
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': key,
-        'anthropic-version': '2023-06-01'
-      },
+      headers: { 'Content-Type':'application/json', 'x-api-key':key, 'anthropic-version':'2023-06-01' },
       body: JSON.stringify(req.body)
     });
     const data = await r.json();
     return res.status(r.status).json(data);
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
-  }
+  } catch(e) { return res.status(500).json({ error:e.message }); }
 };

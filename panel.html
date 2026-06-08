@@ -5,29 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>App.Autopsy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&display=swap" rel="stylesheet">
 <style>
-/* ── RESET ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow: hidden; }
-
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { height:100%; overflow:hidden; }
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 13.5px;
-  color: #0F172A;
+  color: #1A1A2E;
   background: #fff;
   height: 100%;
   display: flex;
   flex-direction: column;
   border-left: 4px solid #DC2626;
   border-radius: 16px 0 0 16px;
-  transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* ── HEADER ── */
 #hdr {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-  padding: 13px 15px 12px;
+  background: #1A1A2E;
+  padding: 13px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,24 +33,36 @@ body {
   cursor: pointer;
   user-select: none;
   border-radius: 12px 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+#hdr::after {
+  content: '';
+  position: absolute;
+  top: -30px; right: -20px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(220,38,38,0.3), transparent 70%);
+  pointer-events: none;
 }
 #brand {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-style: italic;
 }
 #brand em { color: #F87171; font-style: normal; }
 #sitebadge {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
   font-size: 10px;
   font-weight: 600;
   color: #FDA4AF;
-  background: rgba(220,38,38,0.2);
+  background: rgba(220,38,38,0.22);
   padding: 2px 9px;
   border-radius: 20px;
   letter-spacing: 0.2px;
@@ -69,27 +79,27 @@ body {
   font-size: 15px;
   display: flex; align-items: center; justify-content: center;
   transition: background 0.12s;
-  flex-shrink: 0;
 }
 .hbtn:hover { background: rgba(255,255,255,0.22); }
 #hdr-btns { display: flex; gap: 6px; }
 
-/* ── INSTRUCTION BAR ── */
+/* ── HINT BAR ── */
 #hint-bar {
-  background: #F8FAFC;
-  border-bottom: 1px solid #E2E8F0;
-  padding: 8px 15px;
+  background: #FAFAFA;
+  border-bottom: 1px solid #EFEFEF;
+  padding: 7px 15px;
   font-size: 11.5px;
-  color: #64748B;
+  color: #888;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   flex-shrink: 0;
+  transition: all 0.2s;
 }
 #hint-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
-/* ── LOCKED INDICATOR ── */
+/* ── LOCKED BAR ── */
 #locked-bar {
   display: none;
   background: #FFF1F2;
@@ -99,7 +109,6 @@ body {
   font-weight: 600;
   color: #BE123C;
   flex-shrink: 0;
-  display: flex;
   align-items: center;
   gap: 6px;
 }
@@ -108,189 +117,145 @@ body {
 #body {
   flex: 1;
   overflow-y: auto;
-  padding: 18px 16px;
-  scroll-behavior: smooth;
+  padding: 16px;
 }
-/* Scrollbar styling */
 #body::-webkit-scrollbar { width: 4px; }
-#body::-webkit-scrollbar-track { background: transparent; }
-#body::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 4px; }
-#body::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
+#body::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 4px; }
 
 /* ── IDLE ── */
-#idle { text-align: center; padding: 32px 12px 24px; }
-.idle-icon { font-size: 48px; margin-bottom: 16px; }
+#idle { text-align: center; padding: 28px 10px 20px; }
+.idle-icon { font-size: 52px; margin-bottom: 14px; }
 .idle-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 17px; font-weight: 800;
-  color: #0F172A; margin-bottom: 10px;
-  letter-spacing: -0.3px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px; font-weight: 700;
+  color: #1A1A2E; margin-bottom: 8px;
 }
-.idle-sub { font-size: 13px; color: #64748B; line-height: 1.75; max-width: 270px; margin: 0 auto; }
+.idle-sub { font-size: 13px; color: #888; line-height: 1.8; max-width: 270px; margin: 0 auto; }
 .tip-box {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
+  background: #F8F8F8;
+  border: 1px solid #EFEFEF;
   border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 18px;
+  padding: 14px 15px;
+  margin-top: 16px;
   text-align: left;
-  font-size: 12px;
-  color: #475569;
-  line-height: 2;
+  font-size: 12px; color: #666; line-height: 2.1;
 }
-.tip-row { display: flex; align-items: center; gap: 8px; }
-.tip-key {
-  background: #E2E8F0;
-  border-radius: 5px;
-  padding: 1px 7px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #334155;
-  font-family: monospace;
-  flex-shrink: 0;
+.kkey {
+  background: #E8E8E8; border-radius: 5px;
+  padding: 1px 7px; font-size: 11px; font-weight: 700;
+  color: #333; font-family: monospace;
 }
 
-/* ── ELEMENT PREVIEW ── */
+/* ── ELEMENT PREVIEW TAG ── */
 #el-tag {
   display: none;
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
+  background: #F8F8F8;
   border-left: 3px solid #DC2626;
   border-radius: 10px;
-  padding: 11px 13px;
-  margin-bottom: 16px;
+  padding: 10px 13px;
+  margin-bottom: 14px;
 }
-#el-name {
-  font-weight: 600;
-  font-size: 13px;
-  color: #0F172A;
-  line-height: 1.4;
+#el-name { font-weight: 600; font-size: 13px; color: #1A1A2E; line-height: 1.4; }
+#el-ctx  { font-size: 11px; color: #AAA; margin-top: 3px; }
+.el-cta  { font-size: 11px; color: #DC2626; font-weight: 600; margin-top: 5px; }
+
+/* ── VISUAL PREVIEW (image / element snapshot) ── */
+#visual-wrap {
+  display: none;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #EFEFEF;
+  background: #F8F8F8;
 }
-#el-ctx {
-  font-size: 11px;
-  color: #94A3B8;
-  margin-top: 4px;
+#visual-label {
+  font-size: 10px; font-weight: 700; color: #AAA;
+  text-transform: uppercase; letter-spacing: 0.6px;
+  padding: 7px 12px;
+  border-bottom: 1px solid #EFEFEF;
+  background: #F3F3F3;
 }
-.el-action {
-  font-size: 11px;
-  color: #DC2626;
-  font-weight: 600;
-  margin-top: 6px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+#visual-content { padding: 0; }
+#visual-img {
+  width: 100%; max-height: 180px;
+  object-fit: cover; display: block;
+}
+#visual-snapshot {
+  padding: 14px;
+  min-height: 48px;
+  display: flex; align-items: center;
+  word-break: break-word;
 }
 
 /* ── LOADING ── */
-#loading {
-  display: none;
-  text-align: center;
-  padding: 36px 16px;
-}
+#loading { display: none; text-align: center; padding: 36px 16px; }
 .spin {
-  font-size: 38px;
+  font-size: 40px;
   display: inline-block;
-  animation: spin 1s linear infinite;
+  animation: spin 0.9s linear infinite;
   margin-bottom: 14px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .load-txt {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #0F172A;
-  margin-bottom: 4px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 16px; font-weight: 700;
+  color: #1A1A2E; margin-bottom: 4px;
 }
-.load-sub { font-size: 12px; color: #94A3B8; }
-.load-prog {
-  width: 160px; height: 3px;
-  background: #E2E8F0; border-radius: 3px;
-  margin: 16px auto 0; overflow: hidden;
-}
-.load-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #DC2626, #F87171);
-  border-radius: 3px;
-  animation: prog 3.5s ease-in-out infinite;
-}
+.load-sub { font-size: 12px; color: #AAA; }
+.load-prog { width: 160px; height: 3px; background: #EFEFEF; border-radius: 3px; margin: 16px auto 0; overflow: hidden; }
+.load-bar { height: 100%; background: linear-gradient(90deg, #DC2626, #F87171); border-radius: 3px; animation: prog 3.5s ease-in-out infinite; }
 @keyframes prog { 0%{width:0} 65%{width:85%} 100%{width:96%} }
 
 /* ── RESULTS ── */
 #result { display: none; }
-
-.result-header {
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #F1F5F9;
-}
-.result-label {
-  font-size: 10px;
-  font-weight: 700;
-  color: #94A3B8;
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
-  margin-bottom: 4px;
-}
+.result-header { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid #F0F0F0; }
+.result-label { font-size: 10px; font-weight: 700; color: #AAA; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
 .result-element {
-  font-family: 'Syne', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: #0F172A;
-  line-height: 1.35;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 15px; font-weight: 700;
+  color: #1A1A2E; line-height: 1.35;
 }
-.result-count {
-  font-size: 11px;
-  color: #64748B;
-  margin-top: 3px;
-  font-weight: 500;
-}
+.result-count { font-size: 11px; color: #888; margin-top: 3px; font-weight: 500; }
 
 /* ── ROLE CARD ── */
 .rb {
-  padding: 14px 0 14px 14px;
-  border-bottom: 1px solid #F1F5F9;
+  padding: 13px 0 13px 14px;
+  border-bottom: 1px solid #F5F5F5;
   border-left: 3px solid transparent;
   margin-left: -16px;
-  padding-left: 13px;
   transition: background 0.1s;
 }
 .rb:last-child { border-bottom: none; }
 .rb:hover { background: #FAFAFA; }
-
-.rn {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 6px;
-}
+.rn { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
 .rn-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
 .rn-right { flex: 1; min-width: 0; }
 .rn-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: #0F172A;
-  letter-spacing: -0.2px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  font-family: 'Fraunces', serif;
+  font-size: 14px; font-weight: 700;
+  color: #1A1A2E; letter-spacing: -0.2px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 .gp {
-  font-size: 10px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  padding: 1px 7px;
-  border-radius: 20px;
-  letter-spacing: 0.2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 700;
+  padding: 1px 8px; border-radius: 20px; letter-spacing: 0.2px;
+  font-style: normal;
 }
-.rd {
-  font-size: 13px;
-  color: #475569;
-  line-height: 1.75;
-  font-weight: 400;
-  margin-top: 2px;
+.rd { font-size: 13px; color: #555; line-height: 1.75; margin-top: 2px; }
+
+/* ── GROUP DIVIDERS ── */
+.group-sep {
+  font-size: 10px; font-weight: 700; color: #CCC;
+  text-transform: uppercase; letter-spacing: 0.7px;
+  padding: 12px 0 4px;
+  border-top: 1px solid #F0F0F0;
+  margin-top: 4px;
 }
+.group-sep:first-child { border-top: none; padding-top: 0; }
 
 /* ── ERROR ── */
 .err {
@@ -298,140 +263,106 @@ body {
   border: 1px solid #FECDD3;
   border-left: 3px solid #DC2626;
   border-radius: 10px;
-  padding: 14px;
-  color: #BE123C;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.65;
+  padding: 14px; color: #BE123C;
+  font-size: 13px; font-weight: 500; line-height: 1.65;
 }
 
 /* ── CHAT ── */
 #chat {
-  border-top: 1px solid #E2E8F0;
+  border-top: 1px solid #EFEFEF;
   padding: 12px 14px;
-  background: #F8FAFC;
-  flex-shrink: 0;
-  display: none;
+  background: #FAFAFA;
+  flex-shrink: 0; display: none;
 }
-#hist {
-  max-height: 150px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
+#hist { max-height: 150px; overflow-y: auto; margin-bottom: 10px; }
 #hist::-webkit-scrollbar { width: 3px; }
-#hist::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+#hist::-webkit-scrollbar-thumb { background: #DDD; border-radius: 3px; }
 .qmsg {
-  background: #1E293B; color: #F8FAFC;
+  background: #1A1A2E; color: #F8F8F8;
   font-size: 12px; font-weight: 500;
-  padding: 8px 11px;
-  border-radius: 10px 10px 3px 10px;
-  margin-bottom: 8px;
-  text-align: right;
-  line-height: 1.5;
+  padding: 8px 11px; border-radius: 10px 10px 3px 10px;
+  margin-bottom: 7px; text-align: right; line-height: 1.5;
 }
 .amsg {
-  background: #fff;
-  border: 1px solid #E2E8F0;
-  color: #334155;
-  font-size: 12px;
-  padding: 8px 11px;
-  border-radius: 3px 10px 10px 10px;
-  margin-bottom: 8px;
-  line-height: 1.65;
+  background: #fff; border: 1px solid #EFEFEF;
+  color: #444; font-size: 12px;
+  padding: 8px 11px; border-radius: 3px 10px 10px 10px;
+  margin-bottom: 7px; line-height: 1.7;
 }
 .chat-row { display: flex; gap: 8px; }
 #inp {
-  flex: 1;
-  padding: 9px 13px;
-  border-radius: 9px;
-  border: 1.5px solid #E2E8F0;
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  outline: none;
-  color: #0F172A;
+  flex: 1; padding: 9px 13px; border-radius: 9px;
+  border: 1.5px solid #E5E5E5; font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  background: #fff; outline: none; color: #1A1A2E;
   transition: border-color 0.15s;
 }
-#inp::placeholder { color: #94A3B8; }
+#inp::placeholder { color: #BBB; }
 #inp:focus { border-color: #DC2626; }
 #sendbtn {
-  background: #0F172A; color: #fff; border: none;
+  background: #1A1A2E; color: #fff; border: none;
   border-radius: 9px; padding: 9px 16px; cursor: pointer;
   font-size: 12px; font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  white-space: nowrap;
-  transition: background 0.12s;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap; transition: background 0.12s;
 }
-#sendbtn:hover { background: #1E293B; }
+#sendbtn:hover { background: #2D2D4E; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div id="hdr" onclick="toggleMin()">
-  <div id="brand">
-    <span>🔬</span> App<em>.</em>Autopsy
-    <span id="sitebadge">loading…</span>
-  </div>
+  <div id="brand">🔬 App<em>.</em>Autopsy <span id="sitebadge">loading…</span></div>
   <div id="hdr-btns" onclick="event.stopPropagation()">
     <button class="hbtn" id="minbtn" title="Minimize" onclick="toggleMin()">−</button>
     <button class="hbtn" title="Close" onclick="closePanel()">✕</button>
   </div>
 </div>
 
-<!-- HINT BAR -->
 <div id="hint-bar">
-  <div class="dot" style="background:#94A3B8;"></div>
+  <div class="dot" style="background:#CCC;"></div>
   Hover to preview &nbsp;·&nbsp; <strong style="color:#DC2626;">Double-click</strong> to dissect
 </div>
+<div id="locked-bar">🔒 <span id="locked-label">Locked</span></div>
 
-<!-- LOCKED INDICATOR (shown when result is locked) -->
-<div id="locked-bar" style="display:none;">
-  🔒 <span id="locked-label">Locked</span>
-</div>
-
-<!-- BODY -->
 <div id="body">
 
-  <!-- Idle -->
   <div id="idle">
     <div class="idle-icon">🖱️</div>
     <div class="idle-title">Hover, then double-click</div>
-    <div class="idle-sub">Move over any element on this page — a button, image, nav link, product card, anything. Then double-click it to dissect.</div>
+    <div class="idle-sub">Move over any element on this page — a button, image, nav, product card, search bar, anything — then double-click to dissect every role that built it.</div>
     <div class="tip-box">
-      <div class="tip-row" style="margin-bottom:6px;">
-        <span>🖱️</span> <strong>Hover</strong> — see a preview of what you're pointing at
-      </div>
-      <div class="tip-row" style="margin-bottom:6px;">
-        <span class="tip-key">dblclick</span> <strong>Double-click</strong> — full dissection begins
-      </div>
-      <div class="tip-row">
-        <span>📌</span> Results stay locked until you double-click something new
-      </div>
+      <div>🖱️ &nbsp;<strong>Hover</strong> — see the element name</div>
+      <div><span class="kkey">dbl</span> &nbsp;<strong>Double-click</strong> — full dissection</div>
+      <div>📌 &nbsp;Results stay locked until next double-click</div>
     </div>
   </div>
 
-  <!-- Element preview -->
   <div id="el-tag">
     <div id="el-name"></div>
     <div id="el-ctx"></div>
-    <div class="el-action">↑ Double-click to dissect this</div>
+    <div class="el-cta">↑ Double-click to dissect</div>
   </div>
 
-  <!-- Loading -->
+  <!-- ELEMENT VISUAL (image or snapshot) -->
+  <div id="visual-wrap">
+    <div id="visual-label">📸 Captured element</div>
+    <div id="visual-content">
+      <img id="visual-img" alt="" onerror="document.getElementById('visual-wrap').style.display='none'">
+      <div id="visual-snapshot"></div>
+    </div>
+  </div>
+
   <div id="loading">
     <div class="spin">🔬</div>
     <div class="load-txt">Dissecting…</div>
-    <div class="load-sub">Finding every role that built this</div>
+    <div class="load-sub">Finding every role involved</div>
     <div class="load-prog"><div class="load-bar"></div></div>
   </div>
 
-  <!-- Results -->
   <div id="result"></div>
-
 </div>
 
-<!-- CHAT -->
 <div id="chat">
   <div id="hist"></div>
   <div class="chat-row">
@@ -442,165 +373,209 @@ body {
 
 <script>
 const API = '/api/chat';
+
+// Group colors
 const GP = {
-  Builders: { color: '#2563EB', bg: '#EFF6FF' },
-  Data:     { color: '#059669', bg: '#ECFDF5' },
-  Leaders:  { color: '#7C3AED', bg: '#F5F3FF' },
-  Ops:      { color: '#D97706', bg: '#FFFBEB' }
+  Design:    { color:'#BE185D', bg:'#FDF2F8' },
+  Builders:  { color:'#1D4ED8', bg:'#EFF6FF' },
+  'AI & Data':{ color:'#059669', bg:'#ECFDF5' },
+  Leaders:   { color:'#7C3AED', bg:'#F5F3FF' },
+  Ops:       { color:'#C2410C', bg:'#FFF7ED' }
 };
 
-let isMin      = false;
-let conv       = [];
-let currentCtx = null;
-let site       = null;
-let pageTitle  = null;
+// Full 27-role list for prompt
+const ALL_ROLES = `
+Design group (the people who decide what everything looks like BEFORE it's built):
+- UI/UX Designer (🎭, Design): Designs the visual layout, colour, shapes, user flow — the blueprint for everything you see
+- UX Researcher (🔍, Design): Interviews real users and watches how they use the app to decide what should be built or changed
+- Visual / Graphic Designer (🖼️, Design): Creates the imagery, icons, illustrations and brand visuals
 
-/* ── READY ── */
-window.parent.postMessage({ type: 'ready' }, '*');
+Builders & Engineers (the people who actually build the product):
+- Frontend Engineer (🎨, Builders): Writes the code that makes what you SEE appear on your screen
+- Backend Engineer (⚙️, Builders): Builds the hidden systems — servers, databases, logic — that power the app
+- Full Stack Engineer (🔄, Builders): Builds both the visible front-end AND the hidden back-end
+- iOS Engineer (🍎, Builders): Builds the iPhone and iPad version of the app
+- Android Engineer (🤖, Builders): Builds the Android phone and tablet version
+- Test / QA Engineer (🧪, Builders): Tries to break the product before real users see it
+- Embedded Systems Engineer (🔌, Builders): Programs the software inside physical hardware devices
+- Platform / Infrastructure Engineer (🏗️, Builders): Builds the internal tools and systems other engineers use to build faster
+- Database Administrator (💾, Builders): Manages and optimises the databases that store all the app's information
+- Accessibility Engineer (♿, Builders): Makes the app usable for people with disabilities — screen readers, keyboard navigation, etc.
 
-/* ── MESSAGES FROM PARENT ── */
-window.addEventListener('message', (e) => {
+AI & Data (the people who work with information and intelligence):
+- Machine Learning Engineer (🧠, AI & Data): Builds and trains AI models that make the app smarter
+- AI Engineer (🤖, AI & Data): Uses existing AI tools like ChatGPT to add intelligent features to the product
+- MLOps Engineer (🔁, AI & Data): Deploys and monitors AI/ML models in production so they keep working reliably
+- Data Engineer (🚰, AI & Data): Builds the pipelines that collect, clean and move data around the company
+- Data Scientist (🔬, AI & Data): Finds patterns in data and uses them to make predictions or decisions
+- Data / Business Analyst (📈, AI & Data): Reads data reports and turns numbers into business decisions
+
+Leaders & Managers (the people who guide what gets built and how):
+- Engineering Manager (👷, Leaders): Leads the engineering team, reviews code quality and makes sure things ship on time
+- Technical Program Manager (📋, Leaders): Coordinates large technical projects across multiple teams
+- Product Manager (💡, Leaders): Decides what features get built, in what order, and why — based on user needs and business goals
+- Growth PM / Growth Engineer (📊, Leaders): Runs experiments and A/B tests to improve conversion, retention and revenue
+
+Operations & Security (the people who keep it running and safe):
+- Cloud Architect (☁️, Ops): Designs how the app's servers and infrastructure live in the cloud (AWS/GCP/Azure)
+- Site Reliability Engineer (🔧, Ops): Makes sure the app stays fast and online 24 hours a day, 7 days a week
+- DevOps Engineer (🚀, Ops): Automates how new features get deployed to real users quickly and safely
+- Cybersecurity Engineer (🔒, Ops): Protects the app and user data from hackers and attacks
+- Privacy Engineer (🛡️, Ops): Builds privacy-by-design features — GDPR, data deletion, consent flows
+- Trust & Safety Engineer (🚨, Ops): Builds systems to detect fraud, fake reviews, bots and content that breaks the rules
+`.trim();
+
+let isMin=false, conv=[], ctx=null, site=null, title=null;
+
+window.parent.postMessage({ type:'ready' }, '*');
+
+window.addEventListener('message', e => {
   const m = e.data;
   if (!m || !m.type) return;
   if (m.type === 'init')    init(m.site, m.title);
   if (m.type === 'preview') showPreview(m.d, m.site);
-  if (m.type === 'analyze') analyze(m.d, m.site, m.title);
+  if (m.type === 'analyze') analyze(m.d, m.site, m.title, m.visual);
 });
 
 function init(s, t) {
-  site = s; pageTitle = t;
+  site = s; title = t;
   document.getElementById('sitebadge').textContent = s;
 }
 
-/* ── MINIMIZE ── */
 function toggleMin() {
   isMin = !isMin;
-  document.body.style.transform = isMin ? 'translateX(316px)' : 'translateX(0)';
+  document.body.style.transform = isMin ? 'translateX(326px)' : 'translateX(0)';
   document.getElementById('minbtn').textContent = isMin ? '+' : '−';
 }
-function closePanel() {
-  window.parent.postMessage({ type: 'close' }, '*');
-}
+function closePanel() { window.parent.postMessage({ type:'close' }, '*'); }
 
-/* ── PREVIEW (hover, no API) ── */
+/* ── PREVIEW ── */
 function showPreview(d, s) {
   if (s) { site = s; document.getElementById('sitebadge').textContent = s; }
-
-  // Only update element tag, do NOT touch results
   document.getElementById('idle').style.display = 'none';
   document.getElementById('el-tag').style.display = 'block';
-
-  const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
-  const display = d.text
-    ? `"${clip(d.text, 58)}"`
-    : `<${d.tag}> element`;
-  document.getElementById('el-name').textContent = `${d.humanType}: ${display}`;
-  document.getElementById('el-ctx').textContent = d.section
-    ? `📍 Inside: ${d.section}`
-    : `← ${d.tag} on ${site || '…'}`;
-
+  const clip = (str, n) => str.length > n ? str.slice(0,n)+'…' : str;
+  const disp = d.text ? `"${clip(d.text, 55)}"` : `<${d.tag}>`;
+  document.getElementById('el-name').textContent = `${d.humanType}: ${disp}`;
+  document.getElementById('el-ctx').textContent  = d.section ? `📍 Inside: ${d.section}` : `← ${d.tag} on ${site||'…'}`;
   // Update hint bar
-  const hintBar = document.getElementById('hint-bar');
-  hintBar.innerHTML = `<div class="dot" style="background:#DC2626;animation:pulse 1.2s ease infinite;"></div> Hovering — <strong style="color:#DC2626;">double-click</strong> to dissect`;
+  document.getElementById('hint-bar').innerHTML =
+    `<div class="dot" style="background:#DC2626;animation:pulse 1.2s ease infinite;"></div> Hovering — <strong style="color:#DC2626;">double-click</strong> to dissect`;
 }
 
-/* ── ANALYZE (double-click, with API) ── */
-async function analyze(d, s, t) {
-  site = s || site;
-  pageTitle = t || pageTitle;
-  currentCtx = `${d.humanType}: "${d.text}"${d.section ? ' in "' + d.section + '"' : ''}`;
+/* ── RENDER VISUAL ── */
+function showVisual(visual) {
+  const wrap    = document.getElementById('visual-wrap');
+  const img     = document.getElementById('visual-img');
+  const snap    = document.getElementById('visual-snapshot');
+  const content = document.getElementById('visual-content');
+
+  if (!visual) { wrap.style.display = 'none'; return; }
+
+  if (visual.type === 'img' && visual.src) {
+    img.src = visual.src;
+    img.alt = visual.alt || '';
+    img.style.display = 'block';
+    snap.style.display = 'none';
+    wrap.style.display = 'block';
+    return;
+  }
+
+  if (visual.type === 'snapshot') {
+    img.style.display = 'none';
+    const hasBg = visual.bg && visual.bg !== 'transparent';
+    const bg    = hasBg ? visual.bg : '#F0F0F0';
+    const fg    = visual.fg || '#333';
+    const isBtn = ['button','a'].includes(visual.tag);
+    snap.style.display = 'flex';
+    snap.style.background = bg;
+    snap.style.padding = isBtn ? '12px 16px' : '12px';
+    snap.style.minHeight = '52px';
+    snap.style.borderRadius = visual.radius || '0';
+    snap.innerHTML = `<span style="color:${esc(fg)};font-size:${esc(visual.fontSize||'14px')};font-weight:${esc(visual.fw||'400')};word-break:break-word;max-height:80px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">${esc(visual.text || '[' + visual.human + ']')}</span>`;
+    wrap.style.display = 'block';
+    return;
+  }
+
+  wrap.style.display = 'none';
+}
+
+/* ── ANALYZE ── */
+async function analyze(d, s, t, visual) {
+  site = s || site; title = t || title;
+  ctx  = `${d.humanType}: "${d.text}"${d.section?' (in '+d.section+')':''}`;
   conv = [];
 
   // Show locked bar
   document.getElementById('locked-bar').style.display = 'flex';
-  document.getElementById('locked-label').textContent =
-    `Dissecting: ${(d.text || d.humanType).slice(0, 40)}`;
-
-  // Update hint bar
+  document.getElementById('locked-label').textContent = `Dissecting: ${(d.text||d.humanType).slice(0,38)}`;
   document.getElementById('hint-bar').innerHTML =
     `<div class="dot" style="background:#DC2626;"></div> Analysing — results stay until you double-click something new`;
 
+  // Show loading, hide previous result
   document.getElementById('loading').style.display = 'block';
-  document.getElementById('result').style.display = 'none';
-  document.getElementById('chat').style.display = 'none';
+  document.getElementById('result').style.display  = 'none';
+  document.getElementById('chat').style.display    = 'none';
 
+  // Show visual immediately (doesn't need API)
+  showVisual(visual);
+
+  // Build prompt
   const desc = [
     `Element: ${d.humanType} (HTML tag: <${d.tag}>)`,
-    d.text    ? `Visible text / label: "${d.text}"` : '',
+    d.text    ? `Content/text: "${d.text}"` : '',
     d.section ? `Inside section: "${d.section}"` : '',
-    pageTitle ? `Page: ${pageTitle}` : '',
+    title     ? `Page: ${title}` : '',
     `Website: ${site}`
   ].filter(Boolean).join('\n');
 
-  const prompt = `A non-tech person double-clicked this element on ${site} to understand it:
+  const prompt = `A non-tech person double-clicked this element on ${site} to understand who built it:
 ${desc}
 
-Your job: explain in very simple everyday language which tech roles were involved in building this specific element.
+Using the full role list below, identify EVERY role that genuinely contributed to this specific element. Do NOT limit yourself — if 12 roles were involved, list all 12. Only skip a role if it had no real involvement.
 
-IMPORTANT INSTRUCTIONS:
-- Include EVERY role that genuinely contributed — do not artificially limit to just 4 or 5
-- If 10 or 12 roles were meaningfully involved, list all of them
-- Only omit a role if it truly had no involvement in this element
-- Be specific to THIS exact element on ${site}, not generic
-- Use simple everyday language (explain like to a 12-year-old curious about tech)
+Be specific to THIS element on ${site}. Use simple everyday language — explain like to someone who has never worked in tech.
 
-Return ONLY a JSON array (no markdown, no backticks, nothing else):
-[
-  {
-    "emoji": "🎨",
-    "role": "Frontend Engineer",
-    "group": "Builders",
-    "contribution": "Clear 1-2 sentence explanation of their specific work on this element on ${site}"
-  }
-]
+Return ONLY a JSON array (no markdown):
+[{"emoji":"🎭","role":"UI/UX Designer","group":"Design","contribution":"What they specifically did for this element"}]
 
-Available roles (use ALL that apply):
-Frontend Engineer (🎨, Builders), Backend Engineer (⚙️, Builders), Full Stack Engineer (🔄, Builders),
-iOS Engineer (🍎, Builders), Android Engineer (🤖, Builders), Test/QA Engineer (🧪, Builders),
-Machine Learning Engineer (🧠, Data), Data Engineer (🚰, Data), Data Scientist (🔬, Data), Data/Business Analyst (📈, Data),
-Engineering Manager (👷, Leaders), Technical Program Manager (📋, Leaders), Product Manager (💡, Leaders),
-Cloud Architect (☁️, Ops), Site Reliability Engineer (🔧, Ops), Cybersecurity Engineer (🔒, Ops), DevOps Engineer (🚀, Ops)`;
+Here is the complete list of ALL roles to consider:
+${ALL_ROLES}`;
 
   try {
     const resp = await fetch(API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1800,
-        system: 'You explain tech roles to non-tech people in simple everyday language. Be thorough — include every role that genuinely participated. Return ONLY valid JSON arrays, no other text.',
-        messages: [{ role: 'user', content: prompt }]
+        model:      'claude-sonnet-4-20250514',
+        max_tokens: 2000,
+        system:     'You explain tech roles to non-tech people. Simple everyday language. No jargon. Be thorough — list every role that genuinely participated. Return ONLY valid JSON arrays.',
+        messages:   [{ role:'user', content:prompt }]
       })
     });
-
     const data = await resp.json();
     if (data.error) throw new Error(data.error);
 
     let raw = data.content[0].text.trim()
-      .replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      .replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
     const roles = JSON.parse(raw);
-
-    conv = [
-      { role: 'user', content: prompt },
-      { role: 'assistant', content: JSON.stringify(roles) }
-    ];
+    conv = [{ role:'user', content:prompt }, { role:'assistant', content:JSON.stringify(roles) }];
 
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('result').innerHTML = renderRoles(roles, d);
-    document.getElementById('result').style.display = 'block';
-    document.getElementById('hist').innerHTML = '';
-    document.getElementById('chat').style.display = 'block';
+    document.getElementById('result').innerHTML      = renderRoles(roles, d);
+    document.getElementById('result').style.display  = 'block';
+    document.getElementById('hist').innerHTML        = '';
+    document.getElementById('chat').style.display    = 'block';
 
-    // Update hint bar
+    const count = roles.length;
     document.getElementById('hint-bar').innerHTML =
-      `<div class="dot" style="background:#059669;"></div> ${roles.length} roles found — locked. Double-click anything new to switch.`;
+      `<div class="dot" style="background:#059669;"></div> <strong style="color:#059669;">${count} roles</strong> found &amp; locked — double-click anything new to switch`;
 
   } catch (err) {
     document.getElementById('loading').style.display = 'none';
-    const msg = (err.message || '').length < 220
-      ? err.message
+    const msg = (err.message||'').length < 220 ? err.message
       : 'Analysis failed. Make sure ANTHROPIC_API_KEY is set in Vercel → Settings → Environment Variables, then redeploy.';
-    document.getElementById('result').innerHTML = `<div class="err">⚠️ ${esc(msg)}</div>`;
+    document.getElementById('result').innerHTML     = `<div class="err">⚠️ ${esc(msg)}</div>`;
     document.getElementById('result').style.display = 'block';
     document.getElementById('locked-bar').style.display = 'none';
   }
@@ -609,16 +584,21 @@ Cloud Architect (☁️, Ops), Site Reliability Engineer (🔧, Ops), Cybersecur
 /* ── RENDER ROLES ── */
 function renderRoles(roles, d) {
   const label = (d.text || d.humanType).slice(0, 45);
-  const header = `
-    <div class="result-header">
-      <div class="result-label">Dissection complete</div>
-      <div class="result-element">${esc(label)}</div>
-      <div class="result-count">${roles.length} role${roles.length !== 1 ? 's' : ''} involved in building this</div>
-    </div>`;
+  let html = `<div class="result-header">
+    <div class="result-label">Dissection complete</div>
+    <div class="result-element">${esc(label)}</div>
+    <div class="result-count">${roles.length} role${roles.length!==1?'s':''} involved in building this</div>
+  </div>`;
 
-  const cards = roles.map(r => {
-    const g = GP[r.group] || { color: '#64748B', bg: '#F8FAFC' };
-    return `<div class="rb" style="border-left-color:${g.color};">
+  // Group roles for visual separation
+  let lastGroup = null;
+  roles.forEach(r => {
+    const g = GP[r.group] || { color:'#666', bg:'#F8F8F8' };
+    if (r.group && r.group !== lastGroup) {
+      html += `<div class="group-sep">${esc(r.group)}</div>`;
+      lastGroup = r.group;
+    }
+    html += `<div class="rb" style="border-left-color:${g.color};">
       <div class="rn">
         <span class="rn-emoji">${r.emoji}</span>
         <div class="rn-right">
@@ -630,56 +610,52 @@ function renderRoles(roles, d) {
       </div>
       <div class="rd">${esc(r.contribution)}</div>
     </div>`;
-  }).join('');
-
-  return header + cards;
+  });
+  return html;
 }
 
 /* ── CHAT ── */
 document.getElementById('sendbtn').onclick = ask;
-document.getElementById('inp').onkeydown = (e) => { if (e.key === 'Enter') ask(); };
+document.getElementById('inp').onkeydown   = e => { if(e.key==='Enter') ask(); };
 
 async function ask() {
   const inp = document.getElementById('inp');
-  const q = inp.value.trim();
+  const q   = inp.value.trim();
   if (!q) return;
   inp.value = '';
   const hist = document.getElementById('hist');
   hist.innerHTML += `<div class="qmsg">${esc(q)}</div>`;
   const bubble = document.createElement('div');
-  bubble.className = 'amsg';
-  bubble.textContent = '…';
+  bubble.className = 'amsg'; bubble.textContent = '…';
   hist.appendChild(bubble);
   hist.scrollTop = hist.scrollHeight;
-  conv.push({ role: 'user', content: q });
+  conv.push({ role:'user', content:q });
   try {
     const resp = await fetch(API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 400,
-        system: `You are App.Autopsy. Short, friendly, zero jargon. User is on ${site}.${currentCtx ? ' Looking at: ' + currentCtx + '.' : ''}`,
-        messages: conv
+        model:'claude-sonnet-4-20250514', max_tokens:400,
+        system:`You are App.Autopsy. Short, friendly, zero jargon. User is on ${site}.${ctx?' Looking at: '+ctx+'.':''}`,
+        messages:conv
       })
     });
-    const data = await resp.json();
+    const data  = await resp.json();
     const reply = data.content[0].text;
-    conv.push({ role: 'assistant', content: reply });
+    conv.push({ role:'assistant', content:reply });
     bubble.textContent = reply;
-  } catch (_) { bubble.textContent = '⚠️ Request failed.'; }
+  } catch(_) { bubble.textContent = '⚠️ Request failed.'; }
   hist.scrollTop = hist.scrollHeight;
 }
 
 /* ── UTIL ── */
 function esc(s) {
-  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-/* ── PULSE ANIMATION ── */
-const styleEl = document.createElement('style');
-styleEl.textContent = '@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}';
-document.head.appendChild(styleEl);
+/* ── PULSE KEYFRAME ── */
+const st = document.createElement('style');
+st.textContent = '@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}';
+document.head.appendChild(st);
 </script>
 </body>
 </html>
