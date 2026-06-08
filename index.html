@@ -5,126 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>App Autopsy — Dissect Any App. Understand It Instantly.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--bg:#F8F6F2;--w:#fff;--b:#E8E8E8;--t:#111827;--m:#6B7280;--brand:#DC2626;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;}
+:root{--bg:#F8F8F6;--w:#fff;--b:#E2E8F0;--t:#0F172A;--m:#64748B;--brand:#DC2626;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;}
 
-.topbar{background:#111827;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
+/* NAV */
+.topbar{background:linear-gradient(135deg,#0F172A,#1E293B);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:100;}
 .nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px;}
-.nav-dot{color:#DC2626;}
-.nav-pill{background:#DC2626;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;}
+.nav-dot{color:#F87171;}
+.nav-pill{background:#DC2626;color:#fff;font-size:11px;font-weight:700;padding:4px 13px;border-radius:20px;letter-spacing:.2px;}
 
-.hero{text-align:center;padding:44px 20px 32px;}
-.hero-title{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--t);letter-spacing:-1px;margin-bottom:12px;}
+/* HERO */
+.hero{text-align:center;padding:50px 20px 36px;}
+.hero-icon{font-size:54px;margin-bottom:16px;display:block;}
+.hero-title{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--t);letter-spacing:-1.2px;margin-bottom:14px;line-height:1.1;}
 .hero-dot{color:#DC2626;}
-.hero-sub{font-size:17px;color:var(--m);max-width:500px;margin:0 auto 16px;line-height:1.75;}
-.hero-badge{display:inline-flex;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:800;padding:7px 18px;border-radius:30px;}
+.hero-sub{font-size:17px;color:var(--m);max-width:500px;margin:0 auto 18px;line-height:1.8;font-weight:400;}
+.hero-badge{display:inline-flex;gap:6px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:600;padding:7px 18px;border-radius:30px;}
 
 .wrap{max-width:960px;margin:0 auto;padding:0 20px 80px;}
-.card{background:var(--w);border-radius:20px;padding:28px;border:1.5px solid var(--b);margin-bottom:20px;}
+.card{background:var(--w);border-radius:20px;padding:28px;border:1px solid var(--b);margin-bottom:20px;}
 
-/* ── BOOKMARKLET CARD ── */
-.bk-card{background:#111827;border-radius:20px;padding:30px;margin-bottom:20px;border:1.5px solid #374151;}
-.bk-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.22);color:#fca5a5;font-size:11px;font-weight:900;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
-.bk-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;line-height:1.2;}
-.bk-title span{color:#DC2626;}
-.bk-sub{font-size:14px;color:#9CA3AF;line-height:1.8;margin-bottom:24px;}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:26px;}
-.step{background:#1F2937;border-radius:14px;padding:16px;}
-.step-n{font-size:11px;font-weight:900;color:#DC2626;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.step-t{font-size:13px;color:#D1D5DB;line-height:1.7;}
+/* BOOKMARKLET CARD */
+.bk-card{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:20px;padding:32px;margin-bottom:20px;border:1px solid #334155;}
+.bk-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.2);color:#FDA4AF;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:18px;letter-spacing:.2px;}
+.bk-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;line-height:1.25;}
+.bk-title span{color:#F87171;}
+.bk-sub{font-size:14px;color:#94A3B8;line-height:1.8;margin-bottom:26px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin-bottom:26px;}
+.step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;}
+.step-n{font-size:10px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;}
+.step-t{font-size:13px;color:#CBD5E1;line-height:1.7;}
 .step-t strong{color:#fff;}
-.drag-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
-.drag-btn{display:inline-flex;align-items:center;gap:8px;background:#DC2626;color:#fff;font-weight:900;font-size:15px;padding:14px 24px;border-radius:14px;text-decoration:none;cursor:grab;border:2px dashed rgba(255,255,255,.3);}
+.drag-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px;}
+.drag-btn{display:inline-flex;align-items:center;gap:8px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;padding:14px 24px;border-radius:14px;text-decoration:none;cursor:grab;border:2px dashed rgba(255,255,255,.25);transition:background .15s;font-family:'Syne',sans-serif;}
 .drag-btn:hover{background:#b91c1c;}
-.drag-hint{color:#6B7280;font-size:13px;line-height:1.7;}
-.drag-hint strong{color:#9CA3AF;}
-.url-label{font-size:11px;color:#4B5563;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.drag-hint{color:#64748B;font-size:13px;line-height:1.7;}
+.drag-hint strong{color:#94A3B8;}
+.url-label{font-size:10px;color:#475569;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;}
 .url-box{display:flex;gap:8px;}
-.url-inp{flex:1;background:#0D1117;border:1.5px solid #374151;border-radius:10px;padding:10px 14px;font-size:12px;color:#9CA3AF;font-family:monospace;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.copy-btn{background:#374151;color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;transition:background .15s;white-space:nowrap;}
-.copy-btn:hover{background:#4B5563;}
+.url-inp{flex:1;background:#020617;border:1px solid #334155;border-radius:10px;padding:10px 14px;font-size:12px;color:#64748B;font-family:monospace;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.copy-btn{background:#334155;color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;transition:background .15s;white-space:nowrap;}
+.copy-btn:hover{background:#475569;}
 
-.or-div{display:flex;align-items:center;gap:14px;margin:24px 0;color:#BBB;font-size:13px;font-weight:700;}
-.or-div::before,.or-div::after{content:'';flex:1;height:1.5px;background:#E8E8E8;}
+.or-div{display:flex;align-items:center;gap:14px;margin:26px 0;color:#CBD5E1;font-size:13px;font-weight:500;}
+.or-div::before,.or-div::after{content:'';flex:1;height:1px;background:#E2E8F0;}
 
-.step-label{font-size:18px;font-weight:900;color:var(--t);margin-bottom:4px;}
-.step-sub{font-size:13px;color:#AAA;margin-bottom:20px;}
+.step-label{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);margin-bottom:4px;letter-spacing:-.2px;}
+.step-sub{font-size:13px;color:#94A3B8;margin-bottom:20px;}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.tab-btn{padding:8px 18px;border-radius:30px;border:1.5px solid var(--b);background:transparent;color:var(--m);font-weight:800;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s;}
+.tab-btn{padding:8px 18px;border-radius:30px;border:1px solid var(--b);background:transparent;color:var(--m);font-weight:600;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
 .tab-btn.active{background:var(--t);border-color:var(--t);color:#fff;}
-.iot-note{background:#EFF6FF;border-radius:12px;padding:14px 18px;font-size:13px;color:#1D4ED8;font-weight:600;line-height:1.7;margin-bottom:18px;display:none;border-left:4px solid #3B82F6;}
+.iot-note{background:#EFF6FF;border-radius:12px;padding:14px 18px;font-size:13px;color:#1D4ED8;font-weight:500;line-height:1.7;margin-bottom:18px;display:none;border-left:3px solid #3B82F6;}
 
 .sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-bottom:20px;}
-.site-btn{padding:14px 6px;border-radius:14px;border:1.5px solid var(--b);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif;transition:all .15s;}
-.site-btn:hover{border-color:#CCC;}
-.site-btn.sel{background:#111827;border-color:#111827;}
+.site-btn{padding:14px 6px;border-radius:14px;border:1px solid var(--b);background:#FAFAFA;cursor:pointer;text-align:center;font-family:'Inter',sans-serif;transition:all .15s;}
+.site-btn:hover{border-color:#CBD5E1;background:#F1F5F9;}
+.site-btn.sel{background:#0F172A;border-color:#0F172A;}
 .site-emoji{font-size:24px;margin-bottom:5px;}
-.site-name{font-size:11px;font-weight:800;color:#333;line-height:1.3;}
+.site-name{font-size:11px;font-weight:600;color:#334155;line-height:1.3;}
 .site-btn.sel .site-name,.site-btn.sel .site-desc{color:#fff;}
-.site-desc{font-size:10px;color:#AAA;margin-top:2px;}
-.site-btn.sel .site-desc{color:#CCC;}
+.site-desc{font-size:10px;color:#94A3B8;margin-top:2px;}
+.site-btn.sel .site-desc{color:#94A3B8;}
 
 .search-wrapper{position:relative;}
 .input-row{display:flex;gap:10px;}
-.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--b);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;background:#FAFAFA;outline:none;color:var(--t);transition:border-color .15s;}
-.custom-input:focus{border-color:#999;background:#fff;}
-.go-btn{padding:13px 24px;background:#111827;color:#fff;border:none;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;white-space:nowrap;}
-.go-btn:hover{opacity:.85;}
+.custom-input{flex:1;padding:13px 18px;border-radius:12px;border:1px solid var(--b);font-size:14px;font-family:'Inter',sans-serif;font-weight:500;background:#FAFAFA;outline:none;color:var(--t);transition:border-color .15s;}
+.custom-input:focus{border-color:#94A3B8;background:#fff;}
+.custom-input::placeholder{color:#94A3B8;}
+.go-btn{padding:13px 24px;background:#0F172A;color:#fff;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .15s;}
+.go-btn:hover{background:#1E293B;}
 
-.sug-drop{position:absolute;top:calc(100% + 8px);left:0;right:60px;background:#fff;border-radius:14px;border:1.5px solid #E5E5E5;box-shadow:0 12px 32px rgba(0,0,0,.12);z-index:300;overflow:hidden;display:none;}
-.sug-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F5F5F5;}
+.sug-drop{position:absolute;top:calc(100% + 8px);left:0;right:60px;background:#fff;border-radius:14px;border:1px solid var(--b);box-shadow:0 12px 40px rgba(0,0,0,.1);z-index:300;overflow:hidden;display:none;}
+.sug-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F8FAFC;}
 .sug-item:last-child{border-bottom:none;}
-.sug-item:hover,.sug-item.active{background:#F7F5F1;}
-.sug-em{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
-.sug-nm{font-weight:800;font-size:14px;color:#111;flex:1;}
-.sug-ds{font-size:12px;color:#AAA;}
-.sug-pl{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:900;}
-.sug-pl.iot{background:#ECFDF5;color:#065F46;}
+.sug-item:hover,.sug-item.active{background:#F8FAFC;}
+.sug-em{font-size:18px;width:24px;text-align:center;flex-shrink:0;}
+.sug-nm{font-weight:600;font-size:13.5px;color:#0F172A;flex:1;}
+.sug-ds{font-size:12px;color:#94A3B8;}
+.sug-pl{font-size:10px;background:#EFF6FF;color:#3B82F6;padding:2px 8px;border-radius:10px;font-weight:700;}
+.sug-pl.iot{background:#ECFDF5;color:#059669;}
 
-.load-box{background:var(--w);border-radius:20px;padding:60px 20px;text-align:center;border:1.5px solid var(--b);margin-bottom:20px;display:none;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
-.load-icon{font-size:48px;margin-bottom:14px;display:inline-block;animation:pulse 1.4s ease-in-out infinite;}
-.load-prog{width:200px;height:4px;background:#F0F0F0;border-radius:4px;margin:20px auto 0;overflow:hidden;}
-.load-bar{height:100%;background:#DC2626;border-radius:4px;animation:prog 3s ease-in-out infinite;}
-@keyframes prog{0%{width:0}60%{width:80%}100%{width:95%}}
+.load-box{background:var(--w);border-radius:20px;padding:60px 20px;text-align:center;border:1px solid var(--b);margin-bottom:20px;display:none;}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.5}}
+.load-icon{font-size:46px;margin-bottom:14px;display:inline-block;animation:pulse2 1.4s ease-in-out infinite;}
+.load-prog{width:200px;height:3px;background:#F1F5F9;border-radius:3px;margin:18px auto 0;overflow:hidden;}
+.load-bar{height:100%;background:linear-gradient(90deg,#DC2626,#F87171);border-radius:3px;animation:prog2 3s ease-in-out infinite;}
+@keyframes prog2{0%{width:0}65%{width:82%}100%{width:96%}}
 
-.err-box{background:#FEF2F2;border-radius:14px;padding:16px 20px;color:#DC2626;font-weight:700;font-size:14px;margin-bottom:18px;display:none;line-height:1.6;}
+.err-box{background:#FFF1F2;border:1px solid #FECDD3;border-radius:14px;padding:16px 20px;color:#BE123C;font-weight:600;font-size:14px;margin-bottom:18px;display:none;line-height:1.6;}
 
 .roles-section{display:none;}
 .roles-header{margin-bottom:24px;}
-.roles-title{font-size:18px;font-weight:900;color:var(--t);}
-.roles-sub{font-size:13px;color:#AAA;margin-top:3px;}
-.grp-section{margin-bottom:32px;}
+.roles-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--t);letter-spacing:-.2px;}
+.roles-sub{font-size:13px;color:#94A3B8;margin-top:3px;}
+.grp-section{margin-bottom:30px;}
 .grp-label-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.grp-bar{height:3px;width:24px;border-radius:2px;}
-.grp-lbl{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;}
+.grp-bar{height:2px;width:20px;border-radius:2px;}
+.grp-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;}
 .roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
-.role-card{background:var(--w);border-radius:16px;padding:18px;cursor:pointer;border:2px solid #F0F0F0;transition:all .2s ease;}
-.role-card:hover{border-color:#DDD;box-shadow:0 4px 12px rgba(0,0,0,.06);transform:translateY(-1px);}
+.role-card{background:var(--w);border-radius:16px;padding:18px;cursor:pointer;border:1px solid var(--b);transition:all .2s ease;}
+.role-card:hover{border-color:#CBD5E1;box-shadow:0 4px 14px rgba(0,0,0,.06);transform:translateY(-1px);}
 .role-card.selected{transform:none;}
 .role-inner{display:flex;align-items:flex-start;gap:12px;}
-.role-icon-box{width:46px;height:46px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.role-icon-box{width:44px;height:44px;flex-shrink:0;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;}
 .role-info{flex:1;min-width:0;}
-.role-name{font-weight:900;font-size:14px;color:var(--t);margin-bottom:3px;}
-.role-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:9px;}
-.role-explain{font-size:13px;color:#555;line-height:1.65;}
-.role-tap{text-align:right;font-size:11px;font-weight:800;color:#CCC;margin-top:10px;}
-.detail-panel{background:var(--w);border-radius:20px;padding:30px;margin-bottom:28px;display:none;}
+.role-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--t);margin-bottom:3px;letter-spacing:-.1px;}
+.role-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:9px;}
+.role-explain{font-size:13px;color:#475569;line-height:1.7;}
+.role-tap{text-align:right;font-size:11px;font-weight:600;color:#CBD5E1;margin-top:10px;}
+
+.detail-panel{background:var(--w);border-radius:20px;padding:30px;margin-bottom:28px;display:none;border:1px solid var(--b);}
 .detail-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
 .detail-left{display:flex;align-items:center;gap:18px;}
-.detail-icon-box{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;}
-.detail-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--t);}
-.detail-at{font-size:14px;font-weight:700;margin-top:4px;}
-.detail-tag-small{font-size:12px;color:#AAA;margin-top:2px;}
-.close-btn{background:#F3F4F6;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:800;color:#666;font-family:'Nunito',sans-serif;flex-shrink:0;}
-.close-btn:hover{background:#E5E7EB;}
-.detail-loading{text-align:center;padding:30px;color:#AAA;font-size:14px;font-weight:700;}
-.detail-body-text{font-size:16px;line-height:2;color:#444;}
-.site-footer{text-align:center;font-size:12px;color:#CCC;font-weight:700;padding:10px 20px 40px;display:none;}
-.brand-inline{color:#DC2626;font-weight:900;}
+.detail-icon-box{width:66px;height:66px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+.detail-name{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;color:var(--t);letter-spacing:-.3px;}
+.detail-at{font-size:14px;font-weight:600;margin-top:4px;}
+.detail-tag-small{font-size:12px;color:#94A3B8;margin-top:2px;}
+.close-btn{background:#F1F5F9;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:700;color:#64748B;font-family:'Inter',sans-serif;flex-shrink:0;transition:background .12s;}
+.close-btn:hover{background:#E2E8F0;}
+.detail-loading{text-align:center;padding:30px;color:#94A3B8;font-size:14px;font-weight:500;}
+.detail-body-text{font-size:15px;line-height:1.95;color:#475569;}
+
+.site-footer{text-align:center;font-size:12px;color:#CBD5E1;font-weight:500;padding:10px 20px 40px;display:none;}
+.brand-inline{color:#DC2626;font-weight:700;}
 </style>
 </head>
 <body>
@@ -135,79 +141,55 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-hei
 </div>
 
 <div class="hero">
-  <div style="font-size:52px;margin-bottom:14px;">🔬</div>
+  <span class="hero-icon">🔬</span>
   <h1 class="hero-title">App<span class="hero-dot">.</span>Autopsy</h1>
-  <p class="hero-sub">Dissect any app or device.<br>Understand who does what — in plain, simple English.</p>
-  <span class="hero-badge">📖 Zero jargon · Zero abbreviations · 18 tech jobs</span>
+  <p class="hero-sub">Dissect any app, website, or device.<br>Understand who built what — in plain, simple English.</p>
+  <span class="hero-badge">📖 Zero jargon · Zero abbreviations · All roles · Any app</span>
 </div>
 
 <div class="wrap">
 
-  <!-- BOOKMARKLET HERO -->
+  <!-- BOOKMARKLET CARD -->
   <div class="bk-card">
-    <div class="bk-tag">🔥 Live Website Overlay — hover anything on any site</div>
-    <h2 class="bk-title">Go to <span>any website</span>.<br>Hover any element. Know who built it.</h2>
-    <p class="bk-sub">Open Amazon, Swiggy, Netflix — anywhere. Install the bookmarklet once. Then hover over any button, image, menu, or section and an App.Autopsy panel appears showing which 18 tech roles built that exact thing and what they each did. Ask follow-up questions in the chat.</p>
-
+    <div class="bk-tag">🔥 Live Overlay — works on any website</div>
+    <h2 class="bk-title">Go to <span>any website</span>. Double-click anything. Know who built it.</h2>
+    <p class="bk-sub">Open Amazon, Swiggy, Netflix — anywhere. Install the bookmarklet once. Hover any element to preview it. Double-click to dissect it and see every tech role involved. Results stay locked until you dissect something new.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-n">Step 1</div>
-        <div class="step-t">Drag the <strong>red button</strong> below to your bookmark bar (or copy + add manually)</div>
-      </div>
-      <div class="step">
-        <div class="step-n">Step 2</div>
-        <div class="step-t">Go to <strong>any website</strong> — Amazon, Swiggy, Netflix, your bank, anything</div>
-      </div>
-      <div class="step">
-        <div class="step-n">Step 3</div>
-        <div class="step-t"><strong>Click the bookmark.</strong> Hover any element. See the panel appear instantly.</div>
-      </div>
+      <div class="step"><div class="step-n">Step 1</div><div class="step-t">Drag the <strong>red button</strong> below to your bookmark bar</div></div>
+      <div class="step"><div class="step-n">Step 2</div><div class="step-t">Go to <strong>any website</strong> — Amazon, Swiggy, Netflix, anything</div></div>
+      <div class="step"><div class="step-n">Step 3</div><div class="step-t"><strong>Click the bookmark</strong>, then double-click any element to dissect</div></div>
     </div>
-
     <div class="drag-row">
       <a class="drag-btn"
         href="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();"
-        draggable="true"
-        title="Drag this to your bookmark bar!">
+        draggable="true" title="Drag to bookmark bar">
         🔬 App.Autopsy
       </a>
-      <div class="drag-hint">
-        <strong>← Drag this to bookmark bar</strong><br>
-        <span style="font-size:11px;color:#4B5563;">Or copy the URL below → Bookmarks → Add bookmark → paste as URL</span>
-      </div>
+      <div class="drag-hint"><strong>← Drag to bookmark bar</strong><br><span style="font-size:11px;color:#475569;">Or copy URL below → add bookmark manually</span></div>
     </div>
-
-    <div class="url-label">Bookmarklet URL — copy and paste when creating bookmark manually</div>
+    <div class="url-label">Bookmarklet URL</div>
     <div class="url-box">
-      <input class="url-inp" id="bk-url" readonly
-        value="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();">
+      <input class="url-inp" id="bk-url" readonly value="javascript:(function(){var s=document.createElement('script');s.src='https://autopsy-ik.vercel.app/inject.js?v='+Date.now();document.head.appendChild(s);})();">
       <button class="copy-btn" id="copybtn" onclick="copyBk()">Copy</button>
     </div>
   </div>
 
-  <!-- OR DIVIDER -->
-  <div class="or-div">Or — explore any app here without leaving this page</div>
+  <div class="or-div">Or — explore any app right here</div>
 
   <!-- STEP 1 -->
   <div class="card">
-    <div class="step-label">Step 1 — Pick an app or device 👇</div>
-    <div class="step-sub">Click a tile or type any name below</div>
+    <div class="step-label">Step 1 — Pick an app or device</div>
+    <div class="step-sub">Click a tile or search below</div>
     <div class="tabs">
       <button class="tab-btn active" id="tab-apps" onclick="switchTab('apps')">📱 Apps &amp; Websites</button>
       <button class="tab-btn" id="tab-physical" onclick="switchTab('physical')">🔌 Physical Devices (IoT)</button>
     </div>
-    <div id="iot-note" class="iot-note">
-      🔌 <strong>What is a Physical Device / IoT?</strong> — Unlike apps (which only live on your phone), a physical device is something you can actually hold — like a smartwatch, smart speaker, or electric car. It has software <em>inside</em> the hardware. "IoT" = "Internet of Things" — everyday objects connected to the internet.
-    </div>
+    <div id="iot-note" class="iot-note">🔌 <strong>Physical Device / IoT</strong> — a real product you can hold and touch (smartwatch, smart speaker, electric car) with software built inside its hardware. "IoT" = Internet of Things — everyday objects connected to the internet.</div>
     <div class="sites-grid" id="sites-grid"></div>
     <div class="search-wrapper">
       <div class="input-row">
-        <input class="custom-input" id="custom-input"
-          placeholder="🔍 Search or type any app name — Instagram, LinkedIn, Meesho…"
-          oninput="handleInput(this.value)"
-          onkeydown="handleKeydown(event)"
-          autocomplete="off" spellcheck="false">
-        <button class="go-btn" onclick="goCustom()">Dissect It →</button>
+        <input class="custom-input" id="custom-input" placeholder="🔍 Search any app — Instagram, LinkedIn, Meesho, anything…" oninput="handleInput(this.value)" onkeydown="handleKeydown(event)" autocomplete="off" spellcheck="false">
+        <button class="go-btn" onclick="goCustom()">Dissect →</button>
       </div>
       <div id="suggestions" class="sug-drop"></div>
     </div>
@@ -215,8 +197,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-hei
 
   <div class="load-box" id="load-box">
     <div class="load-icon">🔬</div>
-    <div style="font-weight:900;font-size:20px;color:var(--t);" id="load-title">Dissecting…</div>
-    <div style="color:#AAA;margin-top:8px;font-size:14px;">Generating plain-English explanations for all 18 tech jobs</div>
+    <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--t);" id="load-title">Dissecting…</div>
+    <div style="color:#94A3B8;margin-top:8px;font-size:13px;">Generating plain-English explanations for all tech roles</div>
     <div class="load-prog"><div class="load-bar"></div></div>
   </div>
 
@@ -224,7 +206,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-hei
 
   <div class="roles-section" id="roles-section">
     <div class="roles-header">
-      <div class="roles-title">Step 2 — Click any job card to learn more 👇</div>
+      <div class="roles-title">Step 2 — Click any role to learn more</div>
       <div class="roles-sub" id="roles-sub"></div>
     </div>
     <div id="roles-container"></div>
@@ -239,100 +221,20 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-hei
 </div>
 
 <script>
-const APPS=[
-  {name:"Amazon India",emoji:"🛒",desc:"Online Shopping",type:"app"},
-  {name:"Swiggy",emoji:"🍔",desc:"Food Delivery",type:"app"},
-  {name:"Zomato",emoji:"🍕",desc:"Food & Dining",type:"app"},
-  {name:"Netflix India",emoji:"🎬",desc:"Movies & Shows",type:"app"},
-  {name:"Flipkart",emoji:"📦",desc:"Shopping",type:"app"},
-  {name:"CRED",emoji:"💳",desc:"Credit Card Bills",type:"app"},
-  {name:"Zerodha",emoji:"📊",desc:"Stock Trading",type:"app"},
-  {name:"PhonePe",emoji:"💸",desc:"UPI Payments",type:"app"},
-  {name:"Ola",emoji:"🚗",desc:"Cab Booking",type:"app"},
-  {name:"MakeMyTrip",emoji:"✈️",desc:"Travel Booking",type:"app"},
-  {name:"BigBasket",emoji:"🥦",desc:"Grocery Delivery",type:"app"},
-  {name:"Testbook",emoji:"📚",desc:"Exam Preparation",type:"app"}
-];
-const PHYSICAL=[
-  {name:"Amazon Echo (Alexa)",emoji:"🔊",desc:"Smart Speaker",type:"iot"},
-  {name:"Fitbit Smartwatch",emoji:"⌚",desc:"Fitness Wearable",type:"iot"},
-  {name:"Samsung Smart TV",emoji:"📺",desc:"Smart Television",type:"iot"},
-  {name:"Tesla Electric Car",emoji:"🚘",desc:"Smart Car",type:"iot"},
-  {name:"Apple Watch",emoji:"⌚",desc:"Smartwatch",type:"iot"},
-  {name:"Nest Thermostat",emoji:"🌡️",desc:"Smart Home Device",type:"iot"}
-];
+const APPS=[{name:"Amazon India",emoji:"🛒",desc:"Online Shopping",type:"app"},{name:"Swiggy",emoji:"🍔",desc:"Food Delivery",type:"app"},{name:"Zomato",emoji:"🍕",desc:"Food & Dining",type:"app"},{name:"Netflix India",emoji:"🎬",desc:"Movies & Shows",type:"app"},{name:"Flipkart",emoji:"📦",desc:"Shopping",type:"app"},{name:"CRED",emoji:"💳",desc:"Credit Card Bills",type:"app"},{name:"Zerodha",emoji:"📊",desc:"Stock Trading",type:"app"},{name:"PhonePe",emoji:"💸",desc:"UPI Payments",type:"app"},{name:"Ola",emoji:"🚗",desc:"Cab Booking",type:"app"},{name:"MakeMyTrip",emoji:"✈️",desc:"Travel Booking",type:"app"},{name:"BigBasket",emoji:"🥦",desc:"Grocery Delivery",type:"app"},{name:"Testbook",emoji:"📚",desc:"Exam Preparation",type:"app"}];
+const PHYSICAL=[{name:"Amazon Echo (Alexa)",emoji:"🔊",desc:"Smart Speaker",type:"iot"},{name:"Fitbit Smartwatch",emoji:"⌚",desc:"Fitness Wearable",type:"iot"},{name:"Samsung Smart TV",emoji:"📺",desc:"Smart Television",type:"iot"},{name:"Tesla Electric Car",emoji:"🚘",desc:"Smart Car",type:"iot"},{name:"Apple Watch",emoji:"⌚",desc:"Smartwatch",type:"iot"},{name:"Nest Thermostat",emoji:"🌡️",desc:"Smart Home Device",type:"iot"}];
 const ALL=[...APPS,...PHYSICAL];
-const GROUPS={
-  builders:{label:"Builders & Engineers",accent:"#3B82F6",bg:"#EFF6FF",text:"#1D4ED8"},
-  data:{label:"Data & Intelligence",accent:"#10B981",bg:"#ECFDF5",text:"#065F46"},
-  managers:{label:"Leaders & Managers",accent:"#8B5CF6",bg:"#F5F3FF",text:"#5B21B6"},
-  ops:{label:"Operations & Security",accent:"#F59E0B",bg:"#FFFBEB",text:"#92400E"}
-};
-const ROLES=[
-  {id:1,key:"frontend",name:"Frontend Engineer",emoji:"🎨",group:"builders",tagline:"Makes the app look beautiful"},
-  {id:2,key:"backend",name:"Backend Engineer",emoji:"⚙️",group:"builders",tagline:"Runs the engine behind the scenes"},
-  {id:3,key:"fullstack",name:"Full Stack Engineer",emoji:"🔄",group:"builders",tagline:"Does both front-end and back-end work"},
-  {id:4,key:"android",name:"Android Engineer",emoji:"🤖",group:"builders",tagline:"Builds the Android phone app"},
-  {id:5,key:"ios",name:"iOS Engineer",emoji:"🍎",group:"builders",tagline:"Builds the iPhone and iPad app"},
-  {id:6,key:"test",name:"Test / QA Engineer",emoji:"🧪",group:"builders",tagline:"Checks everything before you see it"},
-  {id:7,key:"embedded",name:"Embedded Systems Engineer",emoji:"🔌",group:"builders",tagline:"Programs physical hardware devices"},
-  {id:8,key:"ml",name:"Machine Learning Engineer",emoji:"🧠",group:"data",tagline:"Teaches the app to think and predict"},
-  {id:9,key:"data_eng",name:"Data Engineer",emoji:"🚰",group:"data",tagline:"Manages the flow of all information"},
-  {id:10,key:"data_sci",name:"Data Scientist",emoji:"🔬",group:"data",tagline:"Finds hidden patterns in data"},
-  {id:11,key:"analyst",name:"Data / Business Analyst",emoji:"📈",group:"data",tagline:"Turns numbers into business decisions"},
-  {id:12,key:"em",name:"Engineering Manager",emoji:"👷",group:"managers",tagline:"Leads and manages the tech team"},
-  {id:13,key:"tpm",name:"Technical Program Manager",emoji:"📋",group:"managers",tagline:"Keeps big tech projects on track"},
-  {id:14,key:"pm",name:"Product Manager",emoji:"💡",group:"managers",tagline:"Decides what features get built"},
-  {id:15,key:"cloud",name:"Cloud Architect",emoji:"☁️",group:"ops",tagline:"Manages internet servers in the cloud"},
-  {id:16,key:"sre",name:"Site Reliability Engineer",emoji:"🔧",group:"ops",tagline:"Keeps the app running 24 hours a day"},
-  {id:17,key:"security",name:"Cybersecurity Engineer",emoji:"🔒",group:"ops",tagline:"Protects your data from hackers"},
-  {id:18,key:"devops",name:"DevOps Engineer",emoji:"🚀",group:"ops",tagline:"Pushes new features live to all users"}
-];
+const GROUPS={builders:{label:"Builders & Engineers",accent:"#2563EB",bg:"#EFF6FF",text:"#1D4ED8"},data:{label:"Data & Intelligence",accent:"#059669",bg:"#ECFDF5",text:"#065F46"},managers:{label:"Leaders & Managers",accent:"#7C3AED",bg:"#F5F3FF",text:"#6D28D9"},ops:{label:"Operations & Security",accent:"#D97706",bg:"#FFFBEB",text:"#92400E"}};
+const ROLES=[{id:1,key:"frontend",name:"Frontend Engineer",emoji:"🎨",group:"builders",tagline:"Makes the app look beautiful"},{id:2,key:"backend",name:"Backend Engineer",emoji:"⚙️",group:"builders",tagline:"Runs the engine behind the scenes"},{id:3,key:"fullstack",name:"Full Stack Engineer",emoji:"🔄",group:"builders",tagline:"Does both front-end and back-end work"},{id:4,key:"android",name:"Android Engineer",emoji:"🤖",group:"builders",tagline:"Builds the Android phone app"},{id:5,key:"ios",name:"iOS Engineer",emoji:"🍎",group:"builders",tagline:"Builds the iPhone and iPad app"},{id:6,key:"test",name:"Test / QA Engineer",emoji:"🧪",group:"builders",tagline:"Checks everything before you see it"},{id:7,key:"embedded",name:"Embedded Systems Engineer",emoji:"🔌",group:"builders",tagline:"Programs physical hardware devices"},{id:8,key:"ml",name:"Machine Learning Engineer",emoji:"🧠",group:"data",tagline:"Teaches the app to think and predict"},{id:9,key:"data_eng",name:"Data Engineer",emoji:"🚰",group:"data",tagline:"Manages the flow of all information"},{id:10,key:"data_sci",name:"Data Scientist",emoji:"🔬",group:"data",tagline:"Finds hidden patterns in data"},{id:11,key:"analyst",name:"Data / Business Analyst",emoji:"📈",group:"data",tagline:"Turns numbers into business decisions"},{id:12,key:"em",name:"Engineering Manager",emoji:"👷",group:"managers",tagline:"Leads and manages the tech team"},{id:13,key:"tpm",name:"Technical Program Manager",emoji:"📋",group:"managers",tagline:"Keeps big tech projects on track"},{id:14,key:"pm",name:"Product Manager",emoji:"💡",group:"managers",tagline:"Decides what features get built"},{id:15,key:"cloud",name:"Cloud Architect",emoji:"☁️",group:"ops",tagline:"Manages internet servers in the cloud"},{id:16,key:"sre",name:"Site Reliability Engineer",emoji:"🔧",group:"ops",tagline:"Keeps the app running 24 hours a day"},{id:17,key:"security",name:"Cybersecurity Engineer",emoji:"🔒",group:"ops",tagline:"Protects your data from hackers"},{id:18,key:"devops",name:"DevOps Engineer",emoji:"🚀",group:"ops",tagline:"Pushes new features live to all users"}];
 
 let activeTab="apps",sel=null,expl={},selRoleKey=null,roleDetails={},sugIdx=-1,curSugs=[];
 
-function copyBk(){
-  document.getElementById("bk-url").select();
-  document.execCommand("copy");
-  const b=document.getElementById("copybtn");
-  b.textContent="Copied ✓";b.style.background="#10B981";
-  setTimeout(()=>{b.textContent="Copy";b.style.background="";},2200);
-}
-function switchTab(t){
-  activeTab=t;
-  document.getElementById("tab-apps").className="tab-btn"+(t==="apps"?" active":"");
-  document.getElementById("tab-physical").className="tab-btn"+(t==="physical"?" active":"");
-  document.getElementById("iot-note").style.display=t==="physical"?"block":"none";
-  renderSites();
-}
-function renderSites(){
-  const list=activeTab==="apps"?APPS:PHYSICAL;
-  document.getElementById("sites-grid").innerHTML=list.map(s=>{
-    const isSel=sel&&sel.name===s.name;
-    const dn=s.name.length>16?s.name.slice(0,15)+"…":s.name;
-    return`<button class="site-btn${isSel?" sel":""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')"><div class="site-emoji">${s.emoji}</div><div class="site-name">${dn}</div><div class="site-desc">${s.desc}</div></button>`;
-  }).join("");
-}
+function copyBk(){document.getElementById("bk-url").select();document.execCommand("copy");const b=document.getElementById("copybtn");b.textContent="Copied ✓";b.style.background="#059669";setTimeout(()=>{b.textContent="Copy";b.style.background="";},2200);}
+function switchTab(t){activeTab=t;document.getElementById("tab-apps").className="tab-btn"+(t==="apps"?" active":"");document.getElementById("tab-physical").className="tab-btn"+(t==="physical"?" active":"");document.getElementById("iot-note").style.display=t==="physical"?"block":"none";renderSites();}
+function renderSites(){const list=activeTab==="apps"?APPS:PHYSICAL;document.getElementById("sites-grid").innerHTML=list.map(s=>{const isSel=sel&&sel.name===s.name;const dn=s.name.length>16?s.name.slice(0,15)+"…":s.name;return`<button class="site-btn${isSel?" sel":""}" onclick="gridClick('${s.name.replace(/'/g,"\\'")}','${s.type}')"><div class="site-emoji">${s.emoji}</div><div class="site-name">${dn}</div><div class="site-desc">${s.desc}</div></button>`;}).join("");}
 function gridClick(name,type){document.getElementById("custom-input").value=name;hideSug();selectSite(name,type);}
-function handleInput(val){
-  sugIdx=-1;const q=val.trim().toLowerCase();
-  if(!q){hideSug();return;}
-  curSugs=ALL.filter(s=>s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)).slice(0,7);
-  if(!curSugs.length){hideSug();return;}
-  const drop=document.getElementById("suggestions");
-  drop.innerHTML=curSugs.map((s,i)=>{
-    const hl=s.name.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<strong>$1</strong>');
-    return`<div class="sug-item" id="sug-${i}" onclick="selSug(${i})"><span class="sug-em">${s.emoji}</span><span class="sug-nm">${hl}</span><span class="sug-ds">${s.desc}</span><span class="sug-pl${s.type==='iot'?' iot':''}">${s.type==='iot'?'Physical':'App'}</span></div>`;
-  }).join("");
-  drop.style.display="block";
-}
-function handleKeydown(e){
-  const open=document.getElementById("suggestions").style.display==="block";
-  if(e.key==="ArrowDown"){e.preventDefault();if(!open)return;sugIdx=Math.min(sugIdx+1,curSugs.length-1);hlSug();}
-  else if(e.key==="ArrowUp"){e.preventDefault();sugIdx=Math.max(sugIdx-1,-1);hlSug();}
-  else if(e.key==="Enter"){if(open&&sugIdx>=0){e.preventDefault();selSug(sugIdx);}else goCustom();}
-  else if(e.key==="Escape")hideSug();
-}
+function handleInput(val){sugIdx=-1;const q=val.trim().toLowerCase();if(!q){hideSug();return;}curSugs=ALL.filter(s=>s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)).slice(0,7);if(!curSugs.length){hideSug();return;}const drop=document.getElementById("suggestions");drop.innerHTML=curSugs.map((s,i)=>{const hl=s.name.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<strong>$1</strong>');return`<div class="sug-item" id="sug-${i}" onclick="selSug(${i})"><span class="sug-em">${s.emoji}</span><span class="sug-nm">${hl}</span><span class="sug-ds">${s.desc}</span><span class="sug-pl${s.type==='iot'?' iot':''}">${s.type==='iot'?'Physical':'App'}</span></div>`;}).join("");drop.style.display="block";}
+function handleKeydown(e){const open=document.getElementById("suggestions").style.display==="block";if(e.key==="ArrowDown"){e.preventDefault();if(!open)return;sugIdx=Math.min(sugIdx+1,curSugs.length-1);hlSug();}else if(e.key==="ArrowUp"){e.preventDefault();sugIdx=Math.max(sugIdx-1,-1);hlSug();}else if(e.key==="Enter"){if(open&&sugIdx>=0){e.preventDefault();selSug(sugIdx);}else goCustom();}else if(e.key==="Escape")hideSug();}
 function hlSug(){document.querySelectorAll(".sug-item").forEach((el,i)=>el.className="sug-item"+(i===sugIdx?" active":""));if(sugIdx>=0&&curSugs[sugIdx])document.getElementById("custom-input").value=curSugs[sugIdx].name;}
 function selSug(i){const s=curSugs[i];if(!s)return;document.getElementById("custom-input").value=s.name;hideSug();selectSite(s.name,s.type);}
 function hideSug(){document.getElementById("suggestions").style.display="none";sugIdx=-1;}
@@ -341,18 +243,13 @@ document.addEventListener("click",e=>{if(!e.target.closest(".search-wrapper"))hi
 
 async function selectSite(name,type){
   sel={name,type};selRoleKey=null;expl={};renderSites();
-  document.getElementById("roles-section").style.display="none";
-  document.getElementById("detail-panel").style.display="none";
-  document.getElementById("site-footer").style.display="none";
+  ["roles-section","detail-panel","site-footer"].forEach(id=>document.getElementById(id).style.display="none");
   document.getElementById("err-box").style.display="none";
   document.getElementById("load-title").textContent="Dissecting "+name+"…";
   document.getElementById("load-box").style.display="block";
   const ctx=type==="iot"?"PHYSICAL DEVICE — software inside hardware":"digital app or website";
   try{
-    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1600,
-        system:"Explain tech jobs in very simple everyday language. Zero jargon. Return ONLY raw JSON.",
-        messages:[{role:"user",content:`For "${name}" (${ctx}), ONE simple sentence per role. Start each with "This person...". Use real features of ${name}.\n\nReturn ONLY raw JSON:\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`}]})});
+    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1800,system:"Explain tech roles in very simple everyday language. Zero jargon. Return ONLY raw JSON — no markdown, no backticks.",messages:[{role:"user",content:`For "${name}" (${ctx}), ONE simple sentence per role starting with "This person...". Use real features of ${name}.\n\nReturn ONLY raw JSON:\n{"frontend":"...","backend":"...","fullstack":"...","android":"...","ios":"...","test":"...","embedded":"...","ml":"...","data_eng":"...","data_sci":"...","analyst":"...","em":"...","tpm":"...","pm":"...","cloud":"...","sre":"...","security":"...","devops":"..."}`}]})});
     const data=await resp.json();
     if(!resp.ok||data.error)throw new Error(data.error||"API error");
     let txt=data.content[0].text.trim().replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
@@ -366,15 +263,8 @@ async function selectSite(name,type){
   }
 }
 function renderRoles(){
-  document.getElementById("roles-sub").textContent="All 18 tech jobs at "+sel.name+" — tap any card for the full story";
-  document.getElementById("roles-container").innerHTML=["builders","data","managers","ops"].map(gKey=>{
-    const g=GROUPS[gKey];
-    const cards=ROLES.filter(r=>r.group===gKey).map(role=>{
-      const isSel=selRoleKey===role.key;
-      return`<div class="role-card${isSel?" selected":""}" id="card-${role.key}" style="${isSel?"border-color:"+g.accent+";background:"+g.bg+";":""}" onclick="clickRole('${role.key}')"><div class="role-inner"><div class="role-icon-box" style="background:${g.bg};border:1.5px solid ${g.accent}25;">${role.emoji}</div><div class="role-info"><div class="role-name">${role.name}</div><div class="role-tag" style="color:${g.text};background:${g.bg};border:1px solid ${g.accent}20;">${role.tagline}</div><div class="role-explain">${expl[role.key]||"—"}</div></div></div><div class="role-tap" style="color:${isSel?g.accent:"#CCC"}">${isSel?"✓ Selected — full story below":"Tap to learn more →"}</div></div>`;
-    }).join("");
-    return`<div class="grp-section"><div class="grp-label-row"><div class="grp-bar" style="background:${g.accent};"></div><span class="grp-lbl" style="color:${g.text};">${g.label}</span></div><div class="roles-grid">${cards}</div></div>`;
-  }).join("");
+  document.getElementById("roles-sub").textContent="All 18 tech roles at "+sel.name+" — click any for the full story";
+  document.getElementById("roles-container").innerHTML=["builders","data","managers","ops"].map(gKey=>{const g=GROUPS[gKey];const cards=ROLES.filter(r=>r.group===gKey).map(role=>{const isSel=selRoleKey===role.key;return`<div class="role-card${isSel?" selected":""}" id="card-${role.key}" style="${isSel?"border-color:"+g.accent+";background:"+g.bg+";":""}" onclick="clickRole('${role.key}')"><div class="role-inner"><div class="role-icon-box" style="background:${g.bg};">${role.emoji}</div><div class="role-info"><div class="role-name">${role.name}</div><div class="role-tag" style="color:${g.text};background:${g.bg};">${role.tagline}</div><div class="role-explain">${expl[role.key]||"—"}</div></div></div><div class="role-tap" style="color:${isSel?g.accent:"#CBD5E1"}">${isSel?"✓ See full story below":"Click to learn more →"}</div></div>`;}).join("");return`<div class="grp-section"><div class="grp-label-row"><div class="grp-bar" style="background:${g.accent};"></div><span class="grp-lbl" style="color:${g.text};">${g.label}</span></div><div class="roles-grid">${cards}</div></div>`;}).join("");
   document.getElementById("roles-section").style.display="block";
   document.getElementById("site-footer").style.display="block";
 }
@@ -383,24 +273,17 @@ async function clickRole(key){
   selRoleKey=key;renderRoles();
   const g=GROUPS[role.group],ck=key+"_"+sel.name;
   const panel=document.getElementById("detail-panel");
-  panel.style.display="block";panel.style.border="2px solid "+g.accent;
+  panel.style.display="block";panel.style.border="1.5px solid "+g.accent;
   setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"nearest"}),50);
-  panel.innerHTML=`<div class="detail-header"><div class="detail-left"><div class="detail-icon-box" style="background:${g.bg};border:2px solid ${g.accent}25;">${role.emoji}</div><div><div class="detail-name">${role.name}</div><div class="detail-at" style="color:${g.text};">at ${sel.name}</div><div class="detail-tag-small">${role.tagline}</div></div></div><button class="close-btn" onclick="closeDetail()">✕ Close</button></div><div id="detail-body"><div class="detail-loading">🔬 Dissecting this role...</div></div>`;
+  panel.innerHTML=`<div class="detail-header"><div class="detail-left"><div class="detail-icon-box" style="background:${g.bg};">${role.emoji}</div><div><div class="detail-name">${role.name}</div><div class="detail-at" style="color:${g.text};">at ${sel.name}</div><div class="detail-tag-small">${role.tagline}</div></div></div><button class="close-btn" onclick="closeDetail()">✕ Close</button></div><div id="detail-body"><div class="detail-loading">🔬 Loading…</div></div>`;
   if(roleDetails[ck]){document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${roleDetails[ck]}</p>`;return;}
   try{
-    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,
-        system:"Explain tech jobs in simple conversational language. No jargon. Be warm.",
-        messages:[{role:"user",content:`Explain what a "${role.name}" does at ${sel.name} in 4-5 friendly sentences. Daily tasks, one specific feature, what breaks without them, a fun comparison. ${sel.type==="iot"?"It's a physical device — mention hardware too.":""} One paragraph, no lists.`}]})});
+    const resp=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,system:"Explain tech jobs in simple conversational language. No jargon. Be warm.",messages:[{role:"user",content:`Explain what a "${role.name}" does at ${sel.name} in 4-5 friendly sentences. Include: daily tasks in simple words; one specific ${sel.name} feature they built; what breaks without them; one fun comparison like "Think of them as the [X] of the app". ${sel.type==="iot"?"It's a physical device — mention hardware too.":""} One paragraph, no lists.`}]})});
     const data=await resp.json();
     const txt=data.content[0].text;
     roleDetails[ck]=txt;
-    if(document.getElementById("detail-body"))
-      document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${txt}</p>`;
-  }catch(e){
-    if(document.getElementById("detail-body"))
-      document.getElementById("detail-body").innerHTML=`<div style="color:#DC2626;font-size:13px;padding:12px;background:#FEF2F2;border-radius:8px;">⚠️ Couldn't load. Tap card again.</div>`;
-  }
+    if(document.getElementById("detail-body"))document.getElementById("detail-body").innerHTML=`<p class="detail-body-text">${txt}</p>`;
+  }catch(e){if(document.getElementById("detail-body"))document.getElementById("detail-body").innerHTML=`<div class="err-box" style="display:block;">⚠️ Couldn't load. Click again.</div>`;}
 }
 function closeDetail(){selRoleKey=null;document.getElementById("detail-panel").style.display="none";renderRoles();}
 renderSites();

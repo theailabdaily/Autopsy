@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>App.Autopsy Panel</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<title>App.Autopsy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { height: 100%; }
+html, body { height: 100%; overflow: hidden; }
+
 body {
-  font-family: 'Nunito', -apple-system, sans-serif;
-  font-size: 14px; color: #111827;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13.5px;
+  color: #0F172A;
   background: #fff;
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   border-left: 4px solid #DC2626;
   border-radius: 16px 0 0 16px;
-  transition: transform 0.28s ease;
+  transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* ── HEADER ── */
 #hdr {
-  background: #111827;
-  padding: 12px 14px;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  padding: 13px 15px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,218 +37,398 @@ body {
   border-radius: 12px 0 0 0;
 }
 #brand {
-  color: #fff;
   font-family: 'Syne', sans-serif;
   font-size: 15px;
   font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
   display: flex;
   align-items: center;
   gap: 8px;
-  letter-spacing: -0.2px;
 }
-#brand em { color: #DC2626; font-style: normal; }
+#brand em { color: #F87171; font-style: normal; }
 #sitebadge {
-  background: rgba(220,38,38,0.22);
-  color: #fca5a5;
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
+  color: #FDA4AF;
+  background: rgba(220,38,38,0.2);
   padding: 2px 9px;
   border-radius: 20px;
-  font-family: 'Nunito', sans-serif;
-  max-width: 100px;
+  letter-spacing: 0.2px;
+  max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .hbtn {
-  background: rgba(255,255,255,0.12);
-  border: none; color: #fff;
-  width: 26px; height: 26px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+  background: rgba(255,255,255,0.1);
+  border: none; color: rgba(255,255,255,0.85);
+  width: 27px; height: 27px;
+  border-radius: 7px; cursor: pointer;
+  font-size: 15px;
   display: flex; align-items: center; justify-content: center;
-  line-height: 1;
   transition: background 0.12s;
+  flex-shrink: 0;
 }
-.hbtn:hover { background: rgba(255,255,255,0.24); }
+.hbtn:hover { background: rgba(255,255,255,0.22); }
 #hdr-btns { display: flex; gap: 6px; }
+
+/* ── INSTRUCTION BAR ── */
+#hint-bar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 8px 15px;
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+#hint-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── LOCKED INDICATOR ── */
+#locked-bar {
+  display: none;
+  background: #FFF1F2;
+  border-bottom: 1px solid #FECDD3;
+  padding: 7px 15px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #BE123C;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
 /* ── BODY ── */
 #body {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 18px 16px;
   scroll-behavior: smooth;
 }
+/* Scrollbar styling */
+#body::-webkit-scrollbar { width: 4px; }
+#body::-webkit-scrollbar-track { background: transparent; }
+#body::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 4px; }
+#body::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
 
-/* ── IDLE STATE ── */
-#idle { text-align: center; padding: 28px 8px; }
-.idle-icon { font-size: 52px; margin-bottom: 14px; }
-.idle-title { font-weight: 900; font-size: 16px; color: #111; margin-bottom: 8px; }
-.idle-sub { font-size: 13px; color: #777; line-height: 1.75; max-width: 260px; margin: 0 auto; }
+/* ── IDLE ── */
+#idle { text-align: center; padding: 32px 12px 24px; }
+.idle-icon { font-size: 48px; margin-bottom: 16px; }
+.idle-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px; font-weight: 800;
+  color: #0F172A; margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.idle-sub { font-size: 13px; color: #64748B; line-height: 1.75; max-width: 270px; margin: 0 auto; }
 .tip-box {
-  background: #F7F5F1;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 13px 15px;
-  margin-top: 16px;
+  padding: 14px 16px;
+  margin-top: 18px;
   text-align: left;
   font-size: 12px;
-  color: #666;
+  color: #475569;
   line-height: 2;
 }
+.tip-row { display: flex; align-items: center; gap: 8px; }
+.tip-key {
+  background: #E2E8F0;
+  border-radius: 5px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+  font-family: monospace;
+  flex-shrink: 0;
+}
 
-/* ── ELEMENT TAG ── */
+/* ── ELEMENT PREVIEW ── */
 #el-tag {
   display: none;
-  background: #F7F5F1;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-left: 3px solid #DC2626;
   border-radius: 10px;
-  padding: 10px 12px;
-  margin-bottom: 14px;
+  padding: 11px 13px;
+  margin-bottom: 16px;
 }
-#el-name { font-weight: 800; font-size: 13px; color: #111; }
-#el-ctx { font-size: 11px; color: #888; margin-top: 3px; }
+#el-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #0F172A;
+  line-height: 1.4;
+}
+#el-ctx {
+  font-size: 11px;
+  color: #94A3B8;
+  margin-top: 4px;
+}
+.el-action {
+  font-size: 11px;
+  color: #DC2626;
+  font-weight: 600;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 /* ── LOADING ── */
-#loading { display: none; text-align: center; padding: 32px 16px; }
+#loading {
+  display: none;
+  text-align: center;
+  padding: 36px 16px;
+}
 .spin {
-  font-size: 40px;
+  font-size: 38px;
   display: inline-block;
   animation: spin 1s linear infinite;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-.load-txt { font-size: 13px; color: #888; font-weight: 700; }
-.load-sub { font-size: 11px; color: #BBB; margin-top: 4px; }
+.load-txt {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+.load-sub { font-size: 12px; color: #94A3B8; }
+.load-prog {
+  width: 160px; height: 3px;
+  background: #E2E8F0; border-radius: 3px;
+  margin: 16px auto 0; overflow: hidden;
+}
+.load-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #DC2626, #F87171);
+  border-radius: 3px;
+  animation: prog 3.5s ease-in-out infinite;
+}
+@keyframes prog { 0%{width:0} 65%{width:85%} 100%{width:96%} }
 
 /* ── RESULTS ── */
 #result { display: none; }
-.result-who {
-  font-size: 10px; font-weight: 900;
-  color: #AAA; text-transform: uppercase;
-  letter-spacing: 0.5px; margin-bottom: 12px;
+
+.result-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F1F5F9;
 }
+.result-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 4px;
+}
+.result-element {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.35;
+}
+.result-count {
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* ── ROLE CARD ── */
 .rb {
-  padding: 13px 0;
-  border-bottom: 1px solid #F0F0F0;
+  padding: 14px 0 14px 14px;
+  border-bottom: 1px solid #F1F5F9;
+  border-left: 3px solid transparent;
+  margin-left: -16px;
+  padding-left: 13px;
+  transition: background 0.1s;
 }
-.rb:last-child { border-bottom: none; padding-bottom: 4px; }
+.rb:last-child { border-bottom: none; }
+.rb:hover { background: #FAFAFA; }
+
 .rn {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.rn-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.rn-right { flex: 1; min-width: 0; }
+.rn-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.2px;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 800;
-  font-size: 14px;
-  color: #111;
-  margin-bottom: 5px;
+  flex-wrap: wrap;
 }
-.rn .emoji { font-size: 20px; flex-shrink: 0; }
 .gp {
-  margin-left: auto;
   font-size: 10px;
-  font-weight: 900;
-  padding: 2px 8px;
-  border-radius: 10px;
-  flex-shrink: 0;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  padding: 1px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
 }
-.rd { font-size: 13px; color: #555; line-height: 1.7; }
+.rd {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.75;
+  font-weight: 400;
+  margin-top: 2px;
+}
 
 /* ── ERROR ── */
 .err {
-  background: #FEF2F2;
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  border-left: 3px solid #DC2626;
   border-radius: 10px;
   padding: 14px;
-  color: #DC2626;
+  color: #BE123C;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.65;
-  border-left: 3px solid #DC2626;
 }
 
 /* ── CHAT ── */
 #chat {
-  border-top: 1.5px solid #F0F0F0;
-  padding: 12px;
-  background: #FAFAFA;
+  border-top: 1px solid #E2E8F0;
+  padding: 12px 14px;
+  background: #F8FAFC;
   flex-shrink: 0;
   display: none;
 }
 #hist {
-  max-height: 140px;
+  max-height: 150px;
   overflow-y: auto;
   margin-bottom: 10px;
 }
+#hist::-webkit-scrollbar { width: 3px; }
+#hist::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
 .qmsg {
-  background: #111827; color: #fff; font-size: 12px;
-  padding: 7px 10px; border-radius: 8px 8px 2px 8px;
-  margin-bottom: 6px; text-align: right; line-height: 1.5;
+  background: #1E293B; color: #F8FAFC;
+  font-size: 12px; font-weight: 500;
+  padding: 8px 11px;
+  border-radius: 10px 10px 3px 10px;
+  margin-bottom: 8px;
+  text-align: right;
+  line-height: 1.5;
 }
 .amsg {
-  background: #F0F0F0; color: #333; font-size: 12px;
-  padding: 7px 10px; border-radius: 2px 8px 8px 8px;
-  margin-bottom: 6px; line-height: 1.65;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+  font-size: 12px;
+  padding: 8px 11px;
+  border-radius: 3px 10px 10px 10px;
+  margin-bottom: 8px;
+  line-height: 1.65;
 }
 .chat-row { display: flex; gap: 8px; }
 #inp {
-  flex: 1; padding: 9px 12px; border-radius: 8px;
-  border: 1.5px solid #E5E5E5; font-size: 13px;
-  font-family: 'Nunito', sans-serif;
-  background: #fff; outline: none; color: #111;
+  flex: 1;
+  padding: 9px 13px;
+  border-radius: 9px;
+  border: 1.5px solid #E2E8F0;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  outline: none;
+  color: #0F172A;
   transition: border-color 0.15s;
 }
+#inp::placeholder { color: #94A3B8; }
 #inp:focus { border-color: #DC2626; }
 #sendbtn {
-  background: #111827; color: #fff; border: none;
-  border-radius: 8px; padding: 9px 14px; cursor: pointer;
-  font-size: 12px; font-weight: 800;
-  font-family: 'Nunito', sans-serif;
+  background: #0F172A; color: #fff; border: none;
+  border-radius: 9px; padding: 9px 16px; cursor: pointer;
+  font-size: 12px; font-weight: 700;
+  font-family: 'Inter', sans-serif;
   white-space: nowrap;
   transition: background 0.12s;
 }
-#sendbtn:hover { background: #1f2937; }
+#sendbtn:hover { background: #1E293B; }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <div id="hdr" onclick="toggleMin()">
-  <div id="brand">🔬 App<em>.</em>Autopsy <span id="sitebadge">loading…</span></div>
+  <div id="brand">
+    <span>🔬</span> App<em>.</em>Autopsy
+    <span id="sitebadge">loading…</span>
+  </div>
   <div id="hdr-btns" onclick="event.stopPropagation()">
     <button class="hbtn" id="minbtn" title="Minimize" onclick="toggleMin()">−</button>
     <button class="hbtn" title="Close" onclick="closePanel()">✕</button>
   </div>
 </div>
 
-<!-- MAIN BODY -->
+<!-- HINT BAR -->
+<div id="hint-bar">
+  <div class="dot" style="background:#94A3B8;"></div>
+  Hover to preview &nbsp;·&nbsp; <strong style="color:#DC2626;">Double-click</strong> to dissect
+</div>
+
+<!-- LOCKED INDICATOR (shown when result is locked) -->
+<div id="locked-bar" style="display:none;">
+  🔒 <span id="locked-label">Locked</span>
+</div>
+
+<!-- BODY -->
 <div id="body">
+
   <!-- Idle -->
   <div id="idle">
     <div class="idle-icon">🖱️</div>
-    <div class="idle-title">Hover any element</div>
-    <div class="idle-sub">Move your cursor over any button, image, menu, product card, or section — and I'll show which tech roles built it.</div>
+    <div class="idle-title">Hover, then double-click</div>
+    <div class="idle-sub">Move over any element on this page — a button, image, nav link, product card, anything. Then double-click it to dissect.</div>
     <div class="tip-box">
-      🕐 Hold 0.6s to trigger analysis<br>
-      💬 Ask follow-up questions below<br>
-      🖱️ Click to lock the panel open
+      <div class="tip-row" style="margin-bottom:6px;">
+        <span>🖱️</span> <strong>Hover</strong> — see a preview of what you're pointing at
+      </div>
+      <div class="tip-row" style="margin-bottom:6px;">
+        <span class="tip-key">dblclick</span> <strong>Double-click</strong> — full dissection begins
+      </div>
+      <div class="tip-row">
+        <span>📌</span> Results stay locked until you double-click something new
+      </div>
     </div>
   </div>
 
-  <!-- Element being hovered -->
+  <!-- Element preview -->
   <div id="el-tag">
     <div id="el-name"></div>
     <div id="el-ctx"></div>
+    <div class="el-action">↑ Double-click to dissect this</div>
   </div>
 
   <!-- Loading -->
   <div id="loading">
     <div class="spin">🔬</div>
-    <div class="load-txt">Dissecting this element…</div>
-    <div class="load-sub">Taking 3–5 seconds</div>
+    <div class="load-txt">Dissecting…</div>
+    <div class="load-sub">Finding every role that built this</div>
+    <div class="load-prog"><div class="load-bar"></div></div>
   </div>
 
   <!-- Results -->
   <div id="result"></div>
+
 </div>
 
 <!-- CHAT -->
@@ -260,12 +442,11 @@ body {
 
 <script>
 const API = '/api/chat';
-
 const GP = {
-  Builders: '#3B82F6',
-  Data:     '#10B981',
-  Leaders:  '#8B5CF6',
-  Ops:      '#F59E0B'
+  Builders: { color: '#2563EB', bg: '#EFF6FF' },
+  Data:     { color: '#059669', bg: '#ECFDF5' },
+  Leaders:  { color: '#7C3AED', bg: '#F5F3FF' },
+  Ops:      { color: '#D97706', bg: '#FFFBEB' }
 };
 
 let isMin      = false;
@@ -274,10 +455,10 @@ let currentCtx = null;
 let site       = null;
 let pageTitle  = null;
 
-/* ── TELL PARENT WE'RE READY ── */
+/* ── READY ── */
 window.parent.postMessage({ type: 'ready' }, '*');
 
-/* ── RECEIVE MESSAGES FROM PARENT ── */
+/* ── MESSAGES FROM PARENT ── */
 window.addEventListener('message', (e) => {
   const m = e.data;
   if (!m || !m.type) return;
@@ -294,36 +475,50 @@ function init(s, t) {
 /* ── MINIMIZE ── */
 function toggleMin() {
   isMin = !isMin;
-  document.body.style.transform = isMin ? 'translateX(296px)' : 'translateX(0)';
+  document.body.style.transform = isMin ? 'translateX(316px)' : 'translateX(0)';
   document.getElementById('minbtn').textContent = isMin ? '+' : '−';
 }
-
-/* ── CLOSE ── */
 function closePanel() {
   window.parent.postMessage({ type: 'close' }, '*');
 }
 
-/* ── SHOW PREVIEW (instant, no API) ── */
+/* ── PREVIEW (hover, no API) ── */
 function showPreview(d, s) {
   if (s) { site = s; document.getElementById('sitebadge').textContent = s; }
+
+  // Only update element tag, do NOT touch results
   document.getElementById('idle').style.display = 'none';
   document.getElementById('el-tag').style.display = 'block';
+
   const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
   const display = d.text
-    ? `"${clip(d.text, 55)}"`
-    : `<${d.tag}>`;
+    ? `"${clip(d.text, 58)}"`
+    : `<${d.tag}> element`;
   document.getElementById('el-name').textContent = `${d.humanType}: ${display}`;
   document.getElementById('el-ctx').textContent = d.section
     ? `📍 Inside: ${d.section}`
     : `← ${d.tag} on ${site || '…'}`;
+
+  // Update hint bar
+  const hintBar = document.getElementById('hint-bar');
+  hintBar.innerHTML = `<div class="dot" style="background:#DC2626;animation:pulse 1.2s ease infinite;"></div> Hovering — <strong style="color:#DC2626;">double-click</strong> to dissect`;
 }
 
-/* ── ANALYZE (API call) ── */
+/* ── ANALYZE (double-click, with API) ── */
 async function analyze(d, s, t) {
   site = s || site;
   pageTitle = t || pageTitle;
-  currentCtx = `${d.humanType}: "${d.text}"${d.section ? ' in ' + d.section : ''}`;
+  currentCtx = `${d.humanType}: "${d.text}"${d.section ? ' in "' + d.section + '"' : ''}`;
   conv = [];
+
+  // Show locked bar
+  document.getElementById('locked-bar').style.display = 'flex';
+  document.getElementById('locked-label').textContent =
+    `Dissecting: ${(d.text || d.humanType).slice(0, 40)}`;
+
+  // Update hint bar
+  document.getElementById('hint-bar').innerHTML =
+    `<div class="dot" style="background:#DC2626;"></div> Analysing — results stay until you double-click something new`;
 
   document.getElementById('loading').style.display = 'block';
   document.getElementById('result').style.display = 'none';
@@ -333,13 +528,21 @@ async function analyze(d, s, t) {
     `Element: ${d.humanType} (HTML tag: <${d.tag}>)`,
     d.text    ? `Visible text / label: "${d.text}"` : '',
     d.section ? `Inside section: "${d.section}"` : '',
-    pageTitle ? `Page: ${pageTitle}` : ''
+    pageTitle ? `Page: ${pageTitle}` : '',
+    `Website: ${site}`
   ].filter(Boolean).join('\n');
 
-  const prompt = `A non-tech person is on ${site} and hovered over this element:
+  const prompt = `A non-tech person double-clicked this element on ${site} to understand it:
 ${desc}
 
-In very simple, everyday language, explain which 4–5 tech roles from this list built this SPECIFIC element and what each one did for it. Be concrete and specific to "${d.text || d.humanType}" on ${site}.
+Your job: explain in very simple everyday language which tech roles were involved in building this specific element.
+
+IMPORTANT INSTRUCTIONS:
+- Include EVERY role that genuinely contributed — do not artificially limit to just 4 or 5
+- If 10 or 12 roles were meaningfully involved, list all of them
+- Only omit a role if it truly had no involvement in this element
+- Be specific to THIS exact element on ${site}, not generic
+- Use simple everyday language (explain like to a 12-year-old curious about tech)
 
 Return ONLY a JSON array (no markdown, no backticks, nothing else):
 [
@@ -347,11 +550,16 @@ Return ONLY a JSON array (no markdown, no backticks, nothing else):
     "emoji": "🎨",
     "role": "Frontend Engineer",
     "group": "Builders",
-    "contribution": "1–2 sentences in simple everyday language, specific to this element on ${site}"
+    "contribution": "Clear 1-2 sentence explanation of their specific work on this element on ${site}"
   }
 ]
 
-Pick from: Frontend Engineer (🎨,Builders), Backend Engineer (⚙️,Builders), Full Stack Engineer (🔄,Builders), iOS Engineer (🍎,Builders), Android Engineer (🤖,Builders), Test/QA Engineer (🧪,Builders), Machine Learning Engineer (🧠,Data), Data Engineer (🚰,Data), Data Scientist (🔬,Data), Data/Business Analyst (📈,Data), Engineering Manager (👷,Leaders), Technical Program Manager (📋,Leaders), Product Manager (💡,Leaders), Cloud Architect (☁️,Ops), Site Reliability Engineer (🔧,Ops), Cybersecurity Engineer (🔒,Ops), DevOps Engineer (🚀,Ops)`;
+Available roles (use ALL that apply):
+Frontend Engineer (🎨, Builders), Backend Engineer (⚙️, Builders), Full Stack Engineer (🔄, Builders),
+iOS Engineer (🍎, Builders), Android Engineer (🤖, Builders), Test/QA Engineer (🧪, Builders),
+Machine Learning Engineer (🧠, Data), Data Engineer (🚰, Data), Data Scientist (🔬, Data), Data/Business Analyst (📈, Data),
+Engineering Manager (👷, Leaders), Technical Program Manager (📋, Leaders), Product Manager (💡, Leaders),
+Cloud Architect (☁️, Ops), Site Reliability Engineer (🔧, Ops), Cybersecurity Engineer (🔒, Ops), DevOps Engineer (🚀, Ops)`;
 
   try {
     const resp = await fetch(API, {
@@ -359,8 +567,8 @@ Pick from: Frontend Engineer (🎨,Builders), Backend Engineer (⚙️,Builders)
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 900,
-        system: 'Explain tech roles to non-tech people. Simple everyday language only. Return ONLY valid JSON arrays — no markdown, no backticks, no commentary.',
+        max_tokens: 1800,
+        system: 'You explain tech roles to non-tech people in simple everyday language. Be thorough — include every role that genuinely participated. Return ONLY valid JSON arrays, no other text.',
         messages: [{ role: 'user', content: prompt }]
       })
     });
@@ -383,32 +591,48 @@ Pick from: Frontend Engineer (🎨,Builders), Backend Engineer (⚙️,Builders)
     document.getElementById('hist').innerHTML = '';
     document.getElementById('chat').style.display = 'block';
 
+    // Update hint bar
+    document.getElementById('hint-bar').innerHTML =
+      `<div class="dot" style="background:#059669;"></div> ${roles.length} roles found — locked. Double-click anything new to switch.`;
+
   } catch (err) {
     document.getElementById('loading').style.display = 'none';
-    const msg = (err.message || '').length < 200
+    const msg = (err.message || '').length < 220
       ? err.message
       : 'Analysis failed. Make sure ANTHROPIC_API_KEY is set in Vercel → Settings → Environment Variables, then redeploy.';
     document.getElementById('result').innerHTML = `<div class="err">⚠️ ${esc(msg)}</div>`;
     document.getElementById('result').style.display = 'block';
+    document.getElementById('locked-bar').style.display = 'none';
   }
 }
 
 /* ── RENDER ROLES ── */
 function renderRoles(roles, d) {
-  const label = (d.text || d.humanType).slice(0, 40);
-  let html = `<div class="result-who">Who built: "${esc(label)}"</div>`;
-  html += roles.map(r => {
-    const c = GP[r.group] || '#6B7280';
-    return `<div class="rb">
+  const label = (d.text || d.humanType).slice(0, 45);
+  const header = `
+    <div class="result-header">
+      <div class="result-label">Dissection complete</div>
+      <div class="result-element">${esc(label)}</div>
+      <div class="result-count">${roles.length} role${roles.length !== 1 ? 's' : ''} involved in building this</div>
+    </div>`;
+
+  const cards = roles.map(r => {
+    const g = GP[r.group] || { color: '#64748B', bg: '#F8FAFC' };
+    return `<div class="rb" style="border-left-color:${g.color};">
       <div class="rn">
-        <span class="emoji">${r.emoji}</span>
-        <strong>${esc(r.role)}</strong>
-        ${r.group ? `<span class="gp" style="background:${c}18;color:${c};">${esc(r.group)}</span>` : ''}
+        <span class="rn-emoji">${r.emoji}</span>
+        <div class="rn-right">
+          <div class="rn-name">
+            ${esc(r.role)}
+            ${r.group ? `<span class="gp" style="background:${g.bg};color:${g.color};">${esc(r.group)}</span>` : ''}
+          </div>
+        </div>
       </div>
       <div class="rd">${esc(r.contribution)}</div>
     </div>`;
   }).join('');
-  return html;
+
+  return header + cards;
 }
 
 /* ── CHAT ── */
@@ -420,42 +644,42 @@ async function ask() {
   const q = inp.value.trim();
   if (!q) return;
   inp.value = '';
-
   const hist = document.getElementById('hist');
   hist.innerHTML += `<div class="qmsg">${esc(q)}</div>`;
-  const thinking = document.createElement('div');
-  thinking.className = 'amsg';
-  thinking.textContent = '💭 …';
-  hist.appendChild(thinking);
+  const bubble = document.createElement('div');
+  bubble.className = 'amsg';
+  bubble.textContent = '…';
+  hist.appendChild(bubble);
   hist.scrollTop = hist.scrollHeight;
-
   conv.push({ role: 'user', content: q });
-
   try {
     const resp = await fetch(API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 380,
-        system: `You are App.Autopsy. Give short, friendly, jargon-free answers. User is on ${site}.${currentCtx ? ' They are looking at: ' + currentCtx + '.' : ''}`,
+        max_tokens: 400,
+        system: `You are App.Autopsy. Short, friendly, zero jargon. User is on ${site}.${currentCtx ? ' Looking at: ' + currentCtx + '.' : ''}`,
         messages: conv
       })
     });
     const data = await resp.json();
     const reply = data.content[0].text;
     conv.push({ role: 'assistant', content: reply });
-    thinking.textContent = reply;
-  } catch (_) {
-    thinking.textContent = '⚠️ Request failed.';
-  }
+    bubble.textContent = reply;
+  } catch (_) { bubble.textContent = '⚠️ Request failed.'; }
   hist.scrollTop = hist.scrollHeight;
 }
 
 /* ── UTIL ── */
 function esc(s) {
-  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+
+/* ── PULSE ANIMATION ── */
+const styleEl = document.createElement('style');
+styleEl.textContent = '@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}';
+document.head.appendChild(styleEl);
 </script>
 </body>
 </html>
